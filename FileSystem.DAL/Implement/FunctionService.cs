@@ -30,6 +30,16 @@ namespace FileSystem.DAL
             return DeleteByKey(id.ToString());
         }
 
+        public Function GetFunctionRole(string  func)
+        {
+
+
+            //未实现↓
+
+
+            return FindSingle ("FunctionControl = @Control", new SqlParameter("@Control", func));
+        }
+
         public List<Function> GetFunctions(int pid)
         {
             return Find("FunctionPID = @PID", new SqlParameter("@PID", pid));

@@ -33,5 +33,9 @@ namespace FileSystem.BLL
             return Service.GetDepartmentsByUID(uid);
         }
 
+        //public List<Department> GetDepartment()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

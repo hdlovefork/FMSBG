@@ -79,7 +79,7 @@ namespace FMSBackground
         {
             if (!e.OK)
             {
-
+                
             }
             if (_selectedNode == null) return;
             Function f = _selectedNode.Tag as Function;
@@ -191,6 +191,10 @@ namespace FMSBackground
         {
             gbDetail.Enabled = false;//取消时详情面板要禁用
             pnlAction.Enabled = true;//启用动作面板
+            lblError.Text = string.Empty;
+        }
+        private void InitFunctiontList() {
+
         }
 
 

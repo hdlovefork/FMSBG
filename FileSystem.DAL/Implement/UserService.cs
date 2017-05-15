@@ -43,7 +43,7 @@ namespace FileSystem.DAL
 
         public bool DeleteUser(int userID)
         {
-            throw new NotImplementedException();
+            return DeleteByKey(userID.ToString ());
         }
 
         public List<Department> GetDepartmentByUID(int uid)
@@ -64,6 +64,13 @@ namespace FileSystem.DAL
                 );
         }
 
+        public List<User> GetUsersByRID(int rid)
+        {
+            return Find(new BaseQueryInfo("View_User_Role"), "RoleID=@RoleID",
+                  new SqlParameter("@RoleID", rid)
+                );
+        }
+
         public List<User> GetUsers()
         {
            return Find(string.Empty);
@@ -76,7 +83,7 @@ namespace FileSystem.DAL
 
         public bool UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            return Update(user);
         }
     }
 }
