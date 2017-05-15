@@ -29,5 +29,9 @@ namespace FileSystem.Entity
 		/// 
 		/// </summary>
 		public string RoleName { get; set; }
-	}
+        public override string ToString()
+        {
+            return RoleName;
+        }
+    }
 }

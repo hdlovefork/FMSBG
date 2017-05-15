@@ -77,6 +77,18 @@ namespace FileSystem.BLL
            // }
             return true;
         }
+        public bool UpdateUser(User user)
+        {
+            return Service .UpdateUser(user);
+        }
+        public bool DeleDeleteUser(int userId)
+        {
+            return Service.DeleteUser(userId);
+        }
 
+        public List<User> GetUsersByRID(int rid)
+        {
+            return Service.GetUsersByRID(rid);
+        }
     }
 }

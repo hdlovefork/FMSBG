@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUser));
             this.btnAdd = new System.Windows.Forms.Button();
-            this.hVhngbajsU = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvUser = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,8 +51,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lstDepPos = new System.Windows.Forms.ListBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.hVhngbajsU = new FMSBackground.Control.AuthButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -68,16 +68,6 @@
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // hVhngbajsU
-            // 
-            this.hVhngbajsU.Location = new System.Drawing.Point(109, 13);
-            this.hVhngbajsU.Margin = new System.Windows.Forms.Padding(4);
-            this.hVhngbajsU.Name = "hVhngbajsU";
-            this.hVhngbajsU.Size = new System.Drawing.Size(81, 29);
-            this.hVhngbajsU.TabIndex = 5;
-            this.hVhngbajsU.Text = "删除";
-            this.hVhngbajsU.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -323,12 +313,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " 直属部门";
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Black;
-            this.imageList1.Images.SetKeyName(0, "small_department.bmp");
-            // 
             // lstDepPos
             // 
             this.lstDepPos.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -339,16 +323,32 @@
             this.lstDepPos.Size = new System.Drawing.Size(268, 651);
             this.lstDepPos.TabIndex = 0;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Black;
+            this.imageList1.Images.SetKeyName(0, "small_department.bmp");
+            // 
+            // hVhngbajsU
+            // 
+            this.hVhngbajsU.Location = new System.Drawing.Point(257, 12);
+            this.hVhngbajsU.Name = "hVhngbajsU";
+            this.hVhngbajsU.Size = new System.Drawing.Size(81, 29);
+            this.hVhngbajsU.TabIndex = 11;
+            this.hVhngbajsU.Text = "删除";
+            this.hVhngbajsU.UseVisualStyleBackColor = true;
+            this.hVhngbajsU.Click += new FMSBackground.Control.AuthEventHandler(this.hVhngbajsU_Click);
+            // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1369, 752);
+            this.Controls.Add(this.hVhngbajsU);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.hVhngbajsU);
             this.Name = "FrmUser";
             this.TabText = " 用户管理";
             this.Text = " 用户管理";
@@ -364,7 +364,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button hVhngbajsU;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView tvUser;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -387,5 +386,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ListBox lstDepPos;
+        private Control.AuthButton hVhngbajsU;
     }
 }

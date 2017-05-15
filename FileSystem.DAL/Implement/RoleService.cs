@@ -14,6 +14,7 @@
 using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,12 +27,19 @@ namespace FileSystem.DAL
 
         public List<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            return Find();
         }
 
         public List<Role> GetRolesByUID(int uid)
         {
             throw new NotImplementedException();
         }
+
+        //public int HqyhID(int rid)
+        //{
+        //    return Find(new BaseQueryInfo("View_User_Role"), "RoleID=@RoleID",
+        //          new SqlParameter("@RoleID", rid)
+        //        );
+        //}
     }
 }

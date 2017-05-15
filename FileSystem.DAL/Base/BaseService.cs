@@ -35,7 +35,7 @@ namespace FileSystem.DAL
         /// 因为是在外部操作
         /// </summary>
         //private static string _conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
-        private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string _conn = @"Data Source=DESKTOP-N8MI63A\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         /// <summary>
         /// 数据库操作帮助类的实例对象
         /// </summary>
@@ -115,9 +115,17 @@ namespace FileSystem.DAL
         public bool DeleteByKey(string id)
         {
             //"UserID=@ID"
-            string condition = string.Format("DELETE FROM {0} WHERE {1} = @ID", QueryInfo.TableName, QueryInfo.PrimaryKey);
+            string sql = string.Format("DELETE FROM {0} WHERE {1} = @ID", QueryInfo.TableName, QueryInfo.PrimaryKey);
             SqlParameter parameter = new SqlParameter("@ID", id);
-            return _db.ExecuteNonQuery(condition, new SqlParameter[] { parameter }) > 0;
+            return _db.ExecuteNonQuery(sql, new SqlParameter[] { parameter }) > 0;
+        }
+
+        public bool Delete(string condition,params DbParameter[] paramsList)
+        {
+            if (string.IsNullOrWhiteSpace(condition))
+                throw new ArgumentNullException("condition参数不能为空，该condition为删除条件");
+            string sql = string.Format("DELETE FROM {0} WHERE {1}", QueryInfo.TableName, condition);
+            return _db.ExecuteNonQuery(sql, paramsList) > 0; ;
         }
 
         public bool Insert(T t)
@@ -150,13 +158,20 @@ namespace FileSystem.DAL
                     pList.Add(new SqlParameter("@ID", info.GetValue(t, null)));
                     continue;
                 }
-                if (v == null) continue;
+                if (!SafeTypeCheck(v)) continue;
                 sb.AppendFormat("{0} = @{1},", info.Name, info.Name);
                 pList.Add(new SqlParameter("@" + info.Name, v));
             }
             sb.Length--;
             sb.AppendFormat(" WHERE {0} = @ID", QueryInfo.PrimaryKey);
             return sb.ToString();
+        }
+
+        private bool SafeTypeCheck(object v)
+        {
+            if (v == null) return false;
+            if (v is System.Collections.IEnumerable) return false;
+            return true;
         }
         /// <summary>
         /// 从一个Entity转成SQL字段
@@ -174,9 +189,11 @@ namespace FileSystem.DAL
             foreach (PropertyInfo info in typeof(T).GetProperties())
             {
                 if (info.Name == QueryInfo.PrimaryKey) continue;
+                object v = info.GetValue(t, null);
+                if (!SafeTypeCheck(v)) continue;
                 sbFields.AppendFormat("{0},", info.Name);
                 sbValues.AppendFormat("@{0},", info.Name);
-                pList.Add(new SqlParameter("@" + info.Name, info.GetValue(t, null)));
+                pList.Add(new SqlParameter("@" + info.Name,v));
             }
             sbFields.Length--;
             sbValues.Length--;

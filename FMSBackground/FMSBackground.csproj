@@ -59,6 +59,12 @@
     <Compile Include="Control\AuthButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FrmDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDepartment.Designer.cs">
+      <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFunction.cs">
       <SubType>Form</SubType>
     </Compile>
