@@ -27,6 +27,7 @@ namespace FMSBackground.Control
     {
         protected override void OnClick(EventArgs e)
         {
+            if (this.Tag == null) throw new Exception("按钮的Tag不能为null，该值对应Function.FunctionControl字段");
             //Debug.WriteLine("OnClick ------{0}",this.Tag);
             bool ok = Factory.Create<AuthLogic>().Auth(this.Tag.ToString());
             if (ok)
