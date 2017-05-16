@@ -47,6 +47,8 @@ namespace FileSystem.DAL
         /// 设置默认表名，必填
         /// </summary>
         string TableName { get; }
+
+        IList<Relationship> Relationship { get; }
         #endregion
     }
 }

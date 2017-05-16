@@ -29,6 +29,7 @@ namespace FMSBackground
         FrmUser _frmUser = new FrmUser();
         FrmRole _frmRole = new FrmRole();
         FrmFunction _frmFun = new FrmFunction();
+        FrmDepartment _frmDep = new FrmDepartment();
         
         public FrmMain()
         {
@@ -40,7 +41,7 @@ namespace FMSBackground
             _frmUser.Show(dockPanel);
             _frmRole.Show(dockPanel);
             _frmFun.Show(dockPanel);
-
+            _frmDep.Show(dockPanel);
             _frmUser.Show(dockPanel);
             //在底部状态栏显示当前登录的用户信息
             lblCurrentUser.Text = string.Format("当前管理员:{0}",GObj.CurrentUser.UserRealName);

@@ -161,14 +161,6 @@ namespace FMSBackground
             }
             return true;
         }
-
-        private void ReloadTree()
-        {
-            tvFunction.Nodes.Clear();//清空所有节点
-            InitFunctionTree();//初始化所有节点
-            tvFunction.ExpandAll();//展开所有 节点
-        }
-
         private void btnAdd_Click(object sender, AuthEventArgs e)
         {
             if (!e.OK) return;
@@ -180,6 +172,15 @@ namespace FMSBackground
             gbDetail.Enabled = true;//添加时解锁界面/启用界面
             pnlAction.Enabled = false;//禁用动作面板
         }
+
+        private void ReloadTree()
+        {
+            tvFunction.Nodes.Clear();//清空所有节点
+            InitFunctionTree();//初始化所有节点
+            tvFunction.ExpandAll();//展开所有 节点
+        }
+
+       
 
         private void btnEdit_Click(object sender, EventArgs e)
         {

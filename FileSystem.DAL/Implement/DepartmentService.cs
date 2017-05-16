@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FileSystem.Entity;
 using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace FileSystem.DAL
 {
@@ -27,7 +28,11 @@ namespace FileSystem.DAL
 
         public override IQueryInfo QueryInfo
         {
-            get { return new BaseQueryInfo("Department"); }
+            get { return new BaseQueryInfo("Department",
+                new Relationship[] {
+                    new Relationship ("User_Department_Position"),
+                    new Relationship ("File_Department")  });
+            }
         }
 
         public List<Department> GetDepartments()
@@ -58,9 +63,30 @@ namespace FileSystem.DAL
             return list;
         }
 
+        public bool UpdateDepartment(Department f)
+        {
+            return Update(f);
+        }
+
+        public bool InsertDepartment(Department d)
+        {
+            return Insert(d) > 0 ;
+        }
+        public bool DeleteDepartmentByID(int id)
+        {
+            return DeleteByKey(id.ToString());
+        }
         public List<Department> GetDepartmentsByUID(int uid)
         {
             throw new NotImplementedException();
+        }
+        public List<Department> GetDepartment()
+        {
+            return Find();
+        }
+        public Department GetParentDepartmentByPID(int pid)
+        {
+            return FindSingle("DepartmentID=@PID", new SqlParameter("@PID", pid));
         }
     }
 }
