@@ -19,7 +19,7 @@ namespace FileSystem.Entity
     /// 实体类ACL_Role。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public partial class Role:BaseEntity
+    public class Role:BaseEntity
     {
 		/// <summary>
 		/// 

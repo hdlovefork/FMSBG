@@ -26,6 +26,14 @@ namespace FileSystem.DAL
 
         List<Role> GetRolesByUID(int uid);
 
+        bool DeleteRoleByID(int id);
+
+        bool InsertRole(Role rl);
+
+        bool UpdateRole(Role rl);
+
+       
+
 
     }
 }

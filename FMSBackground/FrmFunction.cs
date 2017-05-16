@@ -16,6 +16,7 @@ namespace FMSBackground
 {
     public partial class FrmFunction : BaseForm
     {
+        
         TreeNode _selectedNode = null;//保存最后一次点击的节点
         FunctionLogic _funLogic = new FunctionLogic();
         bool _bAdd = false;//当前是否正在添加Function
@@ -100,6 +101,7 @@ namespace FMSBackground
                 //执行添加操作，没有添加成功不作任何操作               
                 if (!AddFunction()) return;
                 _bAdd = false;//把添加状态改为更新状态
+
             }
             else
             {

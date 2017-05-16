@@ -27,7 +27,7 @@ namespace FileSystem.DAL
 
         public override IQueryInfo QueryInfo
         {
-            get { return new BaseQueryInfo("Department"); }
+            get { return new BaseQueryInfo("Department",null); }
         }
 
         public List<Department> GetDepartments()

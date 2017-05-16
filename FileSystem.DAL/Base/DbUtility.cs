@@ -16,13 +16,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.Common;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace FileSystem.DAL
 {
     public class DbUtility
     {
         public string ConnectionString { get; set; }
-        private DbProviderFactory providerFactory;
+        private DbProviderFactory _providerFactory;
+        private DbTransaction _transactionObj = null;
 
         /// <summary>  
         /// 构造函数  
@@ -32,8 +34,8 @@ namespace FileSystem.DAL
         public DbUtility(string connectionString, DbProviderType providerType)
         {
             ConnectionString = connectionString;
-            providerFactory = ProviderFactory.GetDbProviderFactory(providerType);
-            if (providerFactory == null)
+            _providerFactory = ProviderFactory.GetDbProviderFactory(providerType);
+            if (_providerFactory == null)
             {
                 throw new ArgumentException("Can't load DbProviderFactory for given value of providerType");
             }
@@ -84,6 +86,66 @@ namespace FileSystem.DAL
             }
         }
 
+        public int ExecuteNonQueryWithTransaction(string sql, IList<DbParameter> parameters, CommandType commandType)
+        {
+            if (_transactionObj == null) throw new Exception("你应该先调用BeginTransaction()方法开启事务");
+            using (DbCommand cmd=CreateDbCommandWithTransaction(sql,parameters, commandType))
+            {
+                cmd.Transaction = _transactionObj;
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        #region 连接操作
+        private void OpenConn(DbConnection conn)
+        {
+            if (conn == null) conn = _providerFactory.CreateConnection();
+            conn.ConnectionString = ConnectionString;
+            if (conn.State == ConnectionState.Closed) conn.Open();
+        }
+
+        private void CloseConn(DbConnection conn)
+        {
+            if (conn == null) return;
+            if (conn.State == ConnectionState.Open) conn.Close();
+            conn.Dispose();
+            conn = null;
+        }
+        #endregion
+
+        #region 事务操作
+        public void BeginTransaction()
+        {
+            if (_transactionObj == null)
+            {
+                DbConnection conn = _providerFactory.CreateConnection();
+                OpenConn(conn);
+                _transactionObj = conn.BeginTransaction();
+            }
+        }
+
+        public void RollbackTransaction()
+        {
+            if (_transactionObj == null) return;
+            _transactionObj.Rollback();
+            ReleaseTransaction();
+
+        }
+        public void CommitTransaction()
+        {
+            if (_transactionObj == null) return;
+            _transactionObj.Commit();
+            ReleaseTransaction();
+        }
+
+        private void ReleaseTransaction()
+        {
+            if (_transactionObj == null) return;
+            DbConnection conn = _transactionObj.Connection;
+            _transactionObj = null;
+            CloseConn(conn);
+        }
+        #endregion
+
         /// <summary>     
         /// 执行一个查询语句，返回一个关联的DataReader实例     
         /// </summary>     
@@ -93,6 +155,11 @@ namespace FileSystem.DAL
         public DbDataReader ExecuteReader(string sql, IList<DbParameter> parameters)
         {
             return ExecuteReader(sql, parameters, CommandType.Text);
+        }
+
+        public int ExecuteNonQueryWithTransaction(string sql, IList<DbParameter> pList)
+        {
+           return ExecuteNonQueryWithTransaction(sql, pList, CommandType.Text);
         }
 
         /// <summary>     
@@ -131,7 +198,7 @@ namespace FileSystem.DAL
         {
             using (DbCommand command = CreateDbCommand(sql, parameters, commandType))
             {
-                using (DbDataAdapter adapter = providerFactory.CreateDataAdapter())
+                using (DbDataAdapter adapter = _providerFactory.CreateDataAdapter())
                 {
                     adapter.SelectCommand = command;
                     DataTable data = new DataTable();
@@ -177,7 +244,7 @@ namespace FileSystem.DAL
 
         public DbParameter CreateDbParameter(string name, ParameterDirection parameterDirection, object value)
         {
-            DbParameter parameter = providerFactory.CreateParameter();
+            DbParameter parameter = _providerFactory.CreateParameter();
             parameter.ParameterName = name;
             parameter.Value = value;
             parameter.Direction = parameterDirection;
@@ -193,12 +260,35 @@ namespace FileSystem.DAL
         /// <returns></returns>  
         private DbCommand CreateDbCommand(string sql, IList<DbParameter> parameters, CommandType commandType)
         {
-            DbConnection connection = providerFactory.CreateConnection();
-            DbCommand command = providerFactory.CreateCommand();
+            DbConnection connection = _providerFactory.CreateConnection();
+            DbCommand command = _providerFactory.CreateCommand();
             connection.ConnectionString = ConnectionString;
             command.CommandText = sql;
             command.CommandType = commandType;
             command.Connection = connection;
+            if (!(parameters == null || parameters.Count == 0))
+            {
+                foreach (DbParameter parameter in parameters)
+                {
+                    command.Parameters.Add(parameter);
+                }
+            }
+            return command;
+        }
+
+        /// <summary>
+        /// 基于事务的连接对象
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        private DbCommand CreateDbCommandWithTransaction(string sql, IList<DbParameter> parameters, CommandType commandType)
+        {
+            DbCommand command = _providerFactory.CreateCommand();           
+            command.CommandText = sql;
+            command.CommandType = commandType;
+            command.Connection = _transactionObj.Connection;
             if (!(parameters == null || parameters.Count == 0))
             {
                 foreach (DbParameter parameter in parameters)

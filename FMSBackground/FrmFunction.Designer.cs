@@ -32,7 +32,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvFunction = new System.Windows.Forms.TreeView();
             this.gbDetail = new System.Windows.Forms.GroupBox();
-            this.btnAdd = new FMSBackground.Control.AuthButton();
             this.lblError = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtFunctionName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAdd = new FMSBackground.Control.AuthButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnEdit = new FMSBackground.Control.AuthButton();
@@ -106,17 +106,6 @@
             this.gbDetail.TabIndex = 5;
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "功能详细信息";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(7, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(74, 29);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Tag = "Function/Add";
-            this.btnAdd.Text = "添加";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
             // 
             // lblError
             // 
@@ -210,6 +199,17 @@
             this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "功能名称(*):";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(7, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(74, 29);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.Tag = "Function/Add";
+            this.btnAdd.Text = "添加";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
             // 
             // groupBox3
             // 

@@ -14,6 +14,7 @@
 using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +23,38 @@ namespace FileSystem.DAL
 {
     public class RoleService : BaseService<Role>,IRoleService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role");
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role", "RoleID",
+            new Relationship[] {
+                new Relationship("ACL_Role_Function"),
+                new Relationship("ACL_User_Role"),
+                new Relationship("ACL_File_Role")
+                }
+            );
 
         public List<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            return Find();
         }
 
         public List<Role> GetRolesByUID(int uid)
         {
             throw new NotImplementedException();
+        }
+
+        public bool DeleteRoleByID(int id)
+        {
+            
+            return DeleteByKey(id.ToString());
+        }
+
+        public bool InsertRole(Role rl)
+        {
+            int i = Insert(rl);
+            return i > 0;
+        }
+
+        public bool UpdateRole(Role rl) {
+            return Update(rl);
         }
     }
 }
