@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2017-05-13 18:27:11                          */
+/* Created on:     2017-05-16 8:55:13                           */
 /*==============================================================*/
 
 
@@ -37,6 +37,13 @@ if exists (select 1
    where r.fkeyid = object_id('ACL_Role_Function') and o.name = 'FK_ACL_ROLE_REFERENCE_ACL_ROLE')
 alter table ACL_Role_Function
    drop constraint FK_ACL_ROLE_REFERENCE_ACL_ROLE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('ACL_Role_Function') and o.name = 'FK_ACL_ROLE_REFERENCE_ACL_FUNC')
+alter table ACL_Role_Function
+   drop constraint FK_ACL_ROLE_REFERENCE_ACL_FUNC
 go
 
 if exists (select 1
@@ -733,6 +740,11 @@ go
 alter table ACL_Role_Function
    add constraint FK_ACL_ROLE_REFERENCE_ACL_ROLE foreign key (RoleID)
       references ACL_Role (RoleID)
+go
+
+alter table ACL_Role_Function
+   add constraint FK_ACL_ROLE_REFERENCE_ACL_FUNC foreign key (FunctionID)
+      references ACL_Function (FunctionID)
 go
 
 alter table ACL_User_Role

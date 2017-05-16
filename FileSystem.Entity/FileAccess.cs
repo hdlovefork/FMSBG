@@ -1,7 +1,7 @@
 ﻿/**************************************************************** 
  * 作    者：黄鼎 
  * CLR 版本：4.0.30319.42000 
- * 创建时间：2017-05-12 12:34:52 
+ * 创建时间：2017-05-16 10:44:36 
  * 当前版本：1.0.0.0
  *  
  * 描述说明： 
@@ -15,18 +15,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FileSystem.Entity;
 
-namespace FileSystem.DAL
+namespace FileSystem.Entity
 {
-    public class PositionService : BaseService<Position>, IPositionService
+    public enum FileAccess
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("Position",new Relationship[] { new Relationship("User_Department_Position") });
+        Read,
+        Write,
+        ReadAndWrite,
 
-        public List<Position> GetPositions()
-        {
-            return Find();
-        }
     }
 }

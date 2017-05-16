@@ -63,11 +63,17 @@ INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (9,5)
 INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (10,2)
 INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (11,2)
 
+
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (1,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (2,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (3,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (4,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (5,1)
+
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (12,1)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (13,2)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (14,1)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (15,1)
-
 
 INSERT INTO [File_Department] (FileID,DepartmentID) VALUES (6,1)
 INSERT INTO [File_Department] (FileID,DepartmentID) VALUES (7,2)

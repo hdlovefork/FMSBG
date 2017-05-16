@@ -37,20 +37,30 @@ namespace FileSystem.DAL
         //保存真实的表名
         private string _sRealTableName;
 
+        private IList<Relationship> _relationship;
+
         /// <summary>
         /// 这是一个无参构造方法，我不让你使用，气死你！
         /// 因为我必须让你告诉我表名，否则我的大坑爸爸(BaseService)不能正常工作
         /// </summary>
-        private BaseQueryInfo() { }
+        private BaseQueryInfo()
+        {
+            _relationship = new List<Relationship>();
+        }
 
         /// <summary>
         /// 你要在哪张表中做查询操作
         /// </summary>
         /// <param name="tableName"></param>
-        public BaseQueryInfo(string tableName)
+        public BaseQueryInfo(string tableName, Relationship[] relationship) : this()
         {
             _sRealTableName = tableName;
             _sTableName = string.Format("[{0}]", tableName);
+            if (relationship == null) return;
+            foreach (var r in relationship)
+            {
+                Relationship.Add(r);
+            }
         }
 
         /// <summary>
@@ -58,14 +68,14 @@ namespace FileSystem.DAL
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="primaryKey"></param>
-        public BaseQueryInfo(string tableName, string primaryKey)
-            : this(tableName)
+        public BaseQueryInfo(string tableName, string primaryKey, Relationship[] relationship)
+            : this(tableName, relationship)
         {
             _sPrimaryKey = primaryKey;
         }
 
-        public BaseQueryInfo(string tableName, string primaryKey,string sortField)
-                :this(tableName,primaryKey)
+        public BaseQueryInfo(string tableName, string primaryKey, string sortField, Relationship[] relationship)
+                : this(tableName, primaryKey, relationship)
         {
             _sSortField = sortField;
         }
@@ -78,8 +88,8 @@ namespace FileSystem.DAL
         /// <param name="isDescending"></param>
         /// <param name="selectedFields"></param>
         /// <param name="sortField"></param>
-        public BaseQueryInfo(string tableName, string primaryKey, bool isDescending, string selectedFields, string sortField)
-             : this(tableName, primaryKey)
+        public BaseQueryInfo(string tableName, string primaryKey, bool isDescending, string selectedFields, string sortField, Relationship[] relationship)
+             : this(tableName, primaryKey,relationship)
         {
             _bIsDescending = isDescending;
             _sSelectedFields = selectedFields;
@@ -113,5 +123,7 @@ namespace FileSystem.DAL
         {
             get { return _sTableName; }
         }
+
+        public IList<Relationship> Relationship => _relationship;
     }
 }

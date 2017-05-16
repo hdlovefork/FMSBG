@@ -35,7 +35,7 @@ namespace FileSystem.DAL
         /// 因为是在外部操作
         /// </summary>
         //private static string _conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
-        private static string _conn = @"Data Source=DESKTOP-N8MI63A\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         /// <summary>
         /// 数据库操作帮助类的实例对象
         /// </summary>
@@ -107,6 +107,29 @@ namespace FileSystem.DAL
             return Find(condition);
         }
 
+        private int DeleteWithTransaction(string tableName, string fieldName, object fieldValue)
+        {
+            string sql = string.Format("DELETE FROM {0} WHERE {1} = @ID", tableName, fieldName);
+            SqlParameter parameter = new SqlParameter("@ID", fieldValue);
+            return _db.ExecuteNonQueryWithTransaction(sql, new SqlParameter[] { parameter });
+        }
+
+        private int DeleteWithTransaction(IQueryInfo q, string id)
+        {
+            int affectedRows = 0;
+            if (q.Relationship.Count > 0)
+            {
+                //先删除关系表的记录
+                foreach (var r in QueryInfo.Relationship)
+                {
+                    affectedRows += DeleteWithTransaction(r.TableName, r.FieldName ?? q.PrimaryKey, id);
+                }
+            }
+            //删除主表记录
+            affectedRows += DeleteWithTransaction(q.TableName, q.PrimaryKey, id);
+
+            return affectedRows;
+        }
         /// <summary>
         /// 根据主键删除数据-单表
         /// </summary>
@@ -114,26 +137,48 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public bool DeleteByKey(string id)
         {
-            //"UserID=@ID"
-            string sql = string.Format("DELETE FROM {0} WHERE {1} = @ID", QueryInfo.TableName, QueryInfo.PrimaryKey);
-            SqlParameter parameter = new SqlParameter("@ID", id);
-            return _db.ExecuteNonQuery(sql, new SqlParameter[] { parameter }) > 0;
+            int affectedRows = 0;
+            try
+            {
+                _db.BeginTransaction();
+                affectedRows = DeleteWithTransaction(QueryInfo, id);
+                _db.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                _db.RollbackTransaction();
+            }
+            return affectedRows > 0;
         }
 
-        public bool Delete(string condition,params DbParameter[] paramsList)
+        public bool Delete(string condition, params DbParameter[] paramsList)
+        {
+            return Delete(QueryInfo.TableName, condition, paramsList);
+        }
+
+        public bool Delete(string tableName, string condition, params DbParameter[] paramsList)
         {
             if (string.IsNullOrWhiteSpace(condition))
                 throw new ArgumentNullException("condition参数不能为空，该condition为删除条件");
-            string sql = string.Format("DELETE FROM {0} WHERE {1}", QueryInfo.TableName, condition);
+            string sql = string.Format("DELETE FROM {0} WHERE {1}", tableName, condition);
             return _db.ExecuteNonQuery(sql, paramsList) > 0; ;
         }
 
-        public bool Insert(T t)
+        /// <summary>
+        /// 插入数据，返回新的ID，失败返回-1
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public int Insert(T t)
         {
             IList<DbParameter> pList;
             string sql = EntityToInsertSQL(t, out pList);
-            if (pList.Count == 0) return false;
-            return _db.ExecuteNonQuery(sql, pList) > 0;
+            sql += ";SELECT @@IDENTITY";
+            if (pList.Count == 0) return -1;
+            object o = _db.ExecuteScalar(sql, pList);
+            if (o == null) return -1;
+            return Convert.ToInt32(o);
         }
 
         public bool Update(T t)
@@ -144,33 +189,174 @@ namespace FileSystem.DAL
             return _db.ExecuteNonQuery(sql, pList) > 0;
         }
 
-        protected virtual string EntityToUpdateSQL(T t, out IList<DbParameter> pList)
+        /// <summary>
+        /// 使用事务方式删除多个表的多条记录，专用于多表删除
+        /// </summary>
+        /// <param name="sqlList"></param>
+        /// <param name="pList"></param>
+        /// <returns></returns>
+        public bool DeleteWithTransaction(IList<string> sqlList, IList<DbParameter[]> pList)
+        {
+            if (sqlList == null || pList == null || sqlList.Count == 0 || pList.Count == 0 || sqlList.Count != pList.Count)
+                throw new ArgumentException("输入的参数为0或者sqlList和pList的数量不一致");
+            int affectedRows = 0;
+            try
+            {
+                _db.BeginTransaction();
+                for (int i = 0; i < sqlList.Count; i++)
+                {
+                    _db.ExecuteNonQueryWithTransaction(sqlList[i], pList[i]);
+                }
+                _db.CommitTransaction();
+            }
+            catch
+            {
+                _db.RollbackTransaction();
+            }
+            return affectedRows > 0;
+        }
+
+        /// <summary>
+        /// 使用事务的方式删除一条记录成功返回True
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool DeleteWithTransaction(T t)
+        {
+            return DeleteWithTransaction<T, object, object, object>(t, null, null, null, QueryInfo, null, null, null);
+        }
+
+        public bool DeleteWithTransaction<T1, T2>(T1 t1, T2 t2, IQueryInfo q1, IQueryInfo q2)
+        {
+            return DeleteWithTransaction<T1, T2, object, object>(t1, t2, null, null, q1, q2, null, null);
+        }
+
+        public bool DeleteWithTransaction<T1, T2, T3>(T1 t1, T2 t2, T3 t3, IQueryInfo q1, IQueryInfo q2, IQueryInfo q3)
+        {
+            return DeleteWithTransaction<T1, T2, T3, object>(t1, t2, t3, null, q1, q2, q3, null); ;
+        }
+
+        public bool DeleteWithTransaction<T1, T2, T3, T4>(T1 t1, T2 t2, T3 t3, T4 t4, IQueryInfo q1, IQueryInfo q2, IQueryInfo q3, IQueryInfo q4)
+        {
+            IList<DbParameter> pList;
+            string sql = string.Empty;
+            int affectedRows = 0;
+            try
+            {
+                _db.BeginTransaction();
+                if (t1 != null && q1 != null)
+                {
+                    sql = EntityToDeleteSQL(t1, out pList, q1);
+                    affectedRows += _db.ExecuteNonQueryWithTransaction(sql, pList);
+                }
+                if (t2 != null && q2 != null)
+                {
+                    sql = EntityToDeleteSQL(t2, out pList, q2);
+                    affectedRows += _db.ExecuteNonQueryWithTransaction(sql, pList);
+                }
+                if (t3 != null && q3 != null)
+                {
+                    sql = EntityToDeleteSQL(t3, out pList, q3);
+                    affectedRows += _db.ExecuteNonQueryWithTransaction(sql, pList);
+                }
+                if (t4 != null && q4 != null)
+                {
+                    sql = EntityToDeleteSQL(t4, out pList, q4);
+                    affectedRows += _db.ExecuteNonQueryWithTransaction(sql, pList);
+                }
+                _db.CommitTransaction();
+            }
+            catch
+            {
+                _db.RollbackTransaction();
+            }
+            return affectedRows > 0;
+        }
+
+        public string EntityToDeleteSQL<TEntity>(TEntity t, out IList<DbParameter> pList, IQueryInfo queryInfo)
         {
             pList = new List<DbParameter>();
             StringBuilder sb = new StringBuilder();
+            object v = null;
+            sb.AppendFormat("DELETE FROM {0} ", queryInfo.TableName);
+            if (HasPrimaryKey(t, queryInfo, out v))
+            {
+                sb.AppendFormat("WHERE {0} = @ID", queryInfo.PrimaryKey);
+                pList.Add(new SqlParameter("@ID", v));
+            }
+            else
+            {
+                sb.AppendFormat("WHERE ");
+                foreach (PropertyInfo info in typeof(TEntity).GetProperties())
+                {
+                    v = info.GetValue(t, null);
+                    if (!SafeTypeCheck(v)) continue;
+                    sb.AppendFormat("{0} = @{1},", info.Name, info.Name);
+                    pList.Add(new SqlParameter("@" + info.Name, v));
+                }
+                if (sb[sb.Length - 1] == ',')
+                    sb.Length--;//去掉多余的一个逗号
+            }
+
+
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 判断指定的Entity是否有主键信息值
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="t"></param>
+        /// <param name="queryInfo"></param>
+        /// <returns></returns>
+        private bool HasPrimaryKey<TEntity>(TEntity t, IQueryInfo queryInfo, out object value)
+        {
+            value = null;
+            foreach (PropertyInfo info in typeof(TEntity).GetProperties())
+            {
+                if (info.Name == queryInfo.PrimaryKey)
+                {
+                    value = info.GetValue(t, null);
+                    return SafeTypeCheck(value);
+                }
+            }
+            return false;
+        }
+        protected virtual string EntityToUpdateSQL<TEntity>(TEntity t, out IList<DbParameter> pList)
+        {
+            bool hasPK = false;
+            pList = new List<DbParameter>();
+            StringBuilder sb = new StringBuilder();
             sb.AppendFormat("UPDATE {0} SET ", QueryInfo.TableName);
-            foreach (PropertyInfo info in typeof(T).GetProperties())
+            foreach (PropertyInfo info in typeof(TEntity).GetProperties())
             {
                 object v = info.GetValue(t, null);
+                if (!SafeTypeCheck(v)) continue;
                 if (info.Name == QueryInfo.PrimaryKey)
                 {
-                    if (v == null) throw new Exception(QueryInfo.PrimaryKey + "的值不能为null");
-                    pList.Add(new SqlParameter("@ID", info.GetValue(t, null)));
+                    hasPK = true;
+                    pList.Add(new SqlParameter("@ID", v));
                     continue;
                 }
-                if (!SafeTypeCheck(v)) continue;
                 sb.AppendFormat("{0} = @{1},", info.Name, info.Name);
                 pList.Add(new SqlParameter("@" + info.Name, v));
             }
-            sb.Length--;
-            sb.AppendFormat(" WHERE {0} = @ID", QueryInfo.PrimaryKey);
+            if (sb[sb.Length - 1] == ',')
+                sb.Length--;//去掉多余的一个逗号
+            if (hasPK)
+                sb.AppendFormat(" WHERE {0} = @ID", QueryInfo.PrimaryKey);
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 值为null，List，Array时返回False
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         private bool SafeTypeCheck(object v)
         {
             if (v == null) return false;
-            if (v is System.Collections.IEnumerable) return false;
+            if (v is System.Collections.IList) return false;
+            if (v is Array) return false;
             return true;
         }
         /// <summary>
@@ -178,7 +364,7 @@ namespace FileSystem.DAL
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        protected virtual string EntityToInsertSQL(T t, out IList<DbParameter> pList)
+        protected virtual string EntityToInsertSQL<TEntity>(TEntity t, out IList<DbParameter> pList)
         {
             pList = new List<DbParameter>();
             StringBuilder sbFields = new StringBuilder();
@@ -186,14 +372,14 @@ namespace FileSystem.DAL
             //"INSERT INTO (field1,field2) VALUES (@1,@2);
             sbFields.AppendFormat("INSERT INTO {0} (", QueryInfo.TableName);
             sbValues.AppendFormat(" VALUES (");
-            foreach (PropertyInfo info in typeof(T).GetProperties())
+            foreach (PropertyInfo info in typeof(TEntity).GetProperties())
             {
                 if (info.Name == QueryInfo.PrimaryKey) continue;
                 object v = info.GetValue(t, null);
                 if (!SafeTypeCheck(v)) continue;
                 sbFields.AppendFormat("{0},", info.Name);
                 sbValues.AppendFormat("@{0},", info.Name);
-                pList.Add(new SqlParameter("@" + info.Name,v));
+                pList.Add(new SqlParameter("@" + info.Name, v));
             }
             sbFields.Length--;
             sbValues.Length--;

@@ -218,18 +218,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "功能名称(*):";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(9, 5);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(99, 36);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Tag = "Function/Add";
-            this.btnAdd.Text = "添加";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
