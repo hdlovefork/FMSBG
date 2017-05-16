@@ -39,7 +39,6 @@
             this.menu_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Help_About = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Help_Help = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu_Help_Register = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMain = new System.Windows.Forms.ToolStrip();
             this.tool_User = new System.Windows.Forms.ToolStripButton();
             this.tool_Dep = new System.Windows.Forms.ToolStripButton();
@@ -82,15 +81,15 @@
             // menu_System_Password
             // 
             this.menu_System_Password.Name = "menu_System_Password";
-            this.menu_System_Password.Size = new System.Drawing.Size(163, 26);
+            this.menu_System_Password.Size = new System.Drawing.Size(181, 26);
             this.menu_System_Password.Text = "修改密码(&P)";
-            this.menu_System_Password.Visible = false;
             // 
             // menu_System_Exit
             // 
             this.menu_System_Exit.Name = "menu_System_Exit";
-            this.menu_System_Exit.Size = new System.Drawing.Size(163, 26);
+            this.menu_System_Exit.Size = new System.Drawing.Size(181, 26);
             this.menu_System_Exit.Text = "退出(&X)";
+            this.menu_System_Exit.Click += new System.EventHandler(this.tool_Quit_Click);
             // 
             // menu_Window
             // 
@@ -117,8 +116,7 @@
             // 
             this.menu_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_Help_About,
-            this.menu_Help_Help,
-            this.menu_Help_Register});
+            this.menu_Help_Help});
             this.menu_Help.Name = "menu_Help";
             this.menu_Help.Size = new System.Drawing.Size(73, 24);
             this.menu_Help.Text = "帮助(&H)";
@@ -126,21 +124,14 @@
             // menu_Help_About
             // 
             this.menu_Help_About.Name = "menu_Help_About";
-            this.menu_Help_About.Size = new System.Drawing.Size(135, 26);
+            this.menu_Help_About.Size = new System.Drawing.Size(181, 26);
             this.menu_Help_About.Text = "关于(&A)";
             // 
             // menu_Help_Help
             // 
             this.menu_Help_Help.Name = "menu_Help_Help";
-            this.menu_Help_Help.Size = new System.Drawing.Size(135, 26);
+            this.menu_Help_Help.Size = new System.Drawing.Size(181, 26);
             this.menu_Help_Help.Text = "帮助(&F)";
-            // 
-            // menu_Help_Register
-            // 
-            this.menu_Help_Register.Name = "menu_Help_Register";
-            this.menu_Help_Register.Size = new System.Drawing.Size(135, 26);
-            this.menu_Help_Register.Text = "注册(&R)";
-            this.menu_Help_Register.Visible = false;
             // 
             // toolMain
             // 
@@ -206,6 +197,7 @@
             this.tool_Quit.Name = "tool_Quit";
             this.tool_Quit.Size = new System.Drawing.Size(105, 36);
             this.tool_Quit.Text = "退出系统";
+            this.tool_Quit.Click += new System.EventHandler(this.tool_Quit_Click);
             // 
             // statusStrip1
             // 
@@ -290,7 +282,6 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Help;
         private System.Windows.Forms.ToolStripMenuItem menu_Help_About;
         private System.Windows.Forms.ToolStripMenuItem menu_Help_Help;
-        private System.Windows.Forms.ToolStripMenuItem menu_Help_Register;
         private System.Windows.Forms.ToolStrip toolMain;
         private System.Windows.Forms.ToolStripButton tool_User;
         private System.Windows.Forms.ToolStripButton tool_Dep;

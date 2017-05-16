@@ -23,7 +23,13 @@ namespace FileSystem.DAL
 {
     public class RoleService : BaseService<Role>,IRoleService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role",null);
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role", null);
+
+        //public bool AddRoleFunction(Role_Function rf)
+        //{
+        //    int i = Insert(rf);
+        //    return i>0;
+        //}
 
         public List<Role> GetRoles()
         {

@@ -33,6 +33,7 @@
             this.btnDelete = new FMSBackground.Control.AuthButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvFunction = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.gbDetail = new System.Windows.Forms.GroupBox();
             this.lblError = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -44,21 +45,17 @@
             this.txtFunctionName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new FMSBackground.Control.AuthButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnEdit = new FMSBackground.Control.AuthButton();
             this.pnlAction = new System.Windows.Forms.Panel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.gbDetail.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.pnlAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(221, 5);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(99, 36);
             this.btnDelete.TabIndex = 4;
@@ -73,9 +70,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.tvFunction);
             this.groupBox1.Location = new System.Drawing.Point(13, 48);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(343, 646);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -88,12 +85,18 @@
             this.tvFunction.ImageIndex = 0;
             this.tvFunction.ImageList = this.imageList1;
             this.tvFunction.Location = new System.Drawing.Point(4, 22);
-            this.tvFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvFunction.Margin = new System.Windows.Forms.Padding(4);
             this.tvFunction.Name = "tvFunction";
             this.tvFunction.SelectedImageIndex = 0;
             this.tvFunction.Size = new System.Drawing.Size(335, 620);
             this.tvFunction.TabIndex = 0;
             this.tvFunction.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFunction_NodeMouseClick);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Black;
+            this.imageList1.Images.SetKeyName(0, "small_function.bmp");
             // 
             // gbDetail
             // 
@@ -111,10 +114,10 @@
             this.gbDetail.Controls.Add(this.label1);
             this.gbDetail.Enabled = false;
             this.gbDetail.Location = new System.Drawing.Point(364, 48);
-            this.gbDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetail.Margin = new System.Windows.Forms.Padding(4);
             this.gbDetail.Name = "gbDetail";
-            this.gbDetail.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbDetail.Size = new System.Drawing.Size(393, 642);
+            this.gbDetail.Padding = new System.Windows.Forms.Padding(4);
+            this.gbDetail.Size = new System.Drawing.Size(684, 642);
             this.gbDetail.TabIndex = 5;
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "功能详细信息";
@@ -132,7 +135,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(280, 189);
+            this.btnCancel.Location = new System.Drawing.Point(571, 189);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
@@ -144,7 +147,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(200, 189);
+            this.btnSave.Location = new System.Drawing.Point(491, 189);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 32);
@@ -163,7 +166,7 @@
             this.cboFunction.Location = new System.Drawing.Point(145, 74);
             this.cboFunction.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboFunction.Name = "cboFunction";
-            this.cboFunction.Size = new System.Drawing.Size(208, 23);
+            this.cboFunction.Size = new System.Drawing.Size(499, 23);
             this.cboFunction.TabIndex = 6;
             // 
             // txtFunctionControl
@@ -172,9 +175,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFunctionControl.Location = new System.Drawing.Point(145, 122);
-            this.txtFunctionControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFunctionControl.Margin = new System.Windows.Forms.Padding(4);
             this.txtFunctionControl.Name = "txtFunctionControl";
-            this.txtFunctionControl.Size = new System.Drawing.Size(208, 25);
+            this.txtFunctionControl.Size = new System.Drawing.Size(499, 25);
             this.txtFunctionControl.TabIndex = 5;
             // 
             // label3
@@ -203,9 +206,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFunctionName.Location = new System.Drawing.Point(145, 24);
-            this.txtFunctionName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFunctionName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFunctionName.Name = "txtFunctionName";
-            this.txtFunctionName.Size = new System.Drawing.Size(208, 25);
+            this.txtFunctionName.Size = new System.Drawing.Size(499, 25);
             this.txtFunctionName.TabIndex = 1;
             // 
             // label1
@@ -221,7 +224,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(9, 5);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(99, 36);
             this.btnAdd.TabIndex = 9;
@@ -230,35 +233,10 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.listBox1);
-            this.groupBox3.Location = new System.Drawing.Point(769, 48);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(277, 646);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "课操作的角色";
-            // 
-            // listBox1
-            // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(4, 22);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(269, 620);
-            this.listBox1.TabIndex = 0;
-            // 
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(115, 5);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(99, 36);
             this.btnEdit.TabIndex = 4;
@@ -273,16 +251,10 @@
             this.pnlAction.Controls.Add(this.btnDelete);
             this.pnlAction.Controls.Add(this.btnEdit);
             this.pnlAction.Location = new System.Drawing.Point(8, 0);
-            this.pnlAction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlAction.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(324, 45);
             this.pnlAction.TabIndex = 8;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Black;
-            this.imageList1.Images.SetKeyName(0, "small_function.bmp");
             // 
             // FrmFunction
             // 
@@ -290,10 +262,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1061, 701);
             this.Controls.Add(this.pnlAction);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gbDetail);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmFunction";
             this.TabText = "功能管理";
             this.Text = "功能管理";
@@ -301,7 +272,6 @@
             this.groupBox1.ResumeLayout(false);
             this.gbDetail.ResumeLayout(false);
             this.gbDetail.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.pnlAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -317,8 +287,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFunctionName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlAction;

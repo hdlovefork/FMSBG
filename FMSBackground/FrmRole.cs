@@ -14,7 +14,8 @@ namespace FMSBackground
 {
     public partial class FrmRole : BaseForm
     {
-        string _name = null;
+       
+        
         RoleLogic _roleLogic = new RoleLogic();
         UserLogic _userLogic = new UserLogic();
         FunctionLogic _functionLogic = new FunctionLogic();
@@ -23,10 +24,7 @@ namespace FMSBackground
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void FrmRole_Load(object sender, EventArgs e)
         {
@@ -60,12 +58,11 @@ namespace FMSBackground
         {
             Role r = e.Node.Tag as Role;
             if (r == null) return;
-            //_seleNode = r.RoleID ;
+            //FrmEditTree fet = new FrmEditTree(r.RoleID);                                      //_seleNode = e.Node;
             listBox2.Items.Clear();
             SeleUser(r);//显示可编辑用户
             listBox1.Items.Clear();
             SeleFunction(r);
-
         }
 
         private void SeleFunction(Role r)

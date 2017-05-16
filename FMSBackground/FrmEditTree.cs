@@ -14,13 +14,18 @@ namespace FMSBackground
     public partial class FrmEditTree : Form
     {
         FunctionLogic _funLogic = new FunctionLogic();
-        
+        List <Role_Function > _seleFunction = null;
+        RoleFunctionLogic _roleFunction = new RoleFunctionLogic();
+        int _rid = 0;
         public FrmEditTree()
         {
+            
             InitializeComponent();
-        }
 
-        private void FrmEditTree_Load(object sender, EventArgs e)
+        }
+       
+
+            private void FrmEditTree_Load(object sender, EventArgs e)
         {
             InitFunctionTree();//初始化左边的功能树状结构
 
@@ -67,7 +72,14 @@ namespace FMSBackground
 
         private void tvFunctionTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
+            
+            Function f =e.Node .Tag as Function ;
+            
+            Role_Function rf = new Role_Function();
+            rf.FunctionID = f.FunctionID;
+            rf.RoleID = _rid;
+            _seleFunction.Add(rf);
+            //_roleFunction.AddRoleFunction(_seleFunction);
         }
     }
 }

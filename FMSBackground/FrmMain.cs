@@ -98,6 +98,12 @@ namespace FMSBackground
 
             _frmDict[name].Show(dockPanel);
         }
-        
+
+        private void tool_Quit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+       
     }
 }
