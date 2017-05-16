@@ -22,7 +22,7 @@ namespace FileSystem.DAL
 {
     public class PositionService : BaseService<Position>, IPositionService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("Position");
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("Position",null);
 
         public List<Position> GetPositions()
         {

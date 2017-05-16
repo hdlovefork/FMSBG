@@ -37,7 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btsele = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -152,7 +152,7 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.btsele);
             this.groupBox3.Controls.Add(this.listBox1);
             this.groupBox3.Location = new System.Drawing.Point(355, 220);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
@@ -163,15 +163,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "可操作功能";
             // 
-            // button2
+            // btsele
             // 
-            this.button2.Location = new System.Drawing.Point(337, 504);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 29);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "编辑";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btsele.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btsele.Location = new System.Drawing.Point(537, 498);
+            this.btsele.Margin = new System.Windows.Forms.Padding(4);
+            this.btsele.Name = "btsele";
+            this.btsele.Size = new System.Drawing.Size(100, 29);
+            this.btsele.TabIndex = 0;
+            this.btsele.Text = "编辑";
+            this.btsele.UseVisualStyleBackColor = true;
+            this.btsele.Click += new System.EventHandler(this.btsele_Click);
             // 
             // listBox1
             // 
@@ -341,7 +343,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btsele;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;

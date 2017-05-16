@@ -38,7 +38,7 @@ namespace FileSystem.DAL
         public override IQueryInfo QueryInfo
         {
             //告诉BaseService我要搜索User表
-            get { return new BaseQueryInfo("User"); }
+            get { return new BaseQueryInfo("User",null); }
         }
 
         public bool DeleteUser(int userID)
@@ -66,7 +66,7 @@ namespace FileSystem.DAL
 
         public List<User> GetUsersByRID(int rid)
         {
-            return Find(new BaseQueryInfo("View_User_Role"), "RoleID=@RoleID",
+            return Find(new BaseQueryInfo("View_User_Role",null), "RoleID=@RoleID",
                   new SqlParameter("@RoleID", rid)
                 );
         }

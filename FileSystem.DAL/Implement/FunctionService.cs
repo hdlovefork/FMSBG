@@ -23,7 +23,12 @@ namespace FileSystem.DAL
 {
     public class FunctionService : BaseService<Function>, IFunctionService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function","FunctionID");
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function", "FunctionID",
+                new Relationship[] { new Relationship("ACL_Role_Function") }
+            );
+
+
+
 
         public bool DeleteFunctionByID(int id)
         {
@@ -55,9 +60,17 @@ namespace FileSystem.DAL
             return FindSingle("FunctionID=@PID", new SqlParameter("@PID", pid));
         }
 
+        public List<Function> GetRoleFunction(int rid)
+        {
+            return Find(new BaseQueryInfo("View_Role_Function",null), "RoleID=@RoleID",
+                  new SqlParameter("@RoleID", rid)
+                );
+        }
+
         public bool InsertFunction(Function f)
         {
-            return Insert(f);
+            int i = Insert(f);
+            return i>0;
         }
 
         public bool UpdateFunction(Function f)

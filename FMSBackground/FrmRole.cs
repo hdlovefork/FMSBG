@@ -16,8 +16,8 @@ namespace FMSBackground
     {
         string _name = null;
         RoleLogic _roleLogic = new RoleLogic();
-        int _seleNode = 0;
         UserLogic _userLogic = new UserLogic();
+        FunctionLogic _functionLogic = new FunctionLogic();
         public FrmRole()
         {
             InitializeComponent();
@@ -62,26 +62,41 @@ namespace FMSBackground
             if (r == null) return;
             //_seleNode = r.RoleID ;
             listBox2.Items.Clear();
-            NewMethod(r);//显示可编辑用户
-
-            //NewMethod
+            SeleUser(r);//显示可编辑用户
+            listBox1.Items.Clear();
+            SeleFunction(r);
 
         }
 
-        private void NewMethod(Role r)
+        private void SeleFunction(Role r)
+        {
+            InitFunctionTree(r);
+        }
+
+        private void InitFunctionTree(Role r)
+        {
+            List<Function> list = _functionLogic.GetRoleFunction(r.RoleID);
+            if (list == null) return;
+            foreach (var f in list)
+            {
+                listBox1.Items.Add(f.FunctionName);
+            }
+        }
+
+        private void SeleUser(Role r)
         {
             List<User> list = _userLogic.GetUsersByRID(r.RoleID);
             if (list == null) return;
             foreach (var u in list)
             {
-
-                listBox2.Items.Add(u.UserRealName);
-               
-                if (_name != u.UserRealName) {
-                    listBox2.Items.Remove(u.UserRealName);
-                }
-                _name = u.UserRealName;
+                listBox2.Items.Add(u.UserRealName);    
             }
+        }
+
+        private void btsele_Click(object sender, EventArgs e)
+        {
+            FrmEditTree fet = new FrmEditTree();
+            fet.Show();
         }
     }
 }

@@ -56,16 +56,16 @@ namespace FMSBackground
                 _frmDep.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmDep;
-                _frmDict.Add(tool_Dep .Text , _frmDep);
+                _frmDict.Add(tool_Dep.Text, _frmDep);
 
             }
-            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_ROLE ))
+            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_ROLE))
             {
                 _frmRole = new FrmRole();
                 _frmRole.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmRole;
-                _frmDict.Add(tool_Role .Text , _frmRole);
+                _frmDict.Add(tool_Role.Text, _frmRole);
             }
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_FUNCTION ))
             {

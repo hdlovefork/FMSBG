@@ -65,6 +65,12 @@
     <Compile Include="FrmDepartment.Designer.cs">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmEditTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditTree.Designer.cs">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFunction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditTree.resx">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFunction.resx">
       <DependentUpon>FrmFunction.cs</DependentUpon>
