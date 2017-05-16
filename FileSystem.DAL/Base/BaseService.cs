@@ -28,7 +28,7 @@ namespace FileSystem.DAL
     /// 如果想使用我，请叫我“爸爸”（继承我），我将帮助你拿到数据库的数据
     /// </summary>
     /// <typeparam name="T">你要返回的Entity类型（实体类）</typeparam>
-    public abstract class BaseService<T> where T : BaseEntity
+    public abstract class BaseService<T> where T : BaseEntity,new()
     {
         /// <summary>
         /// 数据库连接字符串，通过app.config文件修改成你的，这样写的好处在于可以在不修改程序代码的前提下换数据库
@@ -60,6 +60,15 @@ namespace FileSystem.DAL
             return Find(condition, null);
         }
 
+        public List<TEntity> Find<TEntity>(IQueryInfo q,string condition, params DbParameter[] paramList)
+            where TEntity:BaseEntity,new()
+        {
+            string str = string.Format("SELECT {0} FROM {1}{2}", q.SelectedFields, q.TableName, string.IsNullOrWhiteSpace(condition) ? string.Empty : " WHERE " + condition);
+            if (!string.IsNullOrWhiteSpace(q.SortField))//排序字段不为空时才排序
+                str += string.Format(" ORDER BY {3} {4}", q.SortField, q.IsDescending ? "DESC" : "ASC");
+            return this.GetList<TEntity>(str, paramList);
+        }
+
         /// <summary>
         /// 根据条件查询多条数据-单表,如果查询所有记录condition请设为string.Empty
         /// </summary>
@@ -68,7 +77,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public List<T> Find(string condition, params DbParameter[] paramList)
         {
-            return Find(QueryInfo, condition, paramList);
+            return Find<T>(QueryInfo, condition, paramList);
         }
 
         public List<T> Find(IQueryInfo queryInfo, string condition, params DbParameter[] paramList)
@@ -389,16 +398,9 @@ namespace FileSystem.DAL
             return sbFields.ToString();
         }
 
-        /// <summary>
-        /// 通过传入一个DataReader返回一个T的实例
-        /// 调用这个方法的前提需要保存你的实例类和数据库的字段名一一对应
-        /// 它是利用反射机制实现的
-        /// </summary>
-        /// <param name="dr"></param>
-        /// <returns></returns>
-        protected virtual T DataReaderToEntity(IDataReader dr)
+        protected virtual TEntity DataReaderToEntity<TEntity>(IDataReader dr)
         {
-            T local = Activator.CreateInstance<T>();
+            TEntity local = Activator.CreateInstance<TEntity>();
             foreach (PropertyInfo info in local.GetType().GetProperties())
             {
                 try
@@ -414,6 +416,18 @@ namespace FileSystem.DAL
         }
 
         /// <summary>
+        /// 通过传入一个DataReader返回一个T的实例
+        /// 调用这个方法的前提需要保存你的实例类和数据库的字段名一一对应
+        /// 它是利用反射机制实现的
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        protected virtual T DataReaderToEntity(IDataReader dr)
+        {
+            return DataReaderToEntity<T>(dr);
+        }
+
+        /// <summary>
         /// 通过完整的Sql语句获取List集合
         /// </summary>
         /// <param name="strSql"></param>
@@ -421,12 +435,18 @@ namespace FileSystem.DAL
         /// <returns></returns>
         private List<T> GetList(string strSql, DbParameter[] parameters)
         {
-            T item = default(T);
-            List<T> list = new List<T>();
+            return GetList<T>(strSql, parameters);
+        }
+
+        private List<TEntity> GetList<TEntity>(string strSql,DbParameter[] parameters)
+            where TEntity:BaseEntity,new()
+        {
+            TEntity item = new TEntity();
+            List<TEntity> list = new List<TEntity>();
             IDataReader reader = _db.ExecuteReader(strSql, parameters);
             while (reader.Read())
             {
-                item = this.DataReaderToEntity(reader);
+                item = this.DataReaderToEntity<TEntity>(reader);
                 list.Add(item);
             }
             reader.Close();

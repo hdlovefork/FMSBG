@@ -77,7 +77,7 @@ namespace FileSystem.DAL
 
         public List<User> GetUsersByRID(int rid)
         {
-            return Find(new BaseQueryInfo("View_User_Role"), "RoleID=@RoleID",
+            return Find(new BaseQueryInfo("View_User_Role",null), "RoleID=@RoleID",
                   new SqlParameter("@RoleID", rid)
                 );
         }
