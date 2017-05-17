@@ -54,6 +54,7 @@
             this.lstDepPos = new System.Windows.Forms.ListBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.hVhngbajsU = new FMSBackground.Control.AuthButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,10 +62,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(13, 13);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(10, 10);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(81, 29);
+            this.btnAdd.Size = new System.Drawing.Size(61, 23);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -74,11 +74,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.tvUser);
-            this.groupBox1.Location = new System.Drawing.Point(13, 62);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(10, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(325, 691);
+            this.groupBox1.Size = new System.Drawing.Size(244, 553);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户列表";
@@ -87,10 +85,9 @@
             // 
             this.tvUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvUser.HideSelection = false;
-            this.tvUser.Location = new System.Drawing.Point(4, 22);
-            this.tvUser.Margin = new System.Windows.Forms.Padding(4);
+            this.tvUser.Location = new System.Drawing.Point(3, 17);
             this.tvUser.Name = "tvUser";
-            this.tvUser.Size = new System.Drawing.Size(317, 665);
+            this.tvUser.Size = new System.Drawing.Size(238, 533);
             this.tvUser.TabIndex = 0;
             this.tvUser.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvUser_NodeMouseClick);
             // 
@@ -99,6 +96,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.radioButton1);
             this.groupBox2.Controls.Add(this.btnSave);
             this.groupBox2.Controls.Add(this.chkUserEnable);
             this.groupBox2.Controls.Add(this.cboPosition);
@@ -115,11 +113,9 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(368, 74);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(276, 59);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(696, 675);
+            this.groupBox2.Size = new System.Drawing.Size(522, 540);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "用户详细信息";
@@ -127,21 +123,20 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(567, 523);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(425, 418);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 29);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // chkUserEnable
             // 
             this.chkUserEnable.AutoSize = true;
-            this.chkUserEnable.Location = new System.Drawing.Point(141, 475);
-            this.chkUserEnable.Margin = new System.Windows.Forms.Padding(4);
+            this.chkUserEnable.Location = new System.Drawing.Point(106, 380);
             this.chkUserEnable.Name = "chkUserEnable";
-            this.chkUserEnable.Size = new System.Drawing.Size(119, 19);
+            this.chkUserEnable.Size = new System.Drawing.Size(96, 16);
             this.chkUserEnable.TabIndex = 12;
             this.chkUserEnable.Text = "帐户是否过期";
             this.chkUserEnable.UseVisualStyleBackColor = true;
@@ -155,22 +150,20 @@
             this.cboPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPosition.FormattingEnabled = true;
             this.cboPosition.IntegralHeight = false;
-            this.cboPosition.Location = new System.Drawing.Point(141, 123);
-            this.cboPosition.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPosition.Location = new System.Drawing.Point(106, 98);
             this.cboPosition.Name = "cboPosition";
-            this.cboPosition.Size = new System.Drawing.Size(526, 23);
+            this.cboPosition.Size = new System.Drawing.Size(396, 20);
             this.cboPosition.TabIndex = 1;
             // 
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(141, 372);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAddress.Location = new System.Drawing.Point(106, 298);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtAddress.Size = new System.Drawing.Size(526, 68);
+            this.txtAddress.Size = new System.Drawing.Size(396, 55);
             this.txtAddress.TabIndex = 11;
             // 
             // txtMobile
@@ -178,10 +171,9 @@
             this.txtMobile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMobile.Location = new System.Drawing.Point(141, 313);
-            this.txtMobile.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMobile.Location = new System.Drawing.Point(106, 250);
             this.txtMobile.Name = "txtMobile";
-            this.txtMobile.Size = new System.Drawing.Size(526, 25);
+            this.txtMobile.Size = new System.Drawing.Size(396, 21);
             this.txtMobile.TabIndex = 7;
             // 
             // txtRealName
@@ -189,29 +181,26 @@
             this.txtRealName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRealName.Location = new System.Drawing.Point(141, 264);
-            this.txtRealName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRealName.Location = new System.Drawing.Point(106, 211);
             this.txtRealName.Name = "txtRealName";
-            this.txtRealName.Size = new System.Drawing.Size(526, 25);
+            this.txtRealName.Size = new System.Drawing.Size(396, 21);
             this.txtRealName.TabIndex = 4;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(81, 378);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(61, 302);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 15);
+            this.label12.Size = new System.Drawing.Size(41, 12);
             this.label12.TabIndex = 0;
             this.label12.Text = "住址：";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(49, 319);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(37, 255);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 15);
+            this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 0;
             this.label8.Text = "移动电话：";
             // 
@@ -220,20 +209,18 @@
             this.txtRePass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRePass.Location = new System.Drawing.Point(141, 219);
-            this.txtRePass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRePass.Location = new System.Drawing.Point(106, 175);
             this.txtRePass.Name = "txtRePass";
             this.txtRePass.PasswordChar = '*';
-            this.txtRePass.Size = new System.Drawing.Size(526, 25);
+            this.txtRePass.Size = new System.Drawing.Size(396, 21);
             this.txtRePass.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 270);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(19, 216);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 15);
+            this.label5.Size = new System.Drawing.Size(83, 12);
             this.label5.TabIndex = 0;
             this.label5.Text = "真实姓名(*)：";
             // 
@@ -242,20 +229,18 @@
             this.txtPwd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPwd.Location = new System.Drawing.Point(141, 174);
-            this.txtPwd.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPwd.Location = new System.Drawing.Point(106, 139);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
-            this.txtPwd.Size = new System.Drawing.Size(526, 25);
+            this.txtPwd.Size = new System.Drawing.Size(396, 21);
             this.txtPwd.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 225);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(37, 180);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 15);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 0;
             this.label4.Text = "确认密码：";
             // 
@@ -264,40 +249,36 @@
             this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUserName.Location = new System.Drawing.Point(141, 26);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUserName.Location = new System.Drawing.Point(106, 21);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(526, 25);
+            this.txtUserName.Size = new System.Drawing.Size(396, 21);
             this.txtUserName.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 126);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(32, 101);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 15);
+            this.label7.Size = new System.Drawing.Size(71, 12);
             this.label7.TabIndex = 0;
             this.label7.Text = " 所属岗位：";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 180);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(61, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 15);
+            this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 0;
             this.label3.Text = "密码：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 31);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(31, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 15);
+            this.label1.Size = new System.Drawing.Size(71, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "用户名(*)：";
             // 
@@ -306,9 +287,11 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.lstDepPos);
-            this.groupBox3.Location = new System.Drawing.Point(1083, 74);
+            this.groupBox3.Location = new System.Drawing.Point(812, 59);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(274, 675);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(206, 540);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " 直属部门";
@@ -317,10 +300,11 @@
             // 
             this.lstDepPos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstDepPos.FormattingEnabled = true;
-            this.lstDepPos.ItemHeight = 15;
-            this.lstDepPos.Location = new System.Drawing.Point(3, 21);
+            this.lstDepPos.ItemHeight = 12;
+            this.lstDepPos.Location = new System.Drawing.Point(2, 16);
+            this.lstDepPos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstDepPos.Name = "lstDepPos";
-            this.lstDepPos.Size = new System.Drawing.Size(268, 651);
+            this.lstDepPos.Size = new System.Drawing.Size(202, 522);
             this.lstDepPos.TabIndex = 0;
             // 
             // imageList1
@@ -331,19 +315,31 @@
             // 
             // hVhngbajsU
             // 
-            this.hVhngbajsU.Location = new System.Drawing.Point(257, 12);
+            this.hVhngbajsU.Location = new System.Drawing.Point(193, 10);
+            this.hVhngbajsU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.hVhngbajsU.Name = "hVhngbajsU";
-            this.hVhngbajsU.Size = new System.Drawing.Size(81, 29);
+            this.hVhngbajsU.Size = new System.Drawing.Size(61, 23);
             this.hVhngbajsU.TabIndex = 11;
             this.hVhngbajsU.Text = "删除";
             this.hVhngbajsU.UseVisualStyleBackColor = true;
             this.hVhngbajsU.Click += new FMSBackground.Control.AuthEventHandler(this.hVhngbajsU_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(236, 379);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(95, 16);
+            this.radioButton1.TabIndex = 14;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // FrmUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 752);
+            this.ClientSize = new System.Drawing.Size(1027, 602);
             this.Controls.Add(this.hVhngbajsU);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -387,5 +383,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ListBox lstDepPos;
         private Control.AuthButton hVhngbajsU;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

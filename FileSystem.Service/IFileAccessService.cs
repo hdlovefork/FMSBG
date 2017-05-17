@@ -27,6 +27,6 @@ namespace FileSystem.Service
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        File GetFileByUID(int fileID);
+        File GetFileByFID(int fileID);
     }
 }

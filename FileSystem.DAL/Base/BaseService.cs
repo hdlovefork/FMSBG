@@ -34,8 +34,8 @@ namespace FileSystem.DAL
         /// 数据库连接字符串，通过app.config文件修改成你的，这样写的好处在于可以在不修改程序代码的前提下换数据库
         /// 因为是在外部操作
         /// </summary>
-        //private static string _conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
-        private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
+        //private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         /// <summary>
         /// 数据库操作帮助类的实例对象
         /// </summary>
@@ -96,7 +96,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public T FindSingle(string condition, params DbParameter[] paramList)
         {
-            T local = default(T);
+            T local = null;
             List<T> list = this.Find(condition, paramList);
             if (list.Count > 0)
             {

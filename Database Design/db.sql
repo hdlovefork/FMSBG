@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2017-05-16 8:55:13                           */
+/* Created on:     2017-05-17 19:53:06                          */
 /*==============================================================*/
 
 
@@ -62,20 +62,6 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Comment') and o.name = 'FK_COMMENT_REFERENCE_FILE')
-alter table Comment
-   drop constraint FK_COMMENT_REFERENCE_FILE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Comment') and o.name = 'FK_COMMENT_REFERENCE_USER')
-alter table Comment
-   drop constraint FK_COMMENT_REFERENCE_USER
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('File_Department') and o.name = 'FK_FILE_DEP_REFERENCE_FILE')
 alter table File_Department
    drop constraint FK_FILE_DEP_REFERENCE_FILE
@@ -86,6 +72,20 @@ if exists (select 1
    where r.fkeyid = object_id('File_Department') and o.name = 'FK_FILE_DEP_REFERENCE_DEPARTME')
 alter table File_Department
    drop constraint FK_FILE_DEP_REFERENCE_DEPARTME
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('User_Comment') and o.name = 'FK_USER_COM_REFERENCE_FILE')
+alter table User_Comment
+   drop constraint FK_USER_COM_REFERENCE_FILE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('User_Comment') and o.name = 'FK_USER_COM_REFERENCE_USER')
+alter table User_Comment
+   drop constraint FK_USER_COM_REFERENCE_USER
 go
 
 if exists (select 1
@@ -209,13 +209,6 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('Comment')
-            and   type = 'U')
-   drop table Comment
-go
-
-if exists (select 1
-            from  sysobjects
            where  id = object_id('Department')
             and   type = 'U')
    drop table Department
@@ -247,6 +240,13 @@ if exists (select 1
            where  id = object_id('"User"')
             and   type = 'U')
    drop table "User"
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('User_Comment')
+            and   type = 'U')
+   drop table User_Comment
 go
 
 if exists (select 1
@@ -347,6 +347,7 @@ go
 create table ACL_Role (
    RoleID               int                  identity,
    RoleName             varchar(50)          null,
+   RoleDescription      varchar(100)         null,
    constraint PK_ACL_ROLE primary key nonclustered (RoleID)
 )
 go
@@ -421,36 +422,6 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: Comment                                               */
-/*==============================================================*/
-create table Comment (
-   CommentID            int                  identity,
-   FileID               int                  null,
-   UserID               int                  null,
-   CommentCreateTime    datetime             null,
-   CommentMsg           varchar(500)         null,
-   constraint PK_COMMENT primary key (CommentID)
-)
-go
-
-if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('Comment') and minor_id = 0)
-begin 
-   declare @CurrentUser sysname 
-select @CurrentUser = user_name() 
-execute sp_dropextendedproperty 'MS_Description',  
-   'user', @CurrentUser, 'table', 'Comment' 
- 
-end 
-
-
-select @CurrentUser = user_name() 
-execute sp_addextendedproperty 'MS_Description',  
-   '用户评论表', 
-   'user', @CurrentUser, 'table', 'Comment'
-go
-
-/*==============================================================*/
 /* Table: Department                                            */
 /*==============================================================*/
 create table Department (
@@ -485,12 +456,13 @@ create table "File" (
    FileName             varchar(50)          null,
    FileExt              varchar(50)          null,
    FileSize             int                  null,
-   FileData             varbinary(Max)       null,
+   FileData             image                null,
    FileCreateTime       datetime             null default getdate(),
    FilePID              int                  null,
    FileOwner            int                  null default 1023,
    FileRole             int                  null default 0,
    FileOther            int                  null default 0,
+   FileArchive          bit                  null,
    constraint PK_FILE primary key nonclustered (FileID)
 )
 go
@@ -600,6 +572,36 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* Table: User_Comment                                          */
+/*==============================================================*/
+create table User_Comment (
+   CommentID            int                  identity,
+   FileID               int                  null,
+   UserID               int                  null,
+   CommentCreateTime    datetime             null,
+   CommentMsg           varchar(500)         null,
+   constraint PK_USER_COMMENT primary key (CommentID)
+)
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('User_Comment') and minor_id = 0)
+begin 
+   declare @CurrentUser sysname 
+select @CurrentUser = user_name() 
+execute sp_dropextendedproperty 'MS_Description',  
+   'user', @CurrentUser, 'table', 'User_Comment' 
+ 
+end 
+
+
+select @CurrentUser = user_name() 
+execute sp_addextendedproperty 'MS_Description',  
+   '用户评论表', 
+   'user', @CurrentUser, 'table', 'User_Comment'
+go
+
+/*==============================================================*/
 /* Table: User_Department_Position                              */
 /*==============================================================*/
 create table User_Department_Position (
@@ -630,8 +632,12 @@ go
 /* View: View_Department_Position                               */
 /*==============================================================*/
 create view View_Department_Position as
-SELECT d.*,p.* FROM [dbo].[Position] p
-	cross join [dbo].[Department] d
+select
+   d.*,
+   p.*
+from
+   Position p,
+   Department d
 go
 
 /*==============================================================*/
@@ -645,7 +651,7 @@ select
 	from File_Department fd
 	inner join "File" f on f.FileID = fd.FileID
 	inner join Department d on d.DepartmentID = fd.DepartmentID
-	inner join [ACL_File_User] fu on fu.FileID  = fd.FileID
+	inner join ACL_File_User fu on fu.FileID  = fd.FileID
 go
 
 /*==============================================================*/
@@ -667,18 +673,18 @@ create view View_File_User as
 select 
 	f.*,
 	u.*
-		from [ACL_File_User] fu
-	inner join [File] f on f.FileID = fu.FileID
-	inner join [User] u on u.UserID = fu.UserID
+		from ACL_File_User fu
+	inner join "File" f on f.FileID = fu.FileID
+	inner join "User" u on u.UserID = fu.UserID
 go
 
 /*==============================================================*/
 /* View: View_Role_Function                                     */
 /*==============================================================*/
 create view View_Role_Function as
-select r.*,f.* from [ACL_Role_Function] rf
-	inner join [ACL_Role] r on r.RoleID = rf.RoleID
-	inner join [ACL_Function] f on f.FunctionID = rf.FunctionID
+select r.*,f.* from ACL_Role_Function rf
+	inner join ACL_Role r on r.RoleID = rf.RoleID
+	inner join ACL_Function f on f.FunctionID = rf.FunctionID
 go
 
 /*==============================================================*/
@@ -713,8 +719,8 @@ go
 create view View_User_Role_Function as
 select ur.UserID,ur.UserName,ur.UserRealName,ur.UserEnable,ur.RoleID,ur.RoleName,
 	rf.FunctionID,rf.FunctionName,rf.FunctionPID,rf.FunctionControl
-		from [View_User_Role] ur
-	inner join [View_Role_Function] rf on rf.RoleID = ur.RoleID
+		from View_User_Role ur
+	inner join View_Role_Function rf on rf.RoleID = ur.RoleID
 go
 
 alter table ACL_File_Role
@@ -757,16 +763,6 @@ alter table ACL_User_Role
       references ACL_Role (RoleID)
 go
 
-alter table Comment
-   add constraint FK_COMMENT_REFERENCE_FILE foreign key (FileID)
-      references "File" (FileID)
-go
-
-alter table Comment
-   add constraint FK_COMMENT_REFERENCE_USER foreign key (UserID)
-      references "User" (UserID)
-go
-
 alter table File_Department
    add constraint FK_FILE_DEP_REFERENCE_FILE foreign key (FileID)
       references "File" (FileID)
@@ -775,6 +771,16 @@ go
 alter table File_Department
    add constraint FK_FILE_DEP_REFERENCE_DEPARTME foreign key (DepartmentID)
       references Department (DepartmentID)
+go
+
+alter table User_Comment
+   add constraint FK_USER_COM_REFERENCE_FILE foreign key (FileID)
+      references "File" (FileID)
+go
+
+alter table User_Comment
+   add constraint FK_USER_COM_REFERENCE_USER foreign key (UserID)
+      references "User" (UserID)
 go
 
 alter table User_Department_Position

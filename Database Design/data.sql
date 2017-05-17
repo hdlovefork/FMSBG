@@ -3,12 +3,12 @@ INSERT INTO [User] (UserName,UserRealName,UserPassword,UserSex,UserAddress) VALU
 INSERT INTO [User] (UserName,UserRealName,UserPassword,UserSex,UserAddress) VALUES ('xh','小红','123',0,'湖南湘潭')
 
 
-INSERT INTO [ACL_Role] (RoleName) VALUES ('后台超级管理员')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('人事组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('销售组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('行政组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('财务组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('后台人事管理员')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('后台超级管理员','拥有后台操作所有权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('人事组','拥有人事部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('销售组','拥有销售部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('行政组','拥有行政部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('财务组','拥有财务部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('后台人事管理员','拥有后台用户的管理权限')
 
 
 INSERT INTO [File] (FileName,FileSize,FilePID) VALUES ('我的图片',0,-1)

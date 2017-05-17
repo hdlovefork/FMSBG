@@ -21,7 +21,7 @@ namespace FileSystem.Service
     /// <summary>
     /// 对文件的操作动作
     /// </summary>
-    public enum FileAccess
+    public enum FilePermission
     {
         /// <summary>
         /// 可读 0000 0001
@@ -54,6 +54,10 @@ namespace FileSystem.Service
         /// <summary>
         /// 可删除 1000 0000
         /// </summary>
-        Delete = 0x40
+        Delete = 0x40,
+        /// <summary>
+        /// 取消归档 0001 0000 0000
+        /// </summary>
+        DisArchive = 0x80,
     }
 }

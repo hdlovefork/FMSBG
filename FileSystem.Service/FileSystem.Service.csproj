@@ -40,14 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthFile.cs" />
+    <Compile Include="AuthPermission.cs" />
     <Compile Include="FileAccess.cs" />
     <Compile Include="FileAccessService.cs" />
     <Compile Include="IFileAccessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReadMe.txt" />
+    <Content Include="ReadMe.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileSystem.DAL\FileSystem.DAL.csproj">

@@ -25,9 +25,19 @@ namespace FileSystem.Service
     {
         public override IQueryInfo QueryInfo => new BaseQueryInfo("View_File_User", null);
 
-        public File GetFileByUID(int fileID)
+        public File GetFileByFID(int fileID)
         {
             return FindSingle("FileID=@FileID", new SqlParameter("@FileID", fileID));
+        }
+
+        public List<Role> GetRolesByFID(int fileID)
+        {
+            return Find<Role>(new BaseQueryInfo("View_File_Role", null), "FileID=@FileID", new SqlParameter("@FileID",fileID));
+        }
+
+        public List<Role> GetRolesByUID(int uid)
+        {
+            return Find<Role>(new BaseQueryInfo("View_User_Role", null), "UserID=@UserID", new SqlParameter("@UserID", uid));
         }
     }
 

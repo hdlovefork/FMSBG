@@ -60,6 +60,7 @@ namespace FileSystem.DAL
         /// <returns></returns>    
         public int ExecuteNonQuery(string sql, DbParameter[] parameters)
         {
+            if (parameters == null) return 0;
             List<DbParameter> list = new List<DbParameter>();
             foreach (var p in parameters)
             {
@@ -263,6 +264,7 @@ namespace FileSystem.DAL
             DbConnection connection = _providerFactory.CreateConnection();
             DbCommand command = _providerFactory.CreateCommand();
             connection.ConnectionString = ConnectionString;
+            command.CommandTimeout = 0;
             command.CommandText = sql;
             command.CommandType = commandType;
             command.Connection = connection;
@@ -287,6 +289,7 @@ namespace FileSystem.DAL
         {
             DbCommand command = _providerFactory.CreateCommand();           
             command.CommandText = sql;
+            command.CommandTimeout = 0;
             command.CommandType = commandType;
             command.Connection = _transactionObj.Connection;
             if (!(parameters == null || parameters.Count == 0))

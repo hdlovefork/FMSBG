@@ -26,10 +26,6 @@ namespace FileSystem.Entity
         /// </summary>
         public virtual string UserName { get; set; }
 
-        /// <summary>
-        /// 用户ID
-        /// </summary>
-        public int ID { get; set; }
 
         /// <summary>
         /// 用户真实姓名

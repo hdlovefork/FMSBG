@@ -49,14 +49,18 @@ namespace FileSystem.Entity
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte[] FileOwner { get; set; }
+		public int FileOwner { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte[] FileRole { get; set; }
+		public int FileRole { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte[] FileOther { get; set; }
+		public int FileOther { get; set; }
+
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+
 	}
 }
