@@ -18,12 +18,16 @@ namespace FMSBackground
         RoleFunctionLogic _roleFunction = new RoleFunctionLogic();
         FrmRole _frm = new FrmRole();
         List<int> _lis = new List<int> ();
+        List<int> _fid = new List<int>();
+        List<int> _deleFunction = new List<int>();
+        bool _yes = true;
         int _rid = 0;
-        public FrmEditTree(List <int> lis)
+        public FrmEditTree(List <int> lis,int rid)
         {
             
             InitializeComponent();
             _lis = lis;
+            _rid = rid;
         }
        
 
@@ -83,29 +87,19 @@ namespace FMSBackground
 
         private void tvFunctionTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
-            //Function f =e.Node .Tag as Function ;           
-            //Role_Function rf = new Role_Function();
-            //rf.FunctionID = f.FunctionID;
-            //rf.RoleID = _rid;
-            //_seleFunction.Add(rf);
-
-            //SelectTheParentNodeSelect(e.Node, e.Node.Checked);
-            if (e.Node.Checked == true)
-            {
-                SelectTheParentNodeSelect(e.Node, true);
+            SelectTheParentNodeSelect(e.Node, e.Node.Checked);
+            Function f = e.Node.Tag as Function;
+            if (e.Node.Checked ) {
+            _fid.Add(f.FunctionID);
+                _yes = true;
             }
-            else if (e.Node.Checked == false)
+            if(!e.Node.Checked)
             {
-                SelectTheParentNodeSelect(e.Node, false);
-
-                //if (e.Node.Parent != null)
-                //{
-                //    SelectTheParentNodeTocancel(e.Node, false);
-                //}
+                _deleFunction.Add(f.FunctionID);
+                _yes = false;
             }
 
-            //_roleFunction.AddRoleFunction(_seleFunction);
+
         }
         /// <summary>
         /// 选中节点之后，选中节点的所有子节点
@@ -124,23 +118,26 @@ namespace FMSBackground
                 }
             }
         }
-        /// <summary>
-        /// 选中节点后，取消选中所有子节点
-        /// </summary>
-        /// <param name="currNode"></param>
-        /// <param name="state"></param>
-        private void SelectTheParentNodeTocancel(TreeNode currNode, bool state)
+
+        private void btYes_Click(object sender, EventArgs e)
         {
-            TreeNode parentNode = currNode.Parent;
-            parentNode.Checked = state;
-            if (currNode.Parent.Parent != null)
+            if (_yes)
             {
-                SelectTheParentNodeTocancel(currNode.Parent, state);
+                foreach (var f in _fid)
+                {
+                    Role_Function rf = new Role_Function(_rid, f);
+                    _roleFunction.AddRoleFunction(rf);
+                }
+
             }
+            else {
+                foreach (var f in _deleFunction )
+                {
+                    Role_Function rf = new Role_Function(_rid, f);
+                    _roleFunction.DeleteRoleFunction(rf);
+                }
+            }
+            this.Close();
         }
-        //选中节点之后，选中节点的所有子节点
-        
-
-
     }
 }

@@ -10,5 +10,10 @@ namespace FileSystem.Entity
     {
         public int RoleID { get; set; } 
         public int FunctionID { get; set; }
+        public Role_Function (int rid,int fid)
+        {
+            RoleID = rid;
+            FunctionID = fid;
+        }
     }
 }

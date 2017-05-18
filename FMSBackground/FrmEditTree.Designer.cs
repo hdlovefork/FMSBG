@@ -63,6 +63,7 @@
             this.btYes.TabIndex = 1;
             this.btYes.Text = "确定";
             this.btYes.UseVisualStyleBackColor = true;
+            this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btNo
             // 

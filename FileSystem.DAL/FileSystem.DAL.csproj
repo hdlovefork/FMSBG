@@ -55,6 +55,7 @@
     <Compile Include="Implement\DepartmentService.cs" />
     <Compile Include="Implement\FunctionService.cs" />
     <Compile Include="Implement\PositionService.cs" />
+    <Compile Include="Implement\UserRoleService.cs" />
     <Compile Include="Implement\UserService.cs" />
     <Compile Include="Interface\IUserFunctionService.cs" />
     <Compile Include="Interface\IDeapartService.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interface\IQueryInfo.cs" />
     <Compile Include="Interface\IRoleService.cs" />
     <Compile Include="Interface\IService.cs" />
+    <Compile Include="Interface\IUserRole.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Interface\IRoleFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

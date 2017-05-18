@@ -9,5 +9,6 @@ namespace FileSystem.DAL
    public  interface IRoleFunction : IService
     {
         bool AddRoleFunction(Role_Function rf);
+        bool DeleteRoleFunction(int rid,int pid);
     }
 }

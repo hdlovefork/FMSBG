@@ -21,6 +21,11 @@ namespace FMSBackground
         FunctionLogic _functionLogic = new FunctionLogic();
         List<int > _lis = new List<int>();
         List<int> _lisUser = new List<int>();
+        int _roleID = 0;
+        
+        List<int> _ruid = new List<int>();
+
+
         public FrmRole()
         {
             InitializeComponent();
@@ -65,6 +70,8 @@ namespace FMSBackground
             SeleUser(r);//显示可编辑用户
             lstFunction.Items.Clear();
             SeleFunction(r);
+            
+            _roleID = r.RoleID;
         }
 
         private void SeleFunction(Role r)
@@ -99,13 +106,13 @@ namespace FMSBackground
 
         private void btsele_Click(object sender, EventArgs e)
         {
-            FrmEditTree fet = new FrmEditTree(_lis);
+            FrmEditTree fet = new FrmEditTree(_lis,_roleID );
             fet.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmEditUser fdu = new FrmEditUser(_lisUser );
+            FrmEditUser fdu = new FrmEditUser(_lisUser, _roleID);
             fdu.ShowDialog();
         }
     }

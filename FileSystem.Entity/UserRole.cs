@@ -5,9 +5,14 @@ using System.Text;
 
 namespace FileSystem.Entity
 {
-    class UserRole:BaseEntity
+   public  class UserRole:BaseEntity
     {
         public int UserID { get; set; }
         public int RoleID { get; set; }
+        public UserRole (int uid,int rid)
+        {
+            UserID = uid;
+            RoleID = rid;
+        }
     }
 }
