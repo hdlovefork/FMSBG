@@ -16,6 +16,7 @@ using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,6 +60,8 @@ namespace FileSystem.BLL
                 msg = "密码不能为空";
                 return false;
             }
+            //IObservable<Int32> source = Observable.start
+           
             //父类已经帮你把Service变成了UserService了，强大吧！
             //体会泛型编程的乐趣吧！
             user = Service.GetUser(userName, pwd);
@@ -78,6 +81,7 @@ namespace FileSystem.BLL
             }
             return true;
         }
+
         public bool AddUser(User user) {
             return Service.InsertUser(user);
         }
@@ -94,7 +98,12 @@ namespace FileSystem.BLL
         public List<DepartmentPosition> GetDepartmentUser(int uid) {
 
             return Service.GetDepartmentByUID(uid);
+
         }
 
+        public List<User> GetUsersByRID(int rid)
+        {
+            return Service.GetUsersByRID(rid);
+        }
     }
 }

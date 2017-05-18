@@ -42,7 +42,7 @@
             this.menu_Help_Register = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMain = new System.Windows.Forms.ToolStrip();
             this.tool_User = new System.Windows.Forms.ToolStripButton();
-            this.tool_OU = new System.Windows.Forms.ToolStripButton();
+            this.tool_Dep = new System.Windows.Forms.ToolStripButton();
             this.tool_Role = new System.Windows.Forms.ToolStripButton();
             this.tool_Function = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -148,7 +148,7 @@
             this.toolMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tool_User,
-            this.tool_OU,
+            this.tool_Dep,
             this.tool_Role,
             this.tool_Function,
             this.toolStripSeparator1,
@@ -166,27 +166,34 @@
             this.tool_User.Name = "tool_User";
             this.tool_User.Size = new System.Drawing.Size(105, 36);
             this.tool_User.Text = "用户管理";
+            this.tool_User.Click += new System.EventHandler(this.tool_User_Click);
             // 
-            // tool_OU
+            // tool_Dep
             // 
-            this.tool_OU.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_OU.Name = "tool_OU";
-            this.tool_OU.Size = new System.Drawing.Size(103, 36);
-            this.tool_OU.Text = "组织机构管理";
+            this.tool_Dep.Image = ((System.Drawing.Image)(resources.GetObject("tool_Dep.Image")));
+            this.tool_Dep.ImageTransparentColor = System.Drawing.Color.Black;
+            this.tool_Dep.Name = "tool_Dep";
+            this.tool_Dep.Size = new System.Drawing.Size(105, 36);
+            this.tool_Dep.Text = "部门管理";
+            this.tool_Dep.Click += new System.EventHandler(this.tool_User_Click);
             // 
             // tool_Role
             // 
-            this.tool_Role.ImageTransparentColor = System.Drawing.Color.White;
+            this.tool_Role.Image = ((System.Drawing.Image)(resources.GetObject("tool_Role.Image")));
+            this.tool_Role.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Role.Name = "tool_Role";
-            this.tool_Role.Size = new System.Drawing.Size(73, 36);
+            this.tool_Role.Size = new System.Drawing.Size(105, 36);
             this.tool_Role.Text = "角色管理";
+            this.tool_Role.Click += new System.EventHandler(this.tool_User_Click);
             // 
             // tool_Function
             // 
-            this.tool_Function.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_Function.Image = ((System.Drawing.Image)(resources.GetObject("tool_Function.Image")));
+            this.tool_Function.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Function.Name = "tool_Function";
-            this.tool_Function.Size = new System.Drawing.Size(73, 36);
+            this.tool_Function.Size = new System.Drawing.Size(105, 36);
             this.tool_Function.Text = "功能管理";
+            this.tool_Function.Click += new System.EventHandler(this.tool_User_Click);
             // 
             // toolStripSeparator1
             // 
@@ -195,9 +202,10 @@
             // 
             // tool_Quit
             // 
-            this.tool_Quit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_Quit.Image = ((System.Drawing.Image)(resources.GetObject("tool_Quit.Image")));
+            this.tool_Quit.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Quit.Name = "tool_Quit";
-            this.tool_Quit.Size = new System.Drawing.Size(73, 36);
+            this.tool_Quit.Size = new System.Drawing.Size(105, 36);
             this.tool_Quit.Text = "退出系统";
             // 
             // statusStrip1
@@ -286,7 +294,7 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Help_Register;
         private System.Windows.Forms.ToolStrip toolMain;
         private System.Windows.Forms.ToolStripButton tool_User;
-        private System.Windows.Forms.ToolStripButton tool_OU;
+        private System.Windows.Forms.ToolStripButton tool_Dep;
         private System.Windows.Forms.ToolStripButton tool_Role;
         private System.Windows.Forms.ToolStripButton tool_Function;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

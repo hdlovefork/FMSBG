@@ -1,7 +1,7 @@
 ﻿/**************************************************************** 
  * 作    者：黄鼎 
  * CLR 版本：4.0.30319.42000 
- * 创建时间：2017-05-12 20:12:18 
+ * 创建时间：2017-05-16 20:37:22 
  * 当前版本：1.0.0.0
  *  
  * 描述说明： 
@@ -17,16 +17,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace FileSystem.BLL
+namespace FileSystem.Service
 {
-    public class RoleLogic:BaseLogic<RoleService>
+    public interface IFileAccessService:IService
     {
-      public  List<Role> GetRoles()
-        {
-           return Service.GetRoles();
-        }
-       
+        /// <summary>
+        /// 获得指定ID的文件信息
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        File GetFileByFID(int fileID);
     }
 }

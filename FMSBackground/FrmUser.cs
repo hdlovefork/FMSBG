@@ -28,7 +28,10 @@ namespace FMSBackground
 {
     public partial class FrmUser : BaseForm
     {
+
         UserLogic _userLogic = new UserLogic();
+
+
         DepartmentLogic _depLogic = new DepartmentLogic();
         TreeNode _selectedNode = null;
         bool _badd = false;
@@ -85,6 +88,7 @@ namespace FMSBackground
             User u = node.Tag as User;
             //ResetUserDetail();//清除上一个用户的信息
             if (u == null) return;
+            _selectedNode = e.Node;
             txtUserName.Text = u.UserName;
             txtPwd.Text = u.UserPassword;
             txtRealName.Text = u.UserRealName;
@@ -114,6 +118,7 @@ namespace FMSBackground
             txtMobile.Text = string.Empty;
             txtAddress.Text = string.Empty;
         }
+
 
 
 
@@ -255,6 +260,7 @@ namespace FMSBackground
         private void authBtnDelete_Click(object sender, Control.AuthEventArgs e)
         {
 
+
             if (!e.OK)
             {
 
@@ -262,6 +268,7 @@ namespace FMSBackground
             if (_selectedNode == null) return;
             User u = _selectedNode.Tag as User;
             if (u == null) return;
+
             bool ok = _userLogic.DeleteUser(u.UserID);
             if (ok)
             {
@@ -314,6 +321,7 @@ namespace FMSBackground
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
 
 
     }

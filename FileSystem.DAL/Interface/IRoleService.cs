@@ -26,6 +26,6 @@ namespace FileSystem.DAL
 
         List<Role> GetRolesByUID(int uid);
 
-
+        //List<a> HqyhID(int rid);
     }
 }

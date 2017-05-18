@@ -34,9 +34,9 @@ namespace FileSystem.DAL
         /// 数据库连接字符串，通过app.config文件修改成你的，这样写的好处在于可以在不修改程序代码的前提下换数据库
         /// 因为是在外部操作
         /// </summary>
-        //private static string _conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
-        private static string _conn = @"Data Source=DESKTOP-KV84PB6;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+        private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
+        //private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         /// <summary>
         /// 数据库操作帮助类的实例对象
@@ -98,7 +98,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public T FindSingle(string condition, params DbParameter[] paramList)
         {
-            T local = default(T);
+            T local = null;
             List<T> list = this.Find(condition, paramList);
             if (list.Count > 0)
             {
@@ -166,6 +166,7 @@ namespace FileSystem.DAL
         public bool Delete(string condition, params DbParameter[] paramsList)
         {
             return Delete(QueryInfo.TableName, condition, paramsList);
+
         }
 
         public bool Delete(string tableName, string condition, params DbParameter[] paramsList)
@@ -175,6 +176,7 @@ namespace FileSystem.DAL
             string sql = string.Format("DELETE FROM {0} WHERE {1}", tableName, condition);
             return _db.ExecuteNonQuery(sql, paramsList) > 0; ;
         }
+
 
         /// <summary>
         /// 插入数据，返回新的ID，失败返回-1

@@ -22,7 +22,10 @@ namespace FileSystem.DAL
 {
     public class UserFunctionService : BaseService<Function>, IUserFunctionService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("View_User_Role_Function",null);
+
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("View_User_Role_Function",
+                null
+            );
 
         public Function GetFuncitonByUID(int uid, string functionControl)
         {

@@ -34,11 +34,23 @@ namespace FileSystem.Entity
         /// </summary>
         public string UserAddress { get; set; }
 
+
+		/// <summary>
+		/// 注册时间
+		/// </summary>
+		public DateTime? UserCreateTime { get; set; }
         /// <summary>
-        /// 
+        /// 账号是否启用
         /// </summary>
-        //public DateTime? UserCreateTime { get; set; }
+
         public bool UserEnable { get; set; }
+        /// <summary>
+        /// 手机号码
+        /// </summary>
         public string UserMobile { get; set; }
+        public override string ToString()
+        {
+            return UserName ;
+        }
     }
 }

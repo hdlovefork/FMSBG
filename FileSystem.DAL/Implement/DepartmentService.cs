@@ -21,13 +21,19 @@ using System.Data.Common;
 
 namespace FileSystem.DAL
 {
-    public class DepartmentService :BaseService<Department>, IDeapartService
+    public class DepartmentService : BaseService<Department>, IDeapartService
     {
         //public override IQueryInfo QueryInfo => new BaseQueryInfo("Department");
 
         public override IQueryInfo QueryInfo
         {
-            get { return new BaseQueryInfo("Department",null); }
+
+            get { return new BaseQueryInfo("Department",
+                                            new Relationship[] { new Relationship("User_Department_Position")
+                                                                }
+                                            );
+                }
+
         }
 
         public List<Department> GetDepartments()
@@ -43,12 +49,13 @@ namespace FileSystem.DAL
                 if (curDepID != lastDepID)
                 {
                     lastDepID = curDepID;
-                    dep  = new Department();
+                    dep = new Department();
                     dep.DepartmentID = Convert.ToInt32(reader["DepartmentID"]);
                     dep.DepartmentName = Convert.ToString(reader["DepartmentName"]);
                     list.Add(dep);
                 }
-                Position pos = new Position {
+                Position pos = new Position
+                {
                     PositionID = Convert.ToInt32(reader["PositionID"]),
                     PositionName = Convert.ToString(reader["PositionName"])
                 };

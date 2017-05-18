@@ -37,14 +37,29 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthPermission.cs" />
+    <Compile Include="FileAccess.cs" />
+    <Compile Include="FileAccessService.cs" />
+    <Compile Include="IFileAccessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReadMe.txt" />
+    <Content Include="ReadMe.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSystem.DAL\FileSystem.DAL.csproj">
+      <Project>{3f348567-a268-44c0-bce1-e3c59ab6091c}</Project>
+      <Name>FileSystem.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.Entity\FileSystem.Entity.csproj">
+      <Project>{3d25f27c-1995-4444-ae57-6131f2370cb2}</Project>
+      <Name>FileSystem.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

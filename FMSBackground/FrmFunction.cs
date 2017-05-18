@@ -77,18 +77,23 @@ namespace FMSBackground
 
         private void btnDelete_Click(object sender, AuthEventArgs e)
         {
-            if (!e.OK)
+            if (e.OK)
             {
-
+                //有删除权限的情况，调用逻辑层真正删除
+                if (_selectedNode == null) return;
+                Function f = _selectedNode.Tag as Function;
+                if (f == null) return;
+                //从数据库删除这个FuncitonID=_selectedFunID的记录
+                bool ok = _funLogic.DeleteFuncitonByID(f.FunctionID);
+                if (ok)
+                {
+                    tvFunction.Nodes.Clear();//清除所有节点重新加载
+                    InitFunctionTree();
+                }
             }
-            if (_selectedNode == null) return;
-            Function f = _selectedNode.Tag as Function;
-            if (f == null) return;
-            //从数据库删除这个FuncitonID=_selectedFunID的记录
-            bool ok = _funLogic.DeleteFuncitonByID(f.FunctionID);
-            if (ok)
+            else
             {
-                tvFunction.Nodes.Remove(_selectedNode);
+                //没有删除权限的情况
             }
         }
 
@@ -191,8 +196,16 @@ namespace FMSBackground
 
         private void authBtnDelete_Click(object sender, AuthEventArgs e)
         {
-            if (!e.OK)
-            {
+
+
+            gbDetail.Enabled = false;//取消时详情面板要禁用
+            pnlAction.Enabled = true;//启用动作面板
+            lblError.Text = string.Empty;
+        }
+        private void InitFunctiontList() {
+
+        }
+
 
             }
             if (_selectedNode == null) return;

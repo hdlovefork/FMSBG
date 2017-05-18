@@ -15,7 +15,6 @@ using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,12 +22,26 @@ namespace FileSystem.DAL
 {
     public class FunctionService : BaseService<Function>, IFunctionService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function","FunctionID",null);
+
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function", "FunctionID",
+                new Relationship[] { new Relationship("ACL_Role_Function") }
+            );
+
 
         public bool DeleteFunctionByID(int id)
         {
             return DeleteByKey(id.ToString());
          }
+
+        public Function GetFunctionRole(string  func)
+        {
+
+
+            //未实现↓
+
+
+            return FindSingle ("FunctionControl = @Control", new SqlParameter("@Control", func));
+        }
 
         public List<Function> GetFunctions(int pid)
         {
@@ -39,7 +52,7 @@ namespace FileSystem.DAL
         {
             return Find();
         }
-        
+
         public Function GetParentFunctionByPID(int pid)
         {
             return FindSingle("FunctionID=@PID", new SqlParameter("@PID", pid));
@@ -47,7 +60,9 @@ namespace FileSystem.DAL
 
         public bool InsertFunction(Function f)
         {
+
             return Insert(f) > 0;
+
         }
 
         public bool UpdateFunction(Function f)

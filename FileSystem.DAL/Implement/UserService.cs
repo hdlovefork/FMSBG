@@ -26,7 +26,7 @@ namespace FileSystem.DAL
     /// 我们只要调用它里面的一些方法就行，甚至不需要写SQL语句，建议同学们看看BaseService
     /// 里面是怎么实现的
     /// </summary>
-    public class UserService : BaseService<User>,IUserService
+    public class UserService : BaseService<User>, IUserService
     {
         /// <summary>
         /// 这是BaseService为我们留的一个坑，需要我们来填坑（返回一个实现IQueryInfo的接口）
@@ -38,6 +38,7 @@ namespace FileSystem.DAL
         public override IQueryInfo QueryInfo
         {
             //告诉BaseService我要搜索User表
+
             get { return new BaseQueryInfo("User",
                     new Relationship[]
                     {
@@ -49,12 +50,14 @@ namespace FileSystem.DAL
                 );
 
 
+
             }
         }
 
         public bool DeleteUser(int userID)
         {
-            return DeleteByKey(userID.ToString());
+
+            return DeleteByKey(userID.ToString ());
         }
 
         public List<DepartmentPosition> GetDepartmentByUID(int uid)
@@ -70,14 +73,21 @@ namespace FileSystem.DAL
         public User GetUser(string userName, string pwd)
         {
             return FindSingle("UserName=@UserName AND UserPassword=@UserPassword",
-                    new SqlParameter("@UserName",userName),
-                    new SqlParameter("@UserPassword",pwd)
+                    new SqlParameter("@UserName", userName),
+                    new SqlParameter("@UserPassword", pwd)
+                );
+        }
+
+        public List<User> GetUsersByRID(int rid)
+        {
+            return Find(new BaseQueryInfo("View_User_Role",null), "RoleID=@RoleID",
+                  new SqlParameter("@RoleID", rid)
                 );
         }
 
         public List<User> GetUsers()
         {
-           return Find(string.Empty);
+            return Find(string.Empty);
         }
 
         public bool InsertUser(User user)
