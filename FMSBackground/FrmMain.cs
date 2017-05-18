@@ -24,13 +24,13 @@ using System.Windows.Forms;
 
 namespace FMSBackground
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain : BaseForm
     {
         FrmUser _frmUser;
         FrmRole _frmRole;
-        FrmFunction _frmFun ;
+        FrmFunction _frmFun;
         FrmDepartment _frmDep;
-        Dictionary<string,BaseForm> _frmDict;
+        Dictionary<string, BaseForm> _frmDict;
 
 
         public FrmMain()
@@ -48,7 +48,7 @@ namespace FMSBackground
                 _frmUser = new FrmUser();
                 _frmUser.Show(dockPanel);
                 firstTab = _frmUser;
-                _frmDict.Add(tool_User.Text , _frmUser);
+                _frmDict.Add(tool_User.Text, _frmUser);
             }
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_DEPARTMENT))
             {
@@ -56,30 +56,30 @@ namespace FMSBackground
                 _frmDep.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmDep;
-                _frmDict.Add(tool_Dep .Text , _frmDep);
+                _frmDict.Add(tool_Dep.Text, _frmDep);
 
             }
-            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_ROLE ))
+            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_ROLE))
             {
                 _frmRole = new FrmRole();
                 _frmRole.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmRole;
-                _frmDict.Add(tool_Role .Text , _frmRole);
+                _frmDict.Add(tool_Role.Text, _frmRole);
             }
-            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_FUNCTION ))
+            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_FUNCTION))
             {
                 _frmFun = new FrmFunction();
                 _frmFun.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmFun;
-                _frmDict.Add(tool_Function .Text , _frmFun);
+                _frmDict.Add(tool_Function.Text, _frmFun);
             }
 
             if (firstTab != null)
                 firstTab.Show(dockPanel);
             //在底部状态栏显示当前登录的用户信息
-            lblCurrentUser.Text = string.Format("当前管理员:{0}", GObj.CurrentUser.UserRealName);
+            lblCurrentUser.Text = string.Format("当前管理员：{0}", GObj.CurrentUser.UserRealName);
         }
 
         private void InitToolBarButtonAction()
@@ -95,11 +95,10 @@ namespace FMSBackground
         {
 
             string name = (sender as ToolStripButton).Text;
-
-
-            _frmDict[name].Show(dockPanel);
+            if (_frmDict.ContainsKey(name))
+                _frmDict[name].Show(dockPanel);
         }
-        
+
 
     }
 }

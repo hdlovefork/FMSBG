@@ -140,14 +140,14 @@ namespace FMSBackground
             string name = txtFunctionName.Text;
             if (string.IsNullOrWhiteSpace(name))//没有输入功能名称
             {
-                lblError1.Text = "请输入功能名称";
+                lblError.Text = "请输入功能名称";
                 txtFunctionName.Focus();//让控件获得焦点
                 return false;
             }
             string control = txtFunctionControl.Text;
             if (string.IsNullOrWhiteSpace(control))
             {
-                lblError2.Text = "请输入控件ID";
+                lblError.Text = "请输入控件ID";
                 txtFunctionControl.Focus();//让控件获得焦点
                 return false;
             }
@@ -207,23 +207,23 @@ namespace FMSBackground
         }
 
 
-            }
-            if (_selectedNode == null) return;
-            Function f = _selectedNode.Tag as Function;
-            if (f == null) return;
-            //从数据库删除这个FuncitonID=_selectedFunID的记录
-            bool ok = _funLogic.DeleteFuncitonByID(f.FunctionID);
-            if (ok)
-            {
-                tvFunction.Nodes.Remove(_selectedNode);
-                MessageBox.Show("删除成功");
-            }
-            else
-            {
-                MessageBox.Show("删除失败");
+        //    }
+        //    if (_selectedNode == null) return;
+        //    Function f = _selectedNode.Tag as Function;
+        //    if (f == null) return;
+        //    //从数据库删除这个FuncitonID=_selectedFunID的记录
+        //    bool ok = _funLogic.DeleteFuncitonByID(f.FunctionID);
+        //    if (ok)
+        //    {
+        //        tvFunction.Nodes.Remove(_selectedNode);
+        //        MessageBox.Show("删除成功");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("删除失败");
 
-            }
-        }
+        //    }
+        //}
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

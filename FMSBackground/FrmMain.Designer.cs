@@ -65,8 +65,7 @@
             this.menu_Help});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuMain.Size = new System.Drawing.Size(1031, 28);
+            this.menuMain.Size = new System.Drawing.Size(1211, 25);
             this.menuMain.TabIndex = 7;
             this.menuMain.Text = "menuStrip1";
             // 
@@ -76,20 +75,20 @@
             this.menu_System_Password,
             this.menu_System_Exit});
             this.menu_System.Name = "menu_System";
-            this.menu_System.Size = new System.Drawing.Size(70, 24);
+            this.menu_System.Size = new System.Drawing.Size(59, 21);
             this.menu_System.Text = "系统(&S)";
             // 
             // menu_System_Password
             // 
             this.menu_System_Password.Name = "menu_System_Password";
-            this.menu_System_Password.Size = new System.Drawing.Size(163, 26);
+            this.menu_System_Password.Size = new System.Drawing.Size(139, 22);
             this.menu_System_Password.Text = "修改密码(&P)";
             this.menu_System_Password.Visible = false;
             // 
             // menu_System_Exit
             // 
             this.menu_System_Exit.Name = "menu_System_Exit";
-            this.menu_System_Exit.Size = new System.Drawing.Size(163, 26);
+            this.menu_System_Exit.Size = new System.Drawing.Size(139, 22);
             this.menu_System_Exit.Text = "退出(&X)";
             // 
             // menu_Window
@@ -98,19 +97,19 @@
             this.menu_Window_CloseAll,
             this.menu_Window_CloseOther});
             this.menu_Window.Name = "menu_Window";
-            this.menu_Window.Size = new System.Drawing.Size(76, 24);
+            this.menu_Window.Size = new System.Drawing.Size(64, 21);
             this.menu_Window.Text = "窗口(&W)";
             // 
             // menu_Window_CloseAll
             // 
             this.menu_Window_CloseAll.Name = "menu_Window_CloseAll";
-            this.menu_Window_CloseAll.Size = new System.Drawing.Size(226, 26);
+            this.menu_Window_CloseAll.Size = new System.Drawing.Size(190, 22);
             this.menu_Window_CloseAll.Text = "关闭所有窗口(&A)";
             // 
             // menu_Window_CloseOther
             // 
             this.menu_Window_CloseOther.Name = "menu_Window_CloseOther";
-            this.menu_Window_CloseOther.Size = new System.Drawing.Size(226, 26);
+            this.menu_Window_CloseOther.Size = new System.Drawing.Size(190, 22);
             this.menu_Window_CloseOther.Text = "除此之外全部关闭(&O)";
             // 
             // menu_Help
@@ -120,26 +119,25 @@
             this.menu_Help_Help,
             this.menu_Help_Register});
             this.menu_Help.Name = "menu_Help";
-            this.menu_Help.Size = new System.Drawing.Size(73, 24);
+            this.menu_Help.Size = new System.Drawing.Size(61, 21);
             this.menu_Help.Text = "帮助(&H)";
             // 
             // menu_Help_About
             // 
             this.menu_Help_About.Name = "menu_Help_About";
-            this.menu_Help_About.Size = new System.Drawing.Size(181, 26);
+            this.menu_Help_About.Size = new System.Drawing.Size(116, 22);
             this.menu_Help_About.Text = "关于(&A)";
-            this.menu_Help_About.Click += new System.EventHandler(this.menu_Help_About_Click);
             // 
             // menu_Help_Help
             // 
             this.menu_Help_Help.Name = "menu_Help_Help";
-            this.menu_Help_Help.Size = new System.Drawing.Size(181, 26);
+            this.menu_Help_Help.Size = new System.Drawing.Size(116, 22);
             this.menu_Help_Help.Text = "帮助(&F)";
             // 
             // menu_Help_Register
             // 
             this.menu_Help_Register.Name = "menu_Help_Register";
-            this.menu_Help_Register.Size = new System.Drawing.Size(181, 26);
+            this.menu_Help_Register.Size = new System.Drawing.Size(116, 22);
             this.menu_Help_Register.Text = "注册(&R)";
             this.menu_Help_Register.Visible = false;
             // 
@@ -153,9 +151,9 @@
             this.tool_Function,
             this.toolStripSeparator1,
             this.tool_Quit});
-            this.toolMain.Location = new System.Drawing.Point(0, 28);
+            this.toolMain.Location = new System.Drawing.Point(0, 25);
             this.toolMain.Name = "toolMain";
-            this.toolMain.Size = new System.Drawing.Size(1031, 39);
+            this.toolMain.Size = new System.Drawing.Size(1211, 39);
             this.toolMain.TabIndex = 8;
             this.toolMain.Text = "toolStrip1";
             // 
@@ -164,7 +162,7 @@
             this.tool_User.Image = ((System.Drawing.Image)(resources.GetObject("tool_User.Image")));
             this.tool_User.ImageTransparentColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tool_User.Name = "tool_User";
-            this.tool_User.Size = new System.Drawing.Size(105, 36);
+            this.tool_User.Size = new System.Drawing.Size(92, 36);
             this.tool_User.Text = "用户管理";
             this.tool_User.Click += new System.EventHandler(this.tool_User_Click);
             // 
@@ -173,7 +171,7 @@
             this.tool_Dep.Image = ((System.Drawing.Image)(resources.GetObject("tool_Dep.Image")));
             this.tool_Dep.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Dep.Name = "tool_Dep";
-            this.tool_Dep.Size = new System.Drawing.Size(105, 36);
+            this.tool_Dep.Size = new System.Drawing.Size(92, 36);
             this.tool_Dep.Text = "部门管理";
             this.tool_Dep.Click += new System.EventHandler(this.tool_User_Click);
             // 
@@ -182,7 +180,7 @@
             this.tool_Role.Image = ((System.Drawing.Image)(resources.GetObject("tool_Role.Image")));
             this.tool_Role.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Role.Name = "tool_Role";
-            this.tool_Role.Size = new System.Drawing.Size(105, 36);
+            this.tool_Role.Size = new System.Drawing.Size(92, 36);
             this.tool_Role.Text = "角色管理";
             this.tool_Role.Click += new System.EventHandler(this.tool_User_Click);
             // 
@@ -191,7 +189,7 @@
             this.tool_Function.Image = ((System.Drawing.Image)(resources.GetObject("tool_Function.Image")));
             this.tool_Function.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Function.Name = "tool_Function";
-            this.tool_Function.Size = new System.Drawing.Size(105, 36);
+            this.tool_Function.Size = new System.Drawing.Size(92, 36);
             this.tool_Function.Text = "功能管理";
             this.tool_Function.Click += new System.EventHandler(this.tool_User_Click);
             // 
@@ -205,7 +203,7 @@
             this.tool_Quit.Image = ((System.Drawing.Image)(resources.GetObject("tool_Quit.Image")));
             this.tool_Quit.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Quit.Name = "tool_Quit";
-            this.tool_Quit.Size = new System.Drawing.Size(105, 36);
+            this.tool_Quit.Size = new System.Drawing.Size(92, 36);
             this.tool_Quit.Text = "退出系统";
             // 
             // statusStrip1
@@ -214,17 +212,17 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblCurrentUser,
             this.tssLink});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 657);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 704);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1031, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1211, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 15;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblCurrentUser
             // 
             this.lblCurrentUser.Name = "lblCurrentUser";
-            this.lblCurrentUser.Size = new System.Drawing.Size(233, 20);
+            this.lblCurrentUser.Size = new System.Drawing.Size(232, 17);
             this.lblCurrentUser.Text = "                                                        ";
             // 
             // tssLink
@@ -232,9 +230,9 @@
             this.tssLink.IsLink = true;
             this.tssLink.Name = "tssLink";
             this.tssLink.RightToLeftAutoMirrorImage = true;
-            this.tssLink.Size = new System.Drawing.Size(778, 20);
+            this.tssLink.Size = new System.Drawing.Size(670, 17);
             this.tssLink.Spring = true;
-            this.tssLink.Text = "版权所有:城建智能建筑学院";
+            this.tssLink.Text = "版权所有：BlueSky项目开发团队";
             this.tssLink.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dockPanel
@@ -247,26 +245,28 @@
             this.dockPanel.DockRightPortion = 200D;
             this.dockPanel.DockTopPortion = 150D;
             this.dockPanel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.dockPanel.Location = new System.Drawing.Point(0, 67);
-            this.dockPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.dockPanel.Location = new System.Drawing.Point(0, 64);
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.RightToLeftLayout = true;
-            this.dockPanel.Size = new System.Drawing.Size(1031, 590);
+            this.dockPanel.Size = new System.Drawing.Size(1211, 640);
             this.dockPanel.TabIndex = 18;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 682);
+            this.ClientSize = new System.Drawing.Size(1211, 726);
             this.Controls.Add(this.dockPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolMain);
             this.Controls.Add(this.menuMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMain";
+            this.Text = "BlueSky文件管理系统";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();

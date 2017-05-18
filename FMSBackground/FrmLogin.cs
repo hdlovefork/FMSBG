@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace FMSBackground
 {
-    public partial class FrmLogin : Form
+    public partial class FrmLogin : BaseForm
     {
 
         UserLogic _userLogic = new UserLogic();

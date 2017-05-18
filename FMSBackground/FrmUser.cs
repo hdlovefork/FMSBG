@@ -88,7 +88,7 @@ namespace FMSBackground
             User u = node.Tag as User;
             //ResetUserDetail();//清除上一个用户的信息
             if (u == null) return;
-            _selectedNode = e.Node;
+            _selectedNode = node;
             txtUserName.Text = u.UserName;
             txtPwd.Text = u.UserPassword;
             txtRealName.Text = u.UserRealName;

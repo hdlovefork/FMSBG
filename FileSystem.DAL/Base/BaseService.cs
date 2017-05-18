@@ -35,8 +35,8 @@ namespace FileSystem.DAL
         /// 因为是在外部操作
         /// </summary>
 
-        private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
-        //private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
+        private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         /// <summary>
         /// 数据库操作帮助类的实例对象

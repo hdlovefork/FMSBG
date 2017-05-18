@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
 
             this.btnAdd = new FMSBackground.Control.AuthButton();
+            this.btnEdit = new Control.AuthButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pnlAction = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@
             this.pnlAction.SuspendLayout();
             this.SuspendLayout();
             // 
-
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(221, 5);
@@ -69,6 +69,19 @@
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new FMSBackground.Control.AuthEventHandler(this.btnDelete_Click);
+
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(221, 5);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Name = "btnAdd";
+            this.btnEdit.Size = new System.Drawing.Size(99, 36);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Tag = "Function/Add";
+            this.btnEdit.Text = "编辑";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.authBtnEdit_Click);
             // 
 
             // groupBox1
@@ -108,8 +121,7 @@
             this.gbDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbDetail.Controls.Add(this.lblError2);
-            this.gbDetail.Controls.Add(this.lblError1);
+            this.gbDetail.Controls.Add(this.lblError);
             this.gbDetail.Controls.Add(this.btnCancel);
             this.gbDetail.Controls.Add(this.btnSave);
             this.gbDetail.Controls.Add(this.cboFunction);
@@ -239,25 +251,7 @@
             // 
             // authBtnEdit
             // 
-            this.authBtnEdit.Location = new System.Drawing.Point(189, 3);
-            this.authBtnEdit.Name = "authBtnEdit";
-            this.authBtnEdit.Size = new System.Drawing.Size(75, 39);
-            this.authBtnEdit.TabIndex = 19;
-            this.authBtnEdit.Tag = "User/Edit";
-            this.authBtnEdit.Text = "编辑";
-            this.authBtnEdit.UseVisualStyleBackColor = true;
-            this.authBtnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.authBtnEdit_Click);
-            // 
-            // authBtnDelete
-            // 
-            this.authBtnDelete.Location = new System.Drawing.Point(93, 3);
-            this.authBtnDelete.Name = "authBtnDelete";
-            this.authBtnDelete.Size = new System.Drawing.Size(75, 39);
-            this.authBtnDelete.TabIndex = 18;
-            this.authBtnDelete.Tag = "User/Delete";
-            this.authBtnDelete.Text = "删除";
-            this.authBtnDelete.UseVisualStyleBackColor = true;
-            this.authBtnDelete.Click += new FMSBackground.Control.AuthEventHandler(this.authBtnDelete_Click);
+        
             // 
             // btnAdd
             // 
@@ -310,12 +304,11 @@
             this.btnEdit.Tag = "User/Edit";
             this.btnEdit.Text = " 编辑";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.authBtnEdit_Click);
             // 
 
             // pnlAction
             // 
-            this.pnlAction.Controls.Add(this.authBtnEdit);
             this.pnlAction.Controls.Add(this.btnAdd);
 
             this.pnlAction.Controls.Add(this.btnDelete);
@@ -373,9 +366,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlAction;
-        private System.Windows.Forms.Label lblError1;
-        private System.Windows.Forms.Label lblError2;
+        private System.Windows.Forms.Label lblError;
         private Control.AuthButton btnAdd;
+        private Control.AuthButton btnEdit;
+        private Control.AuthButton btnDelete;
 
         private System.Windows.Forms.ImageList imageList1;
 
