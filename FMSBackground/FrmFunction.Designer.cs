@@ -106,6 +106,7 @@
             this.gbDetail.TabIndex = 5;
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "功能详细信息";
+            this.gbDetail.Enter += new System.EventHandler(this.gbDetail_Enter);
             // 
             // lblError
             // 
@@ -115,6 +116,7 @@
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(206, 37);
             this.lblError.TabIndex = 8;
+            this.lblError.Click += new System.EventHandler(this.lblError_Click);
             // 
             // btnCancel
             // 

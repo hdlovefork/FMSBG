@@ -47,5 +47,6 @@ namespace FileSystem.Entity
             get { return _pos; }
             set { _pos = value; }
         }
+
     }
 }

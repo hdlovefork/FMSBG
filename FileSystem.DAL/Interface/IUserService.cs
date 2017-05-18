@@ -75,5 +75,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         User GetUser(string user, string pwd);
 
+        bool SelectUser(int userID);
+
     }
 }

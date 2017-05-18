@@ -90,6 +90,7 @@ namespace FMSBackground
             if (ok)
             {
                 tvFunction.Nodes.Remove(_selectedNode);
+                MessageBox.Show("删除成功");
             }
         }
 
@@ -195,6 +196,14 @@ namespace FMSBackground
             pnlAction.Enabled = true;//启用动作面板
         }
 
+        private void gbDetail_Enter(object sender, EventArgs e)
+        {
 
+        }
+
+        private void lblError_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

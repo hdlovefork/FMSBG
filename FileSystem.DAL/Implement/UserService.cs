@@ -89,5 +89,45 @@ namespace FileSystem.DAL
         {
             throw new NotImplementedException();
         }
+
+        bool IUserService.DeleteUser(int userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Department> IUserService.GetDepartmentByUID(int uid)
+        {
+            throw new NotImplementedException();
+        }
+
+        IList<Role> IUserService.GetRolesByID(int userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        User IUserService.GetUser(string user, string pwd)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<User> IUserService.GetUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IUserService.InsertUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IUserService.SelectUser(int userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IUserService.UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

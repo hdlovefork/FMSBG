@@ -18,6 +18,7 @@ namespace FMSBackground
         bool _bAdd = false;
         RoleLogic _rlLogic = new RoleLogic();
         TreeNode _selectedNode = null;//保存最后一次点击的节点
+        UserLogic _userLogic = new UserLogic();
 
         Role _rlLigo = new Role();
 
@@ -34,12 +35,10 @@ namespace FMSBackground
             
         }
         public void InitRoleTree() {
-            Role r = _rlLogic.GetRoles()[0];
-            TreeNode root = tvRole.Nodes.Add(r.RoleID.ToString(), r.RoleName);
-            AddSonNode(root, r.RoleID);
+            AddSonNode();
             tvRole.ExpandAll();
         }
-        public void AddSonNode(TreeNode pNode,int uid)
+        public void AddSonNode()
         {
             List<Role> list = _rlLogic.GetRoles();
 
@@ -47,7 +46,7 @@ namespace FMSBackground
             {
                 TreeNode sonNode =new TreeNode(r.RoleName);
                 sonNode.Tag = r;
-                pNode.Nodes.Add(sonNode);
+                tvRole.Nodes.Add(sonNode);
             }
         }
 
@@ -57,6 +56,8 @@ namespace FMSBackground
             if (rl==null) return;
             _selectedNode = e.Node;//保存当前选中的节点
             txtName.Text = rl.RoleName;
+            txtNote.Text = rl.RoleDescription;
+            
         }
 
 
@@ -95,11 +96,14 @@ namespace FMSBackground
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, AuthEventArgs e)
         {
-            if (e.OK) return;
+            if (!e.OK) return;
             _bAdd = true;
             txtName.Text = string.Empty;
+            txtNote.Text = string.Empty;
             gbDetail.Enabled = true;
             pnlAction.Enabled = false;
+            gbUser.Enabled = true;
+            gbFunction.Enabled = true;
             //1.构造一个实例
             //2.向数据库插入数据
             //3.清除所有节点
@@ -136,6 +140,9 @@ namespace FMSBackground
         {
             gbDetail.Enabled = false;
             pnlAction.Enabled = true;
+            gbUser.Enabled = false;
+            gbFunction.Enabled = false;
+                
         }
 
         /// <summary>
@@ -147,6 +154,8 @@ namespace FMSBackground
         {
             gbDetail.Enabled = true;
             pnlAction.Enabled = false;
+            gbUser.Enabled = true;
+            gbFunction.Enabled = true;
         }
 
         /// <summary>
@@ -167,6 +176,8 @@ namespace FMSBackground
 
             gbDetail.Enabled = false;
             pnlAction.Enabled = true;
+            gbUser.Enabled = false;
+            gbFunction.Enabled = false;
         }
 
         public void UpDateRole() {
@@ -174,6 +185,7 @@ namespace FMSBackground
             Role r = _selectedNode.Tag as Role;
             if (r == null) return;
             r.RoleName = txtName.Text;
+            r.RoleDescription = txtNote.Text;
             if (_rlLogic.EditRole(r))
             {
                 tvRole.Nodes.Clear();//清空所有节点
@@ -181,5 +193,13 @@ namespace FMSBackground
                 tvRole.ExpandAll();//展开所有节点
             }
         }
+
+        private void btn3Delete_Click(object sender, EventArgs e)
+        {
+            if (_selectedNode == null) return;
+            User us =_selectedNode.Tag as User;
+            if (us == null) return;           
+
+        } 
     }
 }
