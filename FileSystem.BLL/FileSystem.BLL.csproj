@@ -52,6 +52,7 @@
     <Compile Include="Logic\DepartmentLogic.cs" />
     <Compile Include="GObj.cs" />
     <Compile Include="Logic\FunctionLogic.cs" />
+    <Compile Include="Logic\RoleFunctionLogic.cs" />
     <Compile Include="Logic\RoleLogic.cs" />
     <Compile Include="Logic\AuthLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -81,14 +81,14 @@
             // menu_System_Password
             // 
             this.menu_System_Password.Name = "menu_System_Password";
-            this.menu_System_Password.Size = new System.Drawing.Size(139, 22);
+            this.menu_System_Password.Size = new System.Drawing.Size(152, 22);
             this.menu_System_Password.Text = "修改密码(&P)";
-            this.menu_System_Password.Visible = false;
+            this.menu_System_Password.Click += new System.EventHandler(this.menu_System_Password_Click);
             // 
             // menu_System_Exit
             // 
             this.menu_System_Exit.Name = "menu_System_Exit";
-            this.menu_System_Exit.Size = new System.Drawing.Size(139, 22);
+            this.menu_System_Exit.Size = new System.Drawing.Size(152, 22);
             this.menu_System_Exit.Text = "退出(&X)";
             // 
             // menu_Window
@@ -230,7 +230,7 @@
             this.tssLink.IsLink = true;
             this.tssLink.Name = "tssLink";
             this.tssLink.RightToLeftAutoMirrorImage = true;
-            this.tssLink.Size = new System.Drawing.Size(670, 17);
+            this.tssLink.Size = new System.Drawing.Size(964, 17);
             this.tssLink.Spring = true;
             this.tssLink.Text = "版权所有：BlueSky项目开发团队";
             this.tssLink.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -262,10 +262,10 @@
             this.Controls.Add(this.menuMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TabText = "BlueSky文件管理系统";
             this.Text = "BlueSky文件管理系统";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuMain.ResumeLayout(false);

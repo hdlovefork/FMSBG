@@ -50,11 +50,13 @@
     <Compile Include="Base\DbProviderType.cs" />
     <Compile Include="Base\DbUtility.cs" />
     <Compile Include="Base\Relationship.cs" />
+    <Compile Include="Implement\RoleFunctionService.cs" />
     <Compile Include="Implement\UserFunctionService.cs" />
     <Compile Include="Implement\DepartmentService.cs" />
     <Compile Include="Implement\FunctionService.cs" />
     <Compile Include="Implement\PositionService.cs" />
     <Compile Include="Implement\UserService.cs" />
+    <Compile Include="Interface\IRoleFunction.cs" />
     <Compile Include="Interface\IUserFunctionService.cs" />
     <Compile Include="Interface\IDeapartService.cs" />
     <Compile Include="Interface\IFunctionService.cs" />

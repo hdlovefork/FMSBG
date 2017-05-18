@@ -99,6 +99,10 @@ namespace FMSBackground
                 _frmDict[name].Show(dockPanel);
         }
 
-
+        private void menu_System_Password_Click(object sender, EventArgs e)
+        {
+            FrmUpUserPwd frm = new FrmUpUserPwd();
+            frm.ShowDialog();
+        }
     }
 }

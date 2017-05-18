@@ -15,6 +15,7 @@ using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,9 @@ namespace FileSystem.DAL
         public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function", "FunctionID",
                 new Relationship[] { new Relationship("ACL_Role_Function") }
             );
+
+
+
 
 
         public bool DeleteFunctionByID(int id)
@@ -56,6 +60,13 @@ namespace FileSystem.DAL
         public Function GetParentFunctionByPID(int pid)
         {
             return FindSingle("FunctionID=@PID", new SqlParameter("@PID", pid));
+        }
+
+        public List<Function> GetRoleFunction(int rid)
+        {
+            return Find(new BaseQueryInfo("View_Role_Function",null), "RoleID=@RoleID",
+                  new SqlParameter("@RoleID", rid)
+                );
         }
 
         public bool InsertFunction(Function f)

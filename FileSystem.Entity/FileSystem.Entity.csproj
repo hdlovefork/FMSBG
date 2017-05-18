@@ -48,6 +48,7 @@
     <Compile Include="Department.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Position.cs" />
+    <Compile Include="Role_Function.cs" />
     <Compile Include="User.cs" />
     <Compile Include="SimpleUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

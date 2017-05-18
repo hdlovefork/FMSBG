@@ -75,7 +75,6 @@ namespace FileSystem.DAL
         /// <returns></returns>
         User GetUser(string user, string pwd);
 
-
-        List<User> GetUsersByRID(int rid);
+        List<User> GetUsersByRID(int rid);       
     }
 }

@@ -77,8 +77,7 @@ namespace FMSBackground
 
         private void btnDelete_Click(object sender, AuthEventArgs e)
         {
-            if (e.OK)
-            {
+          
                 //有删除权限的情况，调用逻辑层真正删除
                 if (_selectedNode == null) return;
                 Function f = _selectedNode.Tag as Function;
@@ -90,11 +89,7 @@ namespace FMSBackground
                     tvFunction.Nodes.Clear();//清除所有节点重新加载
                     InitFunctionTree();
                 }
-            }
-            else
-            {
-                //没有删除权限的情况
-            }
+           
         }
 
 
@@ -113,6 +108,7 @@ namespace FMSBackground
             }
             gbDetail.Enabled = false;//保存完了加锁界面/禁用界面
             pnlAction.Enabled = true;//动作面板要启用
+            
         }
 
         private void UpdateFunction()
@@ -140,17 +136,20 @@ namespace FMSBackground
             string name = txtFunctionName.Text;
             if (string.IsNullOrWhiteSpace(name))//没有输入功能名称
             {
-                lblError.Text = "请输入功能名称";
+                lbFunctionName.Text  = "请输入功能名称";
                 txtFunctionName.Focus();//让控件获得焦点
                 return false;
             }
+            lbFunctionName.Text = string.Empty;
             string control = txtFunctionControl.Text;
             if (string.IsNullOrWhiteSpace(control))
             {
-                lblError.Text = "请输入控件ID";
+                lbFunctionID  .Text = "请输入控件ID";
                 txtFunctionControl.Focus();//让控件获得焦点
                 return false;
             }
+            lbFunctionID.Text = string.Empty; 
+
             #endregion
             int? pid = (cboFunction.SelectedItem as Function).FunctionID;
             Function f = new Function

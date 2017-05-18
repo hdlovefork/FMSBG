@@ -14,19 +14,19 @@ namespace FMSBackground
 {
     public partial class FrmRole : BaseForm
     {
-        string _name = null;
+       
+        
         RoleLogic _roleLogic = new RoleLogic();
-        int _seleNode = 0;
         UserLogic _userLogic = new UserLogic();
+        FunctionLogic _functionLogic = new FunctionLogic();
+        List<int > _lis = new List<int>();
+        List<int> _lisUser = new List<int>();
         public FrmRole()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void FrmRole_Load(object sender, EventArgs e)
         {
@@ -60,28 +60,53 @@ namespace FMSBackground
         {
             Role r = e.Node.Tag as Role;
             if (r == null) return;
-            //_seleNode = r.RoleID ;
-            listBox2.Items.Clear();
-            NewMethod(r);//显示可编辑用户
+            //FrmEditTree fet = new FrmEditTree(r.RoleID);                                      //_seleNode = e.Node;
+            lisRole.Items.Clear();
+            SeleUser(r);//显示可编辑用户
+            lstFunction.Items.Clear();
+            SeleFunction(r);
+        }
 
-            //NewMethod
+        private void SeleFunction(Role r)
+        {
+            InitFunctionTree(r);
+        }
+
+        private void InitFunctionTree(Role r)
+        {
+            List<Function> list = _functionLogic.GetRoleFunction(r.RoleID);
+            if (list == null) return;
+            _lis.Clear();
+            foreach (var f in list)
+            {
+                lstFunction.Items.Add(f.FunctionName);
+                _lis.Add(f.FunctionID);
+            }
 
         }
 
-        private void NewMethod(Role r)
+        private void SeleUser(Role r)
         {
             List<User> list = _userLogic.GetUsersByRID(r.RoleID);
             if (list == null) return;
+            _lisUser.Clear();
             foreach (var u in list)
             {
-
-                listBox2.Items.Add(u.UserRealName);
-               
-                if (_name != u.UserRealName) {
-                    listBox2.Items.Remove(u.UserRealName);
-                }
-                _name = u.UserRealName;
+                lisRole.Items.Add(u.UserRealName);
+                _lisUser.Add(u.UserID);
             }
+        }
+
+        private void btsele_Click(object sender, EventArgs e)
+        {
+            FrmEditTree fet = new FrmEditTree(_lis);
+            fet.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmEditUser fdu = new FrmEditUser(_lisUser );
+            fdu.ShowDialog();
         }
     }
 }
