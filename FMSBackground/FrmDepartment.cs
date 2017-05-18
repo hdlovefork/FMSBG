@@ -19,6 +19,8 @@ namespace FMSBackground
     {
         TreeNode _selectedNode = null;//保存最后一次点击的节点
         DepartmentLogic _depLogic = new DepartmentLogic();
+        UserLogic _userLogic = new UserLogic();
+        List<int> lis = new List<int>();
         bool _bAdd = false;
 
 
@@ -41,7 +43,7 @@ namespace FMSBackground
             AddChildNode(root);
         }
 
-        private void AddChildNode (TreeNode pNode)
+        private void AddChildNode(TreeNode pNode)
         {
             List<Department> list = _depLogic.GetDepartments();
             foreach (var d in list)
@@ -65,26 +67,54 @@ namespace FMSBackground
 
         private void tvDep_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+           
+            _selectedNode = e.Node;
             Department d = e.Node.Tag as Department;
             if (d == null)
             {
                 //gang wei
+                if (e.Node.Parent == null) return;
                 d = e.Node.Parent.Tag as Department;
                 if (d == null) return;
                 Position p = e.Node.Tag as Position;
-                Console.WriteLine(d.DepartmentName + "-----" + p.PositionName);
+                lvwUser.Items.Clear();
+                ShowPositionUsers(d, p);
+                
+                //MessageBox .Show (d.DepartmentName + "-----" + p.PositionName);
             }
-           else
+            else
             {
-                //bu men
-                _selectedNode = e.Node;
+                //bu men               
                 txtDepName.Text = d.DepartmentName;
+                ShowDepartmentUsers(d);
             }
 
             //Department pd = _depLogic.GetParentDepartmentByPID((int)d.DepartmentPID);
             //if (pd == null) return;
             //cboDepartment.Text = pd.DepartmentName;
         }
+        private void ShowDepartmentUsers(Department d)
+        {
+            lvwUser.Items.Clear();
+            if (d == null) return;
+            List<User> list = _userLogic.GetUsersByDepID(d.DepartmentID);
+            lis.Clear();
+            foreach (var u in list)
+            {
+                lvwUser.Items.Add(u);
+                lis.Add(u.UserID);
+            }
+        }
+
+        private void ShowPositionUsers(Department d, Position p)
+        {
+            List<User> lis = _userLogic.GetUsersByDepIDAndPosID(d.DepartmentID, p.PositionID);
+            foreach (var t in lis)
+            {
+                lvwUser.Items.Add(t);
+            }
+        }
+
         /// <summary>
         /// 添加按钮
         /// </summary>
@@ -93,8 +123,6 @@ namespace FMSBackground
         private void btnAdd_Click(object sender, AuthEventArgs e)
         {
             if (!e.OK) return;
-            Debug.WriteLine("btnAdd_Click");
-            if (!e.OK) return;
             _bAdd = true;
             txtDepName.Text = string.Empty;
             gbDetail.Enabled = true;//添加时解锁界面/启用界面
@@ -102,6 +130,14 @@ namespace FMSBackground
         }
         private bool AddDepartment()
         {
+            string name = txtDepName.Text;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                lblError.Text = "请输入部门名称";
+                txtDepName.Focus();
+                return false;
+            }
+            lblError.Text = string.Empty;
             Department d = new Department
             {
                 DepartmentName = txtDepName.Text,
@@ -171,6 +207,7 @@ namespace FMSBackground
         {
             gbDetail.Enabled = false;//取消时详情面板要禁用
             pnlAction.Enabled = true;//启用动作面板
+            lblError.Text = string.Empty; 
         }
 
         private void btnEdit_Click(object sender, AuthEventArgs e)
@@ -179,10 +216,17 @@ namespace FMSBackground
             pnlAction.Enabled = false;
         }
 
-        private void btnEditUser_Click(object sender, EventArgs e)
+
+
+        private void btnEditUser_Click_1(object sender, EventArgs e)
         {
-            IncludeUser include = new IncludeUser();
-            include.Show();
+            if (_selectedNode == null) return;
+            Position pos = _selectedNode.Tag as Position;
+            if (pos == null) return;
+            Department dep = _selectedNode.Parent.Tag as Department;
+            if (dep == null) return;
+            FrmIncludeUser include = new FrmIncludeUser(dep.DepartmentID, pos.PositionID,lis);
+            include.ShowDialog();
         }
     }
 }

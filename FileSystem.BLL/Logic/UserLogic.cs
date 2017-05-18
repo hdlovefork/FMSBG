@@ -31,10 +31,7 @@ namespace FileSystem.BLL
         /// 获取所有用户
         /// </summary>
         /// <returns></returns>
-        public List<User> GetUsers()
-        {
-            return Service.GetUsers();
-        }
+ 
 
         /// <summary>
         /// 用户登录方法
@@ -77,6 +74,32 @@ namespace FileSystem.BLL
            // }
             return true;
         }
+        public bool AddUser(User user)
+        {
+            return Service.InsertUser(user);
+        }
+        public bool EditUser(User user)
+        {
 
+            return Service.UpdateUser(user);
+        }
+        public bool DeleteUser(int userid)
+        {
+
+            return Service.DeleteUser(userid);
+        }
+        public List<User> GetUsers()
+        {
+            return Service.GetUsers();
+        }
+        public List <User > GetUsersByDepIDAndPosID(int depID,int posID)
+        {
+            return Service.GetUsersByDepIDAndPosID(depID, posID);
+        }
+
+        public List<User> GetUsersByDepID(int depID)
+        {
+            return Service.GetUsersByDepID(depID);
+        }
     }
 }

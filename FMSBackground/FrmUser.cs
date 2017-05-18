@@ -28,7 +28,7 @@ namespace FMSBackground
 {
     public partial class FrmUser : BaseForm
     {
-        UserLogic _userLogin = new UserLogic();
+        UserLogic _userLogic = new UserLogic();
         DepartmentLogic _depLogic = new DepartmentLogic();
 
         public FrmUser()
@@ -75,7 +75,7 @@ namespace FMSBackground
         /// </summary>
         private void InitUserTree()
         {
-            List<User> list = _userLogin.GetUsers();
+            List<User> list = _userLogic.GetUsers();
             foreach (var u in list)
             {
                 TreeNode node = new TreeNode(u.UserRealName);

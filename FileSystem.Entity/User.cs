@@ -41,5 +41,10 @@ namespace FileSystem.Entity
 		public DateTime? UserCreateTime { get; set; }
         public bool UserEnable { get; set; }
         public string UserMobile { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}({1})", UserName, UserRealName);
+        }
     }
 }

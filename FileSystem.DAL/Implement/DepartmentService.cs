@@ -37,7 +37,7 @@ namespace FileSystem.DAL
 
         public List<Department> GetDepartments()
         {
-            string sql = "SELECT * FROM [View_Department_Position]";
+            string sql = "SELECT * FROM [View_Department_Position] ORDER BY DepartmentID";
             DbDataReader reader = _db.ExecuteReader(sql, null);
             int lastDepID = 0;
             List<Department> list = new List<Department>();

@@ -43,8 +43,6 @@
             this.btnEdit = new FMSBackground.Control.AuthButton();
             this.btnDelete = new FMSBackground.Control.AuthButton();
             this.btnAdd = new FMSBackground.Control.AuthButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lvwRole = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnRemoveUser = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
@@ -52,7 +50,6 @@
             this.gbDetail.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pnlAction.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,9 +98,9 @@
             // 
             // lblError
             // 
-            this.lblError.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(32, 347);
+            this.lblError.Location = new System.Drawing.Point(22, 163);
             this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(275, 46);
@@ -207,33 +204,10 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.lvwRole);
-            this.groupBox4.Location = new System.Drawing.Point(796, 466);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(276, 280);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "所属角色";
-            // 
-            // lvwRole
-            // 
-            this.lvwRole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwRole.FormattingEnabled = true;
-            this.lvwRole.ItemHeight = 15;
-            this.lvwRole.Location = new System.Drawing.Point(4, 22);
-            this.lvwRole.Margin = new System.Windows.Forms.Padding(4);
-            this.lvwRole.Name = "lvwRole";
-            this.lvwRole.Size = new System.Drawing.Size(268, 254);
-            this.lvwRole.TabIndex = 4;
-            // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.btnRemoveUser);
             this.groupBox3.Controls.Add(this.btnEditUser);
             this.groupBox3.Controls.Add(this.lvwUser);
@@ -241,7 +215,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(276, 440);
+            this.groupBox3.Size = new System.Drawing.Size(276, 737);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "包含用户";
@@ -249,7 +223,7 @@
             // btnRemoveUser
             // 
             this.btnRemoveUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveUser.Location = new System.Drawing.Point(168, 404);
+            this.btnRemoveUser.Location = new System.Drawing.Point(168, 701);
             this.btnRemoveUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveUser.Name = "btnRemoveUser";
             this.btnRemoveUser.Size = new System.Drawing.Size(100, 29);
@@ -260,14 +234,14 @@
             // btnEditUser
             // 
             this.btnEditUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditUser.Location = new System.Drawing.Point(39, 404);
+            this.btnEditUser.Location = new System.Drawing.Point(39, 701);
             this.btnEditUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(100, 29);
             this.btnEditUser.TabIndex = 0;
             this.btnEditUser.Text = "编辑";
             this.btnEditUser.UseVisualStyleBackColor = true;
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click_1);
             // 
             // lvwUser
             // 
@@ -279,14 +253,13 @@
             this.lvwUser.Location = new System.Drawing.Point(4, 21);
             this.lvwUser.Margin = new System.Windows.Forms.Padding(4);
             this.lvwUser.Name = "lvwUser";
-            this.lvwUser.Size = new System.Drawing.Size(267, 364);
+            this.lvwUser.Size = new System.Drawing.Size(267, 649);
             this.lvwUser.TabIndex = 3;
             // 
             // FrmDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.ClientSize = new System.Drawing.Size(1085, 768);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.gbDetail);
@@ -301,7 +274,6 @@
             this.gbDetail.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.pnlAction.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -320,8 +292,6 @@
         private Control.AuthButton btnEdit;
         private Control.AuthButton btnDelete;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListBox lvwRole;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnRemoveUser;
         private System.Windows.Forms.Button btnEditUser;

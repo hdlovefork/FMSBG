@@ -95,11 +95,11 @@
     <Compile Include="FrmUser.Designer.cs">
       <DependentUpon>FrmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="IncludeUser.cs">
+    <Compile Include="FrmIncludeUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IncludeUser.Designer.cs">
-      <DependentUpon>IncludeUser.cs</DependentUpon>
+    <Compile Include="FrmIncludeUser.Designer.cs">
+      <DependentUpon>FrmIncludeUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,8 +124,8 @@
     <EmbeddedResource Include="FrmUser.resx">
       <DependentUpon>FrmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncludeUser.resx">
-      <DependentUpon>IncludeUser.cs</DependentUpon>
+    <EmbeddedResource Include="FrmIncludeUser.resx">
+      <DependentUpon>FrmIncludeUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -74,6 +74,7 @@ namespace FileSystem.DAL
         /// <param name="pwd"></param>
         /// <returns></returns>
         User GetUser(string user, string pwd);
+        List<User> GetUsersByDepIDAndPosID(int pid, int did);
 
     }
 }
