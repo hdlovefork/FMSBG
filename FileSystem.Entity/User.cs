@@ -34,7 +34,6 @@ namespace FileSystem.Entity
 		/// </summary>
 		public string UserAddress { get; set; }
 
-        public string UserTel { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>

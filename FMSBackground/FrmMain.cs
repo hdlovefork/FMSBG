@@ -81,7 +81,6 @@ namespace FMSBackground
             //在底部状态栏显示当前登录的用户信息
             lblCurrentUser.Text = string.Format("当前管理员:{0}", GObj.CurrentUser.UserRealName);
         }
-
         private void InitToolBarButtonAction()
         {
             tool_User.Tag = _frmUser;
@@ -104,6 +103,16 @@ namespace FMSBackground
             this.Close();
         }
 
-       
+        private void menu_Window_CloseAll_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void menu_System_Password_Click(object sender, EventArgs e)
+        {
+            
+            FrmUpUserPwd fup = new FrmUpUserPwd();
+            fup.ShowDialog();
+        }
     }
 }

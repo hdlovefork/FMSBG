@@ -90,5 +90,9 @@ namespace FileSystem.BLL
         {
             return Service.GetUsersByRID(rid);
         }
+        public bool UpdetUserPwd(User userp)
+        {
+            return Service.UpdetUserPwd(userp);
+        }
     }
 }

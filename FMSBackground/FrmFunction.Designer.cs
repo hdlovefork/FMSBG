@@ -35,6 +35,8 @@
             this.tvFunction = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.gbDetail = new System.Windows.Forms.GroupBox();
+            this.lbFunctionID = new System.Windows.Forms.Label();
+            this.lbFunctionName = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -103,6 +105,8 @@
             this.gbDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbDetail.Controls.Add(this.lbFunctionID);
+            this.gbDetail.Controls.Add(this.lbFunctionName);
             this.gbDetail.Controls.Add(this.lblError);
             this.gbDetail.Controls.Add(this.btnCancel);
             this.gbDetail.Controls.Add(this.btnSave);
@@ -122,14 +126,34 @@
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "功能详细信息";
             // 
+            // lbFunctionID
+            // 
+            this.lbFunctionID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbFunctionID.ForeColor = System.Drawing.Color.Red;
+            this.lbFunctionID.Location = new System.Drawing.Point(145, 154);
+            this.lbFunctionID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFunctionID.Name = "lbFunctionID";
+            this.lbFunctionID.Size = new System.Drawing.Size(265, 20);
+            this.lbFunctionID.TabIndex = 9;
+            // 
+            // lbFunctionName
+            // 
+            this.lbFunctionName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbFunctionName.ForeColor = System.Drawing.Color.Red;
+            this.lbFunctionName.Location = new System.Drawing.Point(145, 52);
+            this.lbFunctionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFunctionName.Name = "lbFunctionName";
+            this.lbFunctionName.Size = new System.Drawing.Size(265, 20);
+            this.lbFunctionName.TabIndex = 8;
+            // 
             // lblError
             // 
             this.lblError.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(25, 249);
+            this.lblError.Location = new System.Drawing.Point(145, 52);
             this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(275, 46);
+            this.lblError.Size = new System.Drawing.Size(265, 20);
             this.lblError.TabIndex = 8;
             // 
             // btnCancel
@@ -163,7 +187,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFunction.FormattingEnabled = true;
-            this.cboFunction.Location = new System.Drawing.Point(145, 74);
+            this.cboFunction.Location = new System.Drawing.Point(145, 76);
             this.cboFunction.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboFunction.Name = "cboFunction";
             this.cboFunction.Size = new System.Drawing.Size(499, 23);
@@ -174,7 +198,7 @@
             this.txtFunctionControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFunctionControl.Location = new System.Drawing.Point(145, 122);
+            this.txtFunctionControl.Location = new System.Drawing.Point(145, 125);
             this.txtFunctionControl.Margin = new System.Windows.Forms.Padding(4);
             this.txtFunctionControl.Name = "txtFunctionControl";
             this.txtFunctionControl.Size = new System.Drawing.Size(499, 25);
@@ -183,7 +207,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 125);
+            this.label3.Location = new System.Drawing.Point(13, 127);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 15);
@@ -193,7 +217,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 78);
+            this.label2.Location = new System.Drawing.Point(29, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 15);
@@ -295,5 +319,7 @@
         private Control.AuthButton btnEdit;
         private Control.AuthButton btnAdd;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label lbFunctionID;
+        private System.Windows.Forms.Label lbFunctionName;
     }
 }

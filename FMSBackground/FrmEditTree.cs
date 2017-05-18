@@ -14,14 +14,16 @@ namespace FMSBackground
     public partial class FrmEditTree : Form
     {
         FunctionLogic _funLogic = new FunctionLogic();
-        List <Role_Function > _seleFunction = null;
+        List <Role_Function > _seleFunction = new List<Role_Function> ();
         RoleFunctionLogic _roleFunction = new RoleFunctionLogic();
+        FrmRole _frm = new FrmRole();
+        List<int> _lis = new List<int> ();
         int _rid = 0;
-        public FrmEditTree()
+        public FrmEditTree(List <int> lis)
         {
             
             InitializeComponent();
-
+            _lis = lis;
         }
        
 
@@ -41,13 +43,22 @@ namespace FMSBackground
         private void AddChildNode(TreeNode pNode, int pid)
         {
             List<Function> childList = _funLogic.GetFunctions(pid);
+            
             foreach (var f in childList)
             {
+                
                 TreeNode childNode = new TreeNode(f.FunctionName);
                 childNode.Name = f.FunctionID.ToString();
                 childNode.Tag = f;
                 pNode.Nodes.Add(childNode);
-                AddChildNode(childNode, f.FunctionID);   
+                foreach (int t in _lis)
+                {
+                    if (t == f.FunctionID) {
+                        childNode.Checked = true;
+                    }
+
+                } 
+                AddChildNode(childNode, f.FunctionID);
             }
         }
 
@@ -72,14 +83,64 @@ namespace FMSBackground
 
         private void tvFunctionTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
-            Function f =e.Node .Tag as Function ;
-            
-            Role_Function rf = new Role_Function();
-            rf.FunctionID = f.FunctionID;
-            rf.RoleID = _rid;
-            _seleFunction.Add(rf);
+
+            //Function f =e.Node .Tag as Function ;           
+            //Role_Function rf = new Role_Function();
+            //rf.FunctionID = f.FunctionID;
+            //rf.RoleID = _rid;
+            //_seleFunction.Add(rf);
+
+            //SelectTheParentNodeSelect(e.Node, e.Node.Checked);
+            if (e.Node.Checked == true)
+            {
+                SelectTheParentNodeSelect(e.Node, true);
+            }
+            else if (e.Node.Checked == false)
+            {
+                SelectTheParentNodeSelect(e.Node, false);
+
+                //if (e.Node.Parent != null)
+                //{
+                //    SelectTheParentNodeTocancel(e.Node, false);
+                //}
+            }
+
             //_roleFunction.AddRoleFunction(_seleFunction);
         }
+        /// <summary>
+        /// 选中节点之后，选中节点的所有子节点
+        /// </summary>
+        /// <param name="currNode"></param>
+        /// <param name="state"></param>
+        private void SelectTheParentNodeSelect (TreeNode currNode, bool state)
+        {
+            TreeNodeCollection nodes = currNode.Nodes;
+            if (nodes.Count > 0)
+            {
+                foreach (TreeNode tn in nodes)
+                {
+                    tn.Checked = state;
+                    SelectTheParentNodeSelect(tn, state);
+                }
+            }
+        }
+        /// <summary>
+        /// 选中节点后，取消选中所有子节点
+        /// </summary>
+        /// <param name="currNode"></param>
+        /// <param name="state"></param>
+        private void SelectTheParentNodeTocancel(TreeNode currNode, bool state)
+        {
+            TreeNode parentNode = currNode.Parent;
+            parentNode.Checked = state;
+            if (currNode.Parent.Parent != null)
+            {
+                SelectTheParentNodeTocancel(currNode.Parent, state);
+            }
+        }
+        //选中节点之后，选中节点的所有子节点
+        
+
+
     }
 }

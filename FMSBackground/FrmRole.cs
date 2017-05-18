@@ -19,6 +19,8 @@ namespace FMSBackground
         RoleLogic _roleLogic = new RoleLogic();
         UserLogic _userLogic = new UserLogic();
         FunctionLogic _functionLogic = new FunctionLogic();
+        List<int > _lis = new List<int>();
+        List<int> _lisUser = new List<int>();
         public FrmRole()
         {
             InitializeComponent();
@@ -59,9 +61,9 @@ namespace FMSBackground
             Role r = e.Node.Tag as Role;
             if (r == null) return;
             //FrmEditTree fet = new FrmEditTree(r.RoleID);                                      //_seleNode = e.Node;
-            listBox2.Items.Clear();
+            lisRole.Items.Clear();
             SeleUser(r);//显示可编辑用户
-            listBox1.Items.Clear();
+            lstFunction.Items.Clear();
             SeleFunction(r);
         }
 
@@ -74,26 +76,37 @@ namespace FMSBackground
         {
             List<Function> list = _functionLogic.GetRoleFunction(r.RoleID);
             if (list == null) return;
+            _lis.Clear();
             foreach (var f in list)
             {
-                listBox1.Items.Add(f.FunctionName);
+                lstFunction.Items.Add(f.FunctionName);
+                _lis.Add(f.FunctionID);
             }
+
         }
 
         private void SeleUser(Role r)
         {
             List<User> list = _userLogic.GetUsersByRID(r.RoleID);
             if (list == null) return;
+            _lisUser.Clear();
             foreach (var u in list)
             {
-                listBox2.Items.Add(u.UserRealName);    
+                lisRole.Items.Add(u.UserRealName);
+                _lisUser.Add(u.UserID);
             }
         }
 
         private void btsele_Click(object sender, EventArgs e)
         {
-            FrmEditTree fet = new FrmEditTree();
-            fet.Show();
+            FrmEditTree fet = new FrmEditTree(_lis);
+            fet.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmEditUser fdu = new FrmEditUser(_lisUser );
+            fdu.ShowDialog();
         }
     }
 }

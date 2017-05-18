@@ -83,6 +83,7 @@
             this.menu_System_Password.Name = "menu_System_Password";
             this.menu_System_Password.Size = new System.Drawing.Size(181, 26);
             this.menu_System_Password.Text = "修改密码(&P)";
+            this.menu_System_Password.Click += new System.EventHandler(this.menu_System_Password_Click);
             // 
             // menu_System_Exit
             // 
@@ -105,6 +106,7 @@
             this.menu_Window_CloseAll.Name = "menu_Window_CloseAll";
             this.menu_Window_CloseAll.Size = new System.Drawing.Size(226, 26);
             this.menu_Window_CloseAll.Text = "关闭所有窗口(&A)";
+            this.menu_Window_CloseAll.Click += new System.EventHandler(this.menu_Window_CloseAll_Click);
             // 
             // menu_Window_CloseOther
             // 
@@ -124,13 +126,13 @@
             // menu_Help_About
             // 
             this.menu_Help_About.Name = "menu_Help_About";
-            this.menu_Help_About.Size = new System.Drawing.Size(181, 26);
+            this.menu_Help_About.Size = new System.Drawing.Size(135, 26);
             this.menu_Help_About.Text = "关于(&A)";
             // 
             // menu_Help_Help
             // 
             this.menu_Help_Help.Name = "menu_Help_Help";
-            this.menu_Help_Help.Size = new System.Drawing.Size(181, 26);
+            this.menu_Help_Help.Size = new System.Drawing.Size(135, 26);
             this.menu_Help_Help.Text = "帮助(&F)";
             // 
             // toolMain

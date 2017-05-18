@@ -85,5 +85,10 @@ namespace FileSystem.DAL
         {
             return Update(user);
         }
+
+        public bool  UpdetUserPwd(User  userp)
+        {
+            return Update(userp);
+        }
     }
 }

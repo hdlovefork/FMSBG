@@ -76,5 +76,7 @@ namespace FileSystem.DAL
         User GetUser(string user, string pwd);
 
         List<User> GetUsersByRID(int rid);
+
+        bool UpdetUserPwd(User userp);
     }
 }
