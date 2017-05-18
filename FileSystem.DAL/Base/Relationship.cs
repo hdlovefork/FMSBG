@@ -18,6 +18,11 @@ using System.Text;
 
 namespace FileSystem.DAL
 {
+
+    /// <summary>
+    /// 关联表名和字段名
+    /// </summary>
+
     public class Relationship
     {
         private Relationship() { }

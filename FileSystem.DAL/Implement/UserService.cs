@@ -38,28 +38,31 @@ namespace FileSystem.DAL
         public override IQueryInfo QueryInfo
         {
             //告诉BaseService我要搜索User表
-            get
-            {
-                return new BaseQueryInfo("User",
-                                          new Relationship[] {
-                                                new Relationship("ACL_File_User"),
-                                                new Relationship("ACL_User_Role"),
-                                                new Relationship("User_Department_Position"),
-                                                new Relationship("Comment"),
-                                            }
-                                          );
+
+            get { return new BaseQueryInfo("User",
+                    new Relationship[]
+                    {
+                        new Relationship("ACL_File_User"),
+                        new Relationship("ACL_User_Role"),
+                        new Relationship("User_Department_Position"),
+                        new Relationship("User_Comment"),
+                    }
+                );
+
+
 
             }
         }
 
         public bool DeleteUser(int userID)
         {
+
             return DeleteByKey(userID.ToString ());
         }
 
-        public List<Department> GetDepartmentByUID(int uid)
+        public List<DepartmentPosition> GetDepartmentByUID(int uid)
         {
-            throw new NotImplementedException();
+            return Find<DepartmentPosition>(new BaseQueryInfo("View_User_Department_Position",null), "UserID=@UserID", new SqlParameter("@UserID", uid));
         }
 
         public IList<Role> GetRolesByID(int userID)
@@ -89,7 +92,7 @@ namespace FileSystem.DAL
 
         public bool InsertUser(User user)
         {
-            throw new NotImplementedException();
+            return Insert(user) > 0;
         }
 
         public bool UpdateUser(User user)

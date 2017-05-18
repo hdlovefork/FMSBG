@@ -289,7 +289,6 @@ namespace FileSystem.DAL
         {
             DbCommand command = _providerFactory.CreateCommand();           
             command.CommandText = sql;
-            command.CommandTimeout = 0;
             command.CommandType = commandType;
             command.Connection = _transactionObj.Connection;
             if (!(parameters == null || parameters.Count == 0))

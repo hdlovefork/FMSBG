@@ -90,6 +90,7 @@ namespace FMSBackground
             tool_Function.Tag = _frmFun;
         }
 
+
         private void tool_User_Click(object sender, EventArgs e)
         {
 
@@ -99,5 +100,6 @@ namespace FMSBackground
             _frmDict[name].Show(dockPanel);
         }
         
+
     }
 }

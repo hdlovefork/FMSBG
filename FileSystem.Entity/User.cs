@@ -24,15 +24,16 @@ namespace FileSystem.Entity
 		/// <summary>
 		/// 
 		/// </summary>
-		public int UserID { get; set; }		
-		/// <summary>
-		/// 
-		/// </summary>
-		public bool? UserSex { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public string UserAddress { get; set; }
+		public int UserID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? UserSex { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserAddress { get; set; }
+
 
 		/// <summary>
 		/// 注册时间
@@ -41,6 +42,7 @@ namespace FileSystem.Entity
         /// <summary>
         /// 账号是否启用
         /// </summary>
+
         public bool UserEnable { get; set; }
         /// <summary>
         /// 手机号码

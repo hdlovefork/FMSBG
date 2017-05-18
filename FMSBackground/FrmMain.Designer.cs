@@ -126,19 +126,20 @@
             // menu_Help_About
             // 
             this.menu_Help_About.Name = "menu_Help_About";
-            this.menu_Help_About.Size = new System.Drawing.Size(135, 26);
+            this.menu_Help_About.Size = new System.Drawing.Size(181, 26);
             this.menu_Help_About.Text = "关于(&A)";
+            this.menu_Help_About.Click += new System.EventHandler(this.menu_Help_About_Click);
             // 
             // menu_Help_Help
             // 
             this.menu_Help_Help.Name = "menu_Help_Help";
-            this.menu_Help_Help.Size = new System.Drawing.Size(135, 26);
+            this.menu_Help_Help.Size = new System.Drawing.Size(181, 26);
             this.menu_Help_Help.Text = "帮助(&F)";
             // 
             // menu_Help_Register
             // 
             this.menu_Help_Register.Name = "menu_Help_Register";
-            this.menu_Help_Register.Size = new System.Drawing.Size(135, 26);
+            this.menu_Help_Register.Size = new System.Drawing.Size(181, 26);
             this.menu_Help_Register.Text = "注册(&R)";
             this.menu_Help_Register.Visible = false;
             // 

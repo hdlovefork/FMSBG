@@ -28,35 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkHelp = new System.Windows.Forms.LinkLabel();
+            this.lblCalendar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 82);
+            this.label1.Location = new System.Drawing.Point(72, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.Size = new System.Drawing.Size(78, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "用户名：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 164);
+            this.label2.Location = new System.Drawing.Point(73, 161);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 15);
+            this.label2.Size = new System.Drawing.Size(77, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = " 密  码：";
+            this.label2.Text = " 密码：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(153, 79);
+            this.txtUserName.Location = new System.Drawing.Point(156, 106);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(259, 25);
             this.txtUserName.TabIndex = 2;
@@ -64,7 +68,7 @@
             // 
             // txtUserPassword
             // 
-            this.txtUserPassword.Location = new System.Drawing.Point(153, 161);
+            this.txtUserPassword.Location = new System.Drawing.Point(156, 163);
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.PasswordChar = '*';
             this.txtUserPassword.Size = new System.Drawing.Size(259, 25);
@@ -73,7 +77,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(153, 254);
+            this.btnLogin.Location = new System.Drawing.Point(127, 224);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(94, 49);
             this.btnLogin.TabIndex = 4;
@@ -84,7 +88,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(318, 254);
+            this.btnExit.Location = new System.Drawing.Point(318, 224);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(94, 49);
             this.btnExit.TabIndex = 5;
@@ -92,13 +96,52 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("华文行楷", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label3.Location = new System.Drawing.Point(58, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(389, 29);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "权限管理系统登陆界面";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // linkHelp
+            // 
+            this.linkHelp.BackColor = System.Drawing.Color.Transparent;
+            this.linkHelp.Location = new System.Drawing.Point(469, 42);
+            this.linkHelp.Name = "linkHelp";
+            this.linkHelp.Size = new System.Drawing.Size(74, 30);
+            this.linkHelp.TabIndex = 11;
+            this.linkHelp.TabStop = true;
+            this.linkHelp.Text = "寻求帮助";
+            this.linkHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblCalendar
+            // 
+            this.lblCalendar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCalendar.Font = new System.Drawing.Font("隶书", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCalendar.Location = new System.Drawing.Point(25, 299);
+            this.lblCalendar.Name = "lblCalendar";
+            this.lblCalendar.Size = new System.Drawing.Size(483, 31);
+            this.lblCalendar.TabIndex = 12;
+            this.lblCalendar.Text = "湖南城建职业技术学院权限登录系统";
+            this.lblCalendar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(539, 339);
+            this.ClientSize = new System.Drawing.Size(552, 342);
+            this.Controls.Add(this.lblCalendar);
+            this.Controls.Add(this.linkHelp);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUserPassword);
@@ -111,6 +154,7 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " 管理员登录";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,5 +169,8 @@
         private System.Windows.Forms.TextBox txtUserPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel linkHelp;
+        private System.Windows.Forms.Label lblCalendar;
     }
 }

@@ -27,11 +27,13 @@ namespace FileSystem.DAL
 
         public override IQueryInfo QueryInfo
         {
+
             get { return new BaseQueryInfo("Department",
                                             new Relationship[] { new Relationship("User_Department_Position")
                                                                 }
                                             );
                 }
+
         }
 
         public List<Department> GetDepartments()

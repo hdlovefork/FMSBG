@@ -1,5 +1,5 @@
 ﻿/**************************************************************** 
- * 作    者：黄鼎 
+ * 作    者：肖安辉
  * CLR 版本：4.0.30319.42000 
  * 创建时间：2017-05-12 1:06:12 
  * 当前版本：1.0.0.0
@@ -36,6 +36,7 @@ namespace FileSystem.BLL
         {
             return Service.GetUsers();
         }
+    
 
         /// <summary>
         /// 用户登录方法
@@ -71,22 +72,33 @@ namespace FileSystem.BLL
             }
             //用戶权限判断，用户工厂方法创建一个AuthLogin的实例
             //然后调用实例的Auth方法进行权限认证
-            
-           //bool ok = Factory.Create<AuthLogic>().Auth(user.UserID, GObj.SYSTEM_FUNCTION);
-           // if (!ok)
-           // {
-           //     msg = "你没有登录后台的权限";
-           //     return false;
-           // }
+
+            bool ok = Factory.Create<AuthLogic>().Auth(user.UserID, GObj.SYSTEM_FUNCTION);
+            if (!ok)
+            {
+                msg = "你没有登录后台的权限";
+                return false;
+            }
             return true;
         }
-        public bool UpdateUser(User user)
-        {
-            return Service .UpdateUser(user);
+
+        public bool AddUser(User user) {
+            return Service.InsertUser(user);
         }
-        public bool DeleDeleteUser(int userId)
+        public bool EditUser(User user)
         {
-            return Service.DeleteUser(userId);
+
+            return Service.UpdateUser(user);
+        }
+        public bool DeleteUser(int userid)
+        {
+          
+            return Service.DeleteUser(userid);
+        }
+        public List<DepartmentPosition> GetDepartmentUser(int uid) {
+
+            return Service.GetDepartmentByUID(uid);
+
         }
 
         public List<User> GetUsersByRID(int rid)

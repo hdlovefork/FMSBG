@@ -22,14 +22,16 @@ namespace FileSystem.DAL
 {
     public class FunctionService : BaseService<Function>, IFunctionService
     {
+
         public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Function", "FunctionID",
                 new Relationship[] { new Relationship("ACL_Role_Function") }
             );
 
+
         public bool DeleteFunctionByID(int id)
         {
             return DeleteByKey(id.ToString());
-        }
+         }
 
         public Function GetFunctionRole(string  func)
         {
@@ -58,8 +60,9 @@ namespace FileSystem.DAL
 
         public bool InsertFunction(Function f)
         {
-            int i = Insert(f);
-            return i > 0;
+
+            return Insert(f) > 0;
+
         }
 
         public bool UpdateFunction(Function f)
