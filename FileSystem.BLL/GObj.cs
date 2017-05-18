@@ -56,5 +56,8 @@ namespace FileSystem.BLL
         /// </summary>
         public const string SYSTEM_FUNCTION_FUNCTION = "Function";
 
+
+        public const string SYSTEM_FUNCTION_TEMPLATE = "Template";
+
     }
 }

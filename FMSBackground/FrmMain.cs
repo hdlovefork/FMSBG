@@ -30,6 +30,7 @@ namespace FMSBackground
         FrmRole _frmRole;
         FrmFunction _frmFun;
         FrmDepartment _frmDep;
+        FrmTemplate _frmTemp;
         Dictionary<string, BaseForm> _frmDict;
 
 

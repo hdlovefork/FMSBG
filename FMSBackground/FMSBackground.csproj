@@ -114,6 +114,12 @@
     <Compile Include="FrmRole.Designer.cs">
       <DependentUpon>FrmRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTemplate.Designer.cs">
+      <DependentUpon>FrmTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUpUserPwd.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -137,6 +137,7 @@ namespace FMSBackground
             }
             gbDeatil.Enabled = false;//保存后加锁界面
             pnlAction.Enabled = true;//动作面板要启用
+            txtUserName.Enabled = false;
         }
 
         /// <summary>
@@ -160,12 +161,7 @@ namespace FMSBackground
             if (ok)
             {
                 tvUser.Nodes.Clear();
-                InitUserTree();
-                MessageBox.Show("添加成功");
-            }
-            else
-            {
-                MessageBox.Show("添加 失败");
+                InitUserTree();           
             }
             return true;
         }
@@ -200,7 +196,8 @@ namespace FMSBackground
                 return false;
             }
             lblError3.Visible = false;
-            if (string.IsNullOrWhiteSpace(txtMobile.Text)) {
+            if (string.IsNullOrWhiteSpace(txtMobile.Text))
+            {
                 lblError4.Text = "请输入联系电话";
                 lblError4.Focus();
                 lblError4.Visible = true;
@@ -251,6 +248,7 @@ namespace FMSBackground
             gbDeatil.Enabled = true;
             tvUser.Enabled = true;
             pnlAction.Enabled = false;
+            txtUserName.Enabled = true;
         }
         /// <summary>
         /// 删除
@@ -259,12 +257,6 @@ namespace FMSBackground
         /// <param name="e"></param>
         private void authBtnDelete_Click(object sender, Control.AuthEventArgs e)
         {
-
-
-            if (!e.OK)
-            {
-
-            }
             if (_selectedNode == null) return;
             User u = _selectedNode.Tag as User;
             if (u == null) return;
@@ -273,12 +265,6 @@ namespace FMSBackground
             if (ok)
             {
                 tvUser.Nodes.Remove(_selectedNode);
-                MessageBox.Show("删除成功");
-            }
-            else
-            {
-                MessageBox.Show("删除失败");
-
             }
         }
         /// <summary>
@@ -297,6 +283,7 @@ namespace FMSBackground
         {
             gbDeatil.Enabled = false;
             pnlAction.Enabled = true;
+            txtUserName.Enabled = false;
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)

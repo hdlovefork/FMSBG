@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2017-05-17 19:53:06                          */
+/* Created on:     2017-05-18 16:20:41                          */
 /*==============================================================*/
 
 
@@ -72,6 +72,20 @@ if exists (select 1
    where r.fkeyid = object_id('File_Department') and o.name = 'FK_FILE_DEP_REFERENCE_DEPARTME')
 alter table File_Department
    drop constraint FK_FILE_DEP_REFERENCE_DEPARTME
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('File_Share') and o.name = 'FK_FILE_SHA_REFERENCE_FILE')
+alter table File_Share
+   drop constraint FK_FILE_SHA_REFERENCE_FILE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('File_Share') and o.name = 'FK_FILE_SHA_REFERENCE_USER')
+alter table File_Share
+   drop constraint FK_FILE_SHA_REFERENCE_USER
 go
 
 if exists (select 1
@@ -209,6 +223,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('DOC_Template')
+            and   type = 'U')
+   drop table DOC_Template
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('Department')
             and   type = 'U')
    drop table Department
@@ -226,6 +247,13 @@ if exists (select 1
            where  id = object_id('File_Department')
             and   type = 'U')
    drop table File_Department
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('File_Share')
+            and   type = 'U')
+   drop table File_Share
 go
 
 if exists (select 1
@@ -422,6 +450,19 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* Table: DOC_Template                                          */
+/*==============================================================*/
+create table DOC_Template (
+   TemplateID           int                  identity,
+   TemplateName         varchar(50)          null,
+   TemplateType         int                  null,
+   TemplateExt          varchar(50)          null,
+   TemplateData         image                null,
+   constraint PK_DOC_TEMPLATE primary key (TemplateID)
+)
+go
+
+/*==============================================================*/
 /* Table: Department                                            */
 /*==============================================================*/
 create table Department (
@@ -508,6 +549,15 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',  
    '文件属于哪些部门', 
    'user', @CurrentUser, 'table', 'File_Department'
+go
+
+/*==============================================================*/
+/* Table: File_Share                                            */
+/*==============================================================*/
+create table File_Share (
+   FileID               int                  null,
+   UserID               int                  null
+)
 go
 
 /*==============================================================*/
@@ -771,6 +821,16 @@ go
 alter table File_Department
    add constraint FK_FILE_DEP_REFERENCE_DEPARTME foreign key (DepartmentID)
       references Department (DepartmentID)
+go
+
+alter table File_Share
+   add constraint FK_FILE_SHA_REFERENCE_FILE foreign key (FileID)
+      references "File" (FileID)
+go
+
+alter table File_Share
+   add constraint FK_FILE_SHA_REFERENCE_USER foreign key (UserID)
+      references "User" (UserID)
 go
 
 alter table User_Comment

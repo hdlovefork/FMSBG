@@ -45,12 +45,13 @@
             this.tool_Dep = new System.Windows.Forms.ToolStripButton();
             this.tool_Role = new System.Windows.Forms.ToolStripButton();
             this.tool_Function = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tool_Quit = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblCurrentUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssLink = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuMain.SuspendLayout();
             this.toolMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -149,7 +150,8 @@
             this.tool_Dep,
             this.tool_Role,
             this.tool_Function,
-            this.toolStripSeparator1,
+            this.toolStripButton1,
+            this.toolStripSeparator2,
             this.tool_Quit});
             this.toolMain.Location = new System.Drawing.Point(0, 25);
             this.toolMain.Name = "toolMain";
@@ -192,11 +194,6 @@
             this.tool_Function.Size = new System.Drawing.Size(92, 36);
             this.tool_Function.Text = "功能管理";
             this.tool_Function.Click += new System.EventHandler(this.tool_User_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // tool_Quit
             // 
@@ -251,6 +248,20 @@
             this.dockPanel.Size = new System.Drawing.Size(1211, 640);
             this.dockPanel.TabIndex = 18;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(96, 36);
+            this.toolStripButton1.Text = " 模板管理";
+            this.toolStripButton1.Click += new System.EventHandler(this.tool_User_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -297,11 +308,12 @@
         private System.Windows.Forms.ToolStripButton tool_Dep;
         private System.Windows.Forms.ToolStripButton tool_Role;
         private System.Windows.Forms.ToolStripButton tool_Function;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tool_Quit;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentUser;
         private System.Windows.Forms.ToolStripStatusLabel tssLink;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

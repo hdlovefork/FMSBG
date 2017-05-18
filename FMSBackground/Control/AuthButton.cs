@@ -36,14 +36,12 @@ namespace FMSBackground.Control
             //Debug.WriteLine("OnClick ------{0}",this.Tag);
             //验证当前登录用户是否拥有指定的权限
             bool ok = Factory.Create<AuthLogic>().Auth(this.Tag.ToString());
-            if (ok)
+            if (!ok)
             {
-                Click(this, new AuthEventArgs { OK = true });
+                MessageBox.Show("您没有该操作的权限！","系统提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                Click(this, new AuthEventArgs { OK = false });
-            }
+            Click(this, new AuthEventArgs { OK = true });
         }
         /// <summary>
         /// 重写Click点击按钮事件

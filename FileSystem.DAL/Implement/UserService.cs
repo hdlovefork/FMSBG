@@ -48,9 +48,6 @@ namespace FileSystem.DAL
                         new Relationship("User_Comment"),
                     }
                 );
-
-
-
             }
         }
 
@@ -94,7 +91,7 @@ namespace FileSystem.DAL
 
         public bool InsertUser(User user)
         {
-            return Insert(user) > 0;
+            return Insert(user) > 0 ;
         }
 
         public bool UpdateUser(User user)
