@@ -88,10 +88,6 @@ namespace FMSBackground
                 txtDepName.Text = d.DepartmentName;
                 ShowDepartmentUsers(d);
             }
-
-            //Department pd = _depLogic.GetParentDepartmentByPID((int)d.DepartmentPID);
-            //if (pd == null) return;
-            //cboDepartment.Text = pd.DepartmentName;
         }
         private void ShowDepartmentUsers(Department d)
         {
@@ -167,6 +163,7 @@ namespace FMSBackground
             }
             gbDetail.Enabled = false;//保存完了加锁界面/禁用界面
             pnlAction.Enabled = true;//动作面板要启用
+            txtDepName.Clear();
         }
 
         private void UpdateDepartment()
@@ -184,17 +181,15 @@ namespace FMSBackground
 
         private void btnDelete_Click(object sender, AuthEventArgs e)
         {
-            if (e.OK)
-            {
-                //you quan xian
-            }
             if (_selectedNode == null) return;
             Department d = _selectedNode.Tag as Department;
+            if (d == null) return;
             bool ok = _depLogic.DeleteDepartmentByID(d.DepartmentID);
             if (ok)
             {
                 tvDep.Nodes.Remove(_selectedNode);
             }
+            txtDepName.Clear();
         }
         private void ReloadTree()
         {
@@ -212,6 +207,9 @@ namespace FMSBackground
 
         private void btnEdit_Click(object sender, AuthEventArgs e)
         {
+            if (_selectedNode != null) return;
+            Department d = _selectedNode.Tag as Department;
+            if (d == null) return;
             gbDetail.Enabled = true;//编辑时解锁界面/启用界面
             pnlAction.Enabled = false;
         }

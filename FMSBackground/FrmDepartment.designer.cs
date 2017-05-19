@@ -98,12 +98,13 @@
             // 
             // lblError
             // 
-            this.lblError.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(22, 163);
+            this.lblError.Location = new System.Drawing.Point(114, 58);
             this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(275, 46);
+            this.lblError.Size = new System.Drawing.Size(0, 19);
             this.lblError.TabIndex = 9;
             // 
             // txtDepName
