@@ -48,9 +48,10 @@ namespace FileSystem.Entity
         /// 手机号码
         /// </summary>
         public string UserMobile { get; set; }
+
         public override string ToString()
         {
-            return UserName ;
+            return string.Format("{0}({1})", UserName, UserRealName);
         }
     }
 }

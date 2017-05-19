@@ -28,7 +28,7 @@ namespace FMSBackground.Control
     /// <param name="e"></param>
     public delegate void AuthEventHandler(object sender, AuthEventArgs e);
 
-    public class AuthButton:Button
+    public class AuthButton : Button
     {
         protected override void OnClick(EventArgs e)
         {
@@ -60,6 +60,6 @@ namespace FMSBackground.Control
         /// 是否拥有按钮Tag属性指定的权限
         /// </summary>
         public bool OK { get; set; }
-       
+
     }
 }

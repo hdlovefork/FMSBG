@@ -18,27 +18,26 @@ using System.Text;
 using System.Threading.Tasks;
 using FileSystem.Entity;
 using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace FileSystem.DAL
 {
-    public class DepartmentService : BaseService<Department>, IDeapartService
+    public class DepartmentService :BaseService<Department>, IDeapartService
     {
         //public override IQueryInfo QueryInfo => new BaseQueryInfo("Department");
 
         public override IQueryInfo QueryInfo
         {
-
             get { return new BaseQueryInfo("Department",
-                                            new Relationship[] { new Relationship("User_Department_Position")
-                                                                }
-                                            );
-                }
-
+                new Relationship[] {
+                    new Relationship ("User_Department_Position"),
+                    new Relationship ("File_Department")  });
+            }
         }
 
         public List<Department> GetDepartments()
         {
-            string sql = "SELECT * FROM [View_Department_Position]";
+            string sql = "SELECT * FROM [View_Department_Position] ORDER BY DepartmentID";
             DbDataReader reader = _db.ExecuteReader(sql, null);
             int lastDepID = 0;
             List<Department> list = new List<Department>();
@@ -49,13 +48,12 @@ namespace FileSystem.DAL
                 if (curDepID != lastDepID)
                 {
                     lastDepID = curDepID;
-                    dep = new Department();
+                    dep  = new Department();
                     dep.DepartmentID = Convert.ToInt32(reader["DepartmentID"]);
                     dep.DepartmentName = Convert.ToString(reader["DepartmentName"]);
                     list.Add(dep);
                 }
-                Position pos = new Position
-                {
+                Position pos = new Position {
                     PositionID = Convert.ToInt32(reader["PositionID"]),
                     PositionName = Convert.ToString(reader["PositionName"])
                 };
@@ -65,9 +63,30 @@ namespace FileSystem.DAL
             return list;
         }
 
+        public bool UpdateDepartment(Department f)
+        {
+            return Update(f);
+        }
+
+        public bool InsertDepartment(Department d)
+        {
+            return Insert(d) > 0 ;
+        }
+        public bool DeleteDepartmentByID(int id)
+        {
+            return DeleteByKey(id.ToString());
+        }
         public List<Department> GetDepartmentsByUID(int uid)
         {
             throw new NotImplementedException();
+        }
+        public List<Department> GetDepartment()
+        {
+            return Find();
+        }
+        public Department GetParentDepartmentByPID(int pid)
+        {
+            return FindSingle("DepartmentID=@PID", new SqlParameter("@PID", pid));
         }
     }
 }

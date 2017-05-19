@@ -188,6 +188,16 @@ namespace FMSBackground
        
 
         private void authBtnEdit_Click(object sender, AuthEventArgs e)
+        private void ReloadTree()
+        {
+            tvFunction.Nodes.Clear();//清空所有节点
+            InitFunctionTree();//初始化所有节点
+            tvFunction.ExpandAll();//展开所有 节点
+        }
+
+       
+
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             gbDetail.Enabled = true;//编辑时解锁界面/启用界面
             pnlAction.Enabled = false;

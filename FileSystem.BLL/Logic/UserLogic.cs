@@ -80,6 +80,17 @@ namespace FileSystem.BLL
             }
             return true;
         }
+        public bool AddUser(User user)
+        {
+            return Service.InsertUser(user);
+        }
+        public bool EditUser(User user)
+        {
+
+            return Service.UpdateUser(user);
+        }
+        public bool DeleteUser(int userid)
+        {
 
         public bool AddUser(User user) {
             return Service.InsertUser(user);
@@ -103,6 +114,21 @@ namespace FileSystem.BLL
         public List<User> GetUsersByRID(int rid)
         {
             return Service.GetUsersByRID(rid);
+        }
+            return Service.DeleteUser(userid);
+        }
+        public List<User> GetUsers()
+        {
+            return Service.GetUsers();
+        }
+        public List <User > GetUsersByDepIDAndPosID(int depID,int posID)
+        {
+            return Service.GetUsersByDepIDAndPosID(depID, posID);
+        }
+
+        public List<User> GetUsersByDepID(int depID)
+        {
+            return Service.GetUsersByDepID(depID);
         }
     }
 }

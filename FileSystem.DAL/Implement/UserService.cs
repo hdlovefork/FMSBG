@@ -94,6 +94,19 @@ namespace FileSystem.DAL
             return Insert(user) > 0 ;
         }
 
+        public List<User> GetUsersByDepIDAndPosID(int depID, int posID)
+        {
+            return Find(new BaseQueryInfo ("View_User_Department_Position",null), "DepartmentID=@DID AND PositionID=@PID",
+                new SqlParameter("@DID", depID),
+                new SqlParameter("@PID", posID)
+                );
+        }
+
+        public List<User> GetUsersByDepID(int depID)
+        {
+            return Find(new BaseQueryInfo("View_User_Department_Position", null),"DepartmentID=@DepartmentID", new SqlParameter("@DepartmentID", depID));
+        }
+
         public bool UpdateUser(User user)
         {
             return Update(user);

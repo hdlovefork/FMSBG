@@ -32,10 +32,27 @@ namespace FileSystem.BLL
         {
             return Service.GetDepartmentsByUID(uid);
         }
+        public List<Department> GetDepartment()
+        {
+            return Service.GetDepartment();
+        }
+        public Department GetParentDepartmentByPID(int pid)
+        {
+            return Service.GetParentDepartmentByPID(pid);
+        }
 
-        //public List<Department> GetDepartment()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public bool AddDepartment(Department d)
+        {
+            return Service.InsertDepartment(d);
+        }
+        public bool DeleteDepartmentByID(int id)
+        {
+            if (id <= 0) return true;
+            return Service.DeleteDepartmentByID(id);
+        }
+        public bool EditDepartment(Department f)
+        {
+            return Service.UpdateDepartment(f);
+        }
     }
 }

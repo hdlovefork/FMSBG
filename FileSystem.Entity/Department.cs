@@ -32,10 +32,11 @@ namespace FileSystem.Entity
 		/// 
 		/// </summary>
 		public int DepartmentID { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public string DepartmentName { get; set; }
+        public int? DepartmentPID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DepartmentName { get; set; }
 
         public override string ToString()
         {
