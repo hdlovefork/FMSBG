@@ -24,7 +24,7 @@ namespace FileSystem.BLL
     /// <summary>
     /// 与用户相关的逻辑类，告诉父类我要将父类的Service属性变成一个IUserService对象
     /// </summary>
-    public class UserLogic:BaseLogic<UserService>
+    public class UserLogic : BaseLogic<UserService>
     {
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace FileSystem.BLL
         {
             return Service.GetUsers();
         }
-    
+
 
         /// <summary>
         /// 用户登录方法
@@ -45,7 +45,7 @@ namespace FileSystem.BLL
         /// <param name="msg">返回错误提示字符串</param>
         /// <param name="user">返回用户名密码正确后返回的用户信息</param>
         /// <returns></returns>
-        public bool Login(string userName, string pwd, out string msg,out User user)
+        public bool Login(string userName, string pwd, out string msg, out User user)
         {
             msg = string.Empty;     //默认返回空字符串
             user = null;            //默认返回空用户
@@ -55,12 +55,13 @@ namespace FileSystem.BLL
                 msg = "用户名不能为空";
                 return false;
             }
-            if (string.IsNullOrEmpty(pwd.Trim())){
+            if (string.IsNullOrEmpty(pwd.Trim()))
+            {
                 msg = "密码不能为空";
                 return false;
             }
             //IObservable<Int32> source = Observable.start
-           
+
             //父类已经帮你把Service变成了UserService了，强大吧！
             //体会泛型编程的乐趣吧！
             user = Service.GetUser(userName, pwd);
@@ -89,23 +90,13 @@ namespace FileSystem.BLL
 
             return Service.UpdateUser(user);
         }
+
         public bool DeleteUser(int userid)
         {
-
-        public bool AddUser(User user) {
-            return Service.InsertUser(user);
-        }
-        public bool EditUser(User user)
-        {
-
-            return Service.UpdateUser(user);
-        }
-        public bool DeleteUser(int userid)
-        {
-          
             return Service.DeleteUser(userid);
         }
-        public List<DepartmentPosition> GetDepartmentUser(int uid) {
+        public List<DepartmentPosition> GetDepartmentUser(int uid)
+        {
 
             return Service.GetDepartmentByUID(uid);
 
@@ -115,13 +106,8 @@ namespace FileSystem.BLL
         {
             return Service.GetUsersByRID(rid);
         }
-            return Service.DeleteUser(userid);
-        }
-        public List<User> GetUsers()
-        {
-            return Service.GetUsers();
-        }
-        public List <User > GetUsersByDepIDAndPosID(int depID,int posID)
+       
+        public List<User> GetUsersByDepIDAndPosID(int depID, int posID)
         {
             return Service.GetUsersByDepIDAndPosID(depID, posID);
         }

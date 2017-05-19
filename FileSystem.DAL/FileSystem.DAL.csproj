@@ -49,7 +49,6 @@
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\DbProviderType.cs" />
     <Compile Include="Base\DbUtility.cs" />
-    <Compile Include="Base\Relationship.cs" />
     <Compile Include="Base\RoleService.cs" />
     <Compile Include="Implement\FunctionService.cs" />
     <Compile Include="Implement\DepartmentService.cs" />

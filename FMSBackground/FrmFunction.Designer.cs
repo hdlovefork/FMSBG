@@ -35,9 +35,8 @@
             this.tvFunction = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.gbDetail = new System.Windows.Forms.GroupBox();
-            this.lbFunctionID = new System.Windows.Forms.Label();
-            this.lbFunctionName = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
+            this.lblError2 = new System.Windows.Forms.Label();
+            this.lblError1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.cboFunction = new System.Windows.Forms.ComboBox();
@@ -105,9 +104,8 @@
             this.gbDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbDetail.Controls.Add(this.lbFunctionID);
-            this.gbDetail.Controls.Add(this.lbFunctionName);
-            this.gbDetail.Controls.Add(this.lblError);
+            this.gbDetail.Controls.Add(this.lblError2);
+            this.gbDetail.Controls.Add(this.lblError1);
             this.gbDetail.Controls.Add(this.btnCancel);
             this.gbDetail.Controls.Add(this.btnSave);
             this.gbDetail.Controls.Add(this.cboFunction);
@@ -126,35 +124,31 @@
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "功能详细信息";
             // 
-            // lbFunctionID
+            // lblError2
             // 
-            this.lbFunctionID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFunctionID.ForeColor = System.Drawing.Color.Red;
-            this.lbFunctionID.Location = new System.Drawing.Point(145, 154);
-            this.lbFunctionID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFunctionID.Name = "lbFunctionID";
-            this.lbFunctionID.Size = new System.Drawing.Size(265, 20);
-            this.lbFunctionID.TabIndex = 9;
+            this.lblError2.AutoSize = true;
+            this.lblError2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError2.ForeColor = System.Drawing.Color.Red;
+            this.lblError2.Location = new System.Drawing.Point(145, 154);
+            this.lblError2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblError2.Name = "lblError2";
+            this.lblError2.Size = new System.Drawing.Size(139, 20);
+            this.lblError2.TabIndex = 9;
+            this.lblError2.Text = " 请输入控件ID";
+            this.lblError2.Visible = false;
             // 
-            // lbFunctionName
+            // lblError1
             // 
-            this.lbFunctionName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFunctionName.ForeColor = System.Drawing.Color.Red;
-            this.lbFunctionName.Location = new System.Drawing.Point(145, 52);
-            this.lbFunctionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFunctionName.Name = "lbFunctionName";
-            this.lbFunctionName.Size = new System.Drawing.Size(265, 20);
-            this.lbFunctionName.TabIndex = 8;
-            // 
-            // lblError
-            // 
-            this.lblError.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(145, 52);
-            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(265, 20);
-            this.lblError.TabIndex = 8;
+            this.lblError1.AutoSize = true;
+            this.lblError1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError1.ForeColor = System.Drawing.Color.Red;
+            this.lblError1.Location = new System.Drawing.Point(145, 52);
+            this.lblError1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblError1.Name = "lblError1";
+            this.lblError1.Size = new System.Drawing.Size(159, 20);
+            this.lblError1.TabIndex = 8;
+            this.lblError1.Text = " 请输入功能名称";
+            this.lblError1.Visible = false;
             // 
             // btnCancel
             // 
@@ -267,7 +261,7 @@
             this.btnEdit.Tag = "User/Edit";
             this.btnEdit.Text = " 编辑";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.authBtnEdit_Click);
+            this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.btnEdit_Click);
             // 
             // pnlAction
             // 
@@ -314,12 +308,11 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlAction;
-        private System.Windows.Forms.Label lblError;
         private Control.AuthButton btnDelete;
         private Control.AuthButton btnEdit;
         private Control.AuthButton btnAdd;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label lbFunctionID;
-        private System.Windows.Forms.Label lbFunctionName;
+        private System.Windows.Forms.Label lblError2;
+        private System.Windows.Forms.Label lblError1;
     }
 }
