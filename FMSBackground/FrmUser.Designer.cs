@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUser));
             this.btnAdd = new FMSBackground.Control.AuthButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvUser = new System.Windows.Forms.TreeView();
@@ -99,9 +100,13 @@
             // 
             this.tvUser.ContextMenuStrip = this.contextMenuStrip1;
             this.tvUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvUser.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tvUser.HideSelection = false;
+            this.tvUser.ImageIndex = 0;
+            this.tvUser.ImageList = this.imageList1;
             this.tvUser.Location = new System.Drawing.Point(3, 17);
             this.tvUser.Name = "tvUser";
+            this.tvUser.SelectedImageIndex = 0;
             this.tvUser.ShowNodeToolTips = true;
             this.tvUser.Size = new System.Drawing.Size(238, 543);
             this.tvUser.TabIndex = 0;
@@ -452,9 +457,9 @@
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Black;
+            this.imageList1.Images.SetKeyName(0, "small_user.bmp");
             // 
             // pnlAction
             // 

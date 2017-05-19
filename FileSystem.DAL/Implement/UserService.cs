@@ -82,8 +82,6 @@ namespace FileSystem.DAL
                 );
         }
 
-      
-
         public List<User> GetUsers()
         {
             return Find(string.Empty);

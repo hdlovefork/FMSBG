@@ -48,6 +48,7 @@ INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (
 INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (3,4,3)
 INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (3,2,3)
 
+
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (1,1)
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (1,2)
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (2,3)
@@ -114,6 +115,10 @@ INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18,'删除功能','Function/Delete')
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18,'编辑功能','Function/Edit')
 
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (1,'模板管理','Template')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (22,'添加模板','Template/Add')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (22,'删除模板','Template/Delete')
+
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,1)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,2)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,3)
@@ -135,9 +140,21 @@ INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,18)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,19)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,20)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,21)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,22)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,23)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,24)
 
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,1)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,2)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,3)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,4)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,5)
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('销售模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('人事模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('行政模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购模板',1,'docx')
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购表格',2,'xls')
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购PPT',3,'ppt')

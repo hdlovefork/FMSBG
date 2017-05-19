@@ -13,8 +13,7 @@ using System.Windows.Forms;
 namespace FMSBackground
 {
     public partial class FrmRole : BaseForm
-    {
-       
+    {      
         
         RoleLogic _roleLogic = new RoleLogic();
         UserLogic _userLogic = new UserLogic();

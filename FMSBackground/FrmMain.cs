@@ -42,7 +42,13 @@ namespace FMSBackground
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            InitToolBarButtonAction();
+            InitTabPage();//根据当前用户权限创建各个Tab窗口
+            //在底部状态栏显示当前登录的用户信息
+            lblCurrentUser.Text = string.Format("当前管理员：{0}", GObj.CurrentUser.UserRealName);
+        }
+
+        private void InitTabPage()
+        {
             BaseForm firstTab = null;
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_USER))
             {
@@ -76,25 +82,22 @@ namespace FMSBackground
                     firstTab = _frmFun;
                 _frmDict.Add(tool_Function.Text, _frmFun);
             }
+            if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_TEMPLATE))
+            {
+                _frmTemp = new FrmTemplate();
+                _frmTemp.Show(dockPanel);
+                if (firstTab == null)
+                    firstTab = _frmTemp;
+                _frmDict.Add(tool_Template.Text, _frmTemp);
+            }
 
             if (firstTab != null)
                 firstTab.Show(dockPanel);
-            //在底部状态栏显示当前登录的用户信息
-            lblCurrentUser.Text = string.Format("当前管理员：{0}", GObj.CurrentUser.UserRealName);
-        }
-
-        private void InitToolBarButtonAction()
-        {
-            tool_User.Tag = _frmUser;
-            tool_Role.Tag = _frmRole;
-            tool_Dep.Tag = _frmDep;
-            tool_Function.Tag = _frmFun;
         }
 
 
-        private void tool_User_Click(object sender, EventArgs e)
+        private void tool_Button_Click(object sender, EventArgs e)
         {
-
             string name = (sender as ToolStripButton).Text;
             if (_frmDict.ContainsKey(name))
                 _frmDict[name].Show(dockPanel);

@@ -56,7 +56,9 @@ namespace FileSystem.BLL
         /// </summary>
         public const string SYSTEM_FUNCTION_FUNCTION = "Function";
 
-
+        /// <summary>
+        /// 模板管理权限
+        /// </summary>
         public const string SYSTEM_FUNCTION_TEMPLATE = "Template";
 
     }
