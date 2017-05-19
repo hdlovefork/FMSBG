@@ -38,6 +38,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.gbDetail = new System.Windows.Forms.GroupBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtNote = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.btnAdd = new FMSBackground.Control.AuthButton();
             this.btnEdit = new FMSBackground.Control.AuthButton();
             this.pnlAction = new System.Windows.Forms.Panel();
-            this.lblError = new System.Windows.Forms.Label();
             this.gbUser.SuspendLayout();
             this.gbFunction.SuspendLayout();
             this.gbDetail.SuspendLayout();
@@ -160,6 +160,17 @@
             this.gbDetail.TabIndex = 19;
             this.gbDetail.TabStop = false;
             this.gbDetail.Text = "角色详情信息";
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.BackColor = System.Drawing.Color.Transparent;
+            this.lblError.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(84, 41);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 14);
+            this.lblError.TabIndex = 10;
             // 
             // btnCancel
             // 
@@ -298,16 +309,6 @@
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(250, 42);
             this.pnlAction.TabIndex = 1;
-            // 
-            // lblError
-            // 
-            this.lblError.Enabled = false;
-            this.lblError.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(93, 41);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(131, 17);
-            this.lblError.TabIndex = 10;
             // 
             // FrmRole
             // 

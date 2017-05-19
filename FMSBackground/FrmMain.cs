@@ -45,5 +45,10 @@ namespace FMSBackground
             //在底部状态栏显示当前登录的用户信息
             lblCurrentUser.Text = string.Format("当前管理员:{0}",GObj.CurrentUser.UserRealName);
         }
+
+        private void dockPanel_ActiveContentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
