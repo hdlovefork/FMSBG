@@ -19,11 +19,11 @@ using System.Text;
 
 namespace FileSystem.DAL
 {
-    public interface ITemplateService:IService
+    public interface ITempleteService:IService
     {
-        IList<DocTemplate> GetTemplateByType(DocType type);
+        IList<DocTemplete> GetTempleteByType(DocType type);
 
-        bool InsertTemplate(DocTemplate temp);
+        bool InsertTemplete(DocTemplete temp);
     }
 
    

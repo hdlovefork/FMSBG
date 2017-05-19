@@ -22,32 +22,50 @@ using HD.Tool;
 
 namespace FileSystem.BLL
 {
-    public class TemplateLogic:BaseLogic<TemplateService>
+    public class TemplateLogic : BaseLogic<TempleteService>
     {
-        public IList<DocTemplate> GetTemplateByType(DocType type)
+        public IList<DocTemplete> GetTemplateByType(DocType type)
         {
-            return Service.GetTemplateByType(type);
+            return Service.GetTempleteByType(type);
         }
 
-        public bool AddTemplate(string fileName, string fileExt, DocType word)
+        public bool DeleteTemplete(int id)
         {
-            throw new NotImplementedException();
+            return Service.DeleteByKey(id.ToString());
         }
+      
 
-        public bool AddTemplate(string path, DocType type)        {
-
+        public bool AddTemplate(string path, out DocType type)
+        {
+            type = DocType.Word;
             if (string.IsNullOrWhiteSpace(path)) return false;
-            string fileName = path.Substring(path.LastIndexOf('\\')+1);
-            string fileExt = fileName.Substring(fileName.LastIndexOf('.')+1);
-            byte[] data= FileKit.GetFileData(path);
-            DocTemplate t = new DocTemplate
+            if (!System.IO.File.Exists(path)) return false;
+            string fileName = path.Substring(path.LastIndexOf('\\') + 1);
+            string fileExt = fileName.Substring(fileName.LastIndexOf('.') + 1);
+            switch (fileExt)
             {
-                TemplateName = fileName,
-                TemplateExt = fileExt,
-                TemplateData = data,
-                TemplateType = (int)type
+                case "doc":
+                case "docx":
+                    type = DocType.Word;
+                    break;
+                case "ppt":
+                case "pptx":
+                    type = DocType.PPT;
+                    break;
+                case "xls":
+                case "xlsx":
+                    type = DocType.Excel;
+                    break;
+            }
+            byte[] data = FileKit.GetFileData(path);
+            DocTemplete t = new DocTemplete
+            {
+                TempleteName = fileName,
+                TempleteExt = fileExt,
+                TempleteData = data,
+                TempleteType = (int)type
             };
-            return Service.Insert(t) > 0;
+            return Service.InsertTemplete(t);
         }
     }
 }

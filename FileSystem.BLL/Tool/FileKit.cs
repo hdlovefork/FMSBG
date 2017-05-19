@@ -51,7 +51,7 @@ namespace HD.Tool
                 i++;
             }
             return Math.Round(size) + units[i];
-        }  
+        }
 
         /// <summary>
         /// 将文件转换成byte[] 数组
@@ -223,6 +223,30 @@ namespace HD.Tool
                 FindFile(d, fileName);
             }
             return false;
+        }
+
+        public static bool Write(string path, byte[] data, FileMode mode)
+        {
+            FileStream fs = null;
+            BinaryWriter sw = null;
+            try
+            {
+                fs = new FileStream(path, mode);
+                sw = new BinaryWriter(fs);
+                //开始写入
+                sw.Write(data);
+                sw.Flush();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (sw != null) sw.Close();
+                if (fs != null) fs.Close();
+            }
         }
     }
 }

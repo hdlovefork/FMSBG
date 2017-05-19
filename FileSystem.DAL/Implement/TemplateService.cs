@@ -21,23 +21,23 @@ using System.Data.Common;
 
 namespace FileSystem.DAL
 {
-    public class TemplateService : BaseService<DocTemplate>,ITemplateService
+    public class TempleteService : BaseService<DocTemplete>,ITempleteService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("DOC_Template","TemplateID",null);
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("DOC_Templete","TempleteID",null);
 
-        public IList<DocTemplate> GetTemplateByType(DocType type)
+        public IList<DocTemplete> GetTempleteByType(DocType type)
         {
-            return Find("TemplateType=@TemplateType", new SqlParameter("@TemplateType", (int)type));
+            return Find("TempleteType=@TempleteType", new SqlParameter("@TempleteType", (int)type));
         }
 
-        public bool InsertTemplate(DocTemplate temp)
+        public bool InsertTemplete(DocTemplete temp)
         {
-            string sql = string.Format("INSERT INTO {0}  (TemplateName,TemplateType,TemplateExt,TemplateData) VALUES (@TemplateName,@TemplateType,@TemplateExt,@TemplateData)", QueryInfo.TableName);
+            string sql = string.Format("INSERT INTO {0}  (TempleteName,TempleteType,TempleteExt,TempleteData) VALUES (@TempleteName,@TempleteType,@TempleteExt,@TempleteData)", QueryInfo.TableName);
             return _db.ExecuteNonQuery(sql, new DbParameter[] {
-                 new SqlParameter("@TemplateName",temp.TemplateName),
-                 new SqlParameter("@TemplateType",temp.TemplateType),
-                 new SqlParameter("@TemplateExt",temp.TemplateExt),
-                 new SqlParameter("@TemplateData",temp.TemplateData),
+                 new SqlParameter("@TempleteName",temp.TempleteName),
+                 new SqlParameter("@TempleteType",temp.TempleteType),
+                 new SqlParameter("@TempleteExt",temp.TempleteExt),
+                 new SqlParameter("@TempleteData",temp.TempleteData),
             }) > 0;
         }
     }

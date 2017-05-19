@@ -207,7 +207,7 @@ namespace FMSBackground
 
         private void btnEdit_Click(object sender, AuthEventArgs e)
         {
-            if (_selectedNode != null) return;
+            if (_selectedNode == null) return;
             Department d = _selectedNode.Tag as Department;
             if (d == null) return;
             gbDetail.Enabled = true;//编辑时解锁界面/启用界面

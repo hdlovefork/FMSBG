@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FileSystem.BLL
 {
@@ -59,7 +60,9 @@ namespace FileSystem.BLL
         /// <summary>
         /// 模板管理权限
         /// </summary>
-        public const string SYSTEM_FUNCTION_TEMPLATE = "Template";
+        public const string SYSTEM_FUNCTION_TEMPLATE = "Templete";
+
+        public static readonly  string TEMP_DIR = Application.StartupPath +"\\temp";
 
     }
 }

@@ -38,10 +38,11 @@ namespace FMSBackground.Control
             bool ok = Factory.Create<AuthLogic>().Auth(this.Tag.ToString());
             if (!ok)
             {
-                MessageBox.Show("您没有该操作的权限！","系统提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("您没有该操作的权限！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Click(this, new AuthEventArgs { OK = true });
+            if (Click != null)
+                Click(this, new AuthEventArgs { OK = true });
         }
         /// <summary>
         /// 重写Click点击按钮事件
@@ -50,7 +51,7 @@ namespace FMSBackground.Control
 
 
 
-}
+    }
     /// <summary>
     /// 是否通过认证的事件参数
     /// </summary>

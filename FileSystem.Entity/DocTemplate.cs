@@ -18,13 +18,13 @@ using System.Text;
 
 namespace FileSystem.Entity
 {
-    public class DocTemplate:BaseEntity
+    public class DocTemplete:BaseEntity
     {
-        public int TemplateID { get; set; }
-        public string TemplateName { get; set; }
-        public int TemplateType { get; set; }
-        public string TemplateExt { get; set; }
-        public byte[] TemplateData { get; set; }
+        public int TempleteID { get; set; }
+        public string TempleteName { get; set; }
+        public int TempleteType { get; set; }
+        public string TempleteExt { get; set; }
+        public byte[] TempleteData { get; set; }
     }
 
     public enum DocType
