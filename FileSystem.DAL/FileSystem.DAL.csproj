@@ -53,8 +53,10 @@
     <Compile Include="Base\RoleService.cs" />
     <Compile Include="Implement\FunctionService.cs" />
     <Compile Include="Implement\DepartmentService.cs" />
+    <Compile Include="Implement\UserDepartmentPositionService.cs" />
     <Compile Include="Implement\UserFunctionService.cs" />
     <Compile Include="Implement\UserService.cs" />
+    <Compile Include="Interface\IUserDepartmentPosition.cs" />
     <Compile Include="Interface\IUserFunctionService.cs" />
     <Compile Include="Interface\IDeapartService.cs" />
     <Compile Include="Interface\IFunctionService.cs" />

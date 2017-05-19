@@ -28,14 +28,16 @@ namespace FileSystem.DAL
     /// 如果想使用我，请叫我“爸爸”（继承我），我将帮助你拿到数据库的数据
     /// </summary>
     /// <typeparam name="T">你要返回的Entity类型（实体类）</typeparam>
-    public abstract class BaseService<T> where T : BaseEntity
+    public abstract class BaseService<T> where T : BaseEntity,new()
     {
         /// <summary>
         /// 数据库连接字符串，通过app.config文件修改成你的，这样写的好处在于可以在不修改程序代码的前提下换数据库
         /// 因为是在外部操作
         /// </summary>
-        //private static string _conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
+
+        //private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
         private static string _conn = @"Data Source=LAPTOP-O6DIDP8P\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         /// <summary>
         /// 数据库操作帮助类的实例对象
         /// </summary>
@@ -60,6 +62,15 @@ namespace FileSystem.DAL
             return Find(condition, null);
         }
 
+        public List<TEntity> Find<TEntity>(IQueryInfo q,string condition, params DbParameter[] paramList)
+            where TEntity:BaseEntity,new()
+        {
+            string str = string.Format("SELECT {0} FROM {1}{2}", q.SelectedFields, q.TableName, string.IsNullOrWhiteSpace(condition) ? string.Empty : " WHERE " + condition);
+            if (!string.IsNullOrWhiteSpace(q.SortField))//排序字段不为空时才排序
+                str += string.Format(" ORDER BY {3} {4}", q.SortField, q.IsDescending ? "DESC" : "ASC");
+            return this.GetList<TEntity>(str, paramList);
+        }
+
         /// <summary>
         /// 根据条件查询多条数据-单表,如果查询所有记录condition请设为string.Empty
         /// </summary>
@@ -68,7 +79,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public List<T> Find(string condition, params DbParameter[] paramList)
         {
-            return Find(QueryInfo, condition, paramList);
+            return Find<T>(QueryInfo, condition, paramList);
         }
 
         public List<T> Find(IQueryInfo queryInfo, string condition, params DbParameter[] paramList)
@@ -87,7 +98,7 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public T FindSingle(string condition, params DbParameter[] paramList)
         {
-            T local = default(T);
+            T local = null;
             List<T> list = this.Find(condition, paramList);
             if (list.Count > 0)
             {
@@ -155,6 +166,7 @@ namespace FileSystem.DAL
         public bool Delete(string condition, params DbParameter[] paramsList)
         {
             return Delete(QueryInfo.TableName, condition, paramsList);
+
         }
 
         public bool Delete(string tableName, string condition, params DbParameter[] paramsList)
@@ -164,6 +176,7 @@ namespace FileSystem.DAL
             string sql = string.Format("DELETE FROM {0} WHERE {1}", tableName, condition);
             return _db.ExecuteNonQuery(sql, paramsList) > 0; ;
         }
+
 
         /// <summary>
         /// 插入数据，返回新的ID，失败返回-1
@@ -177,7 +190,7 @@ namespace FileSystem.DAL
             sql += ";SELECT @@IDENTITY";
             if (pList.Count == 0) return -1;
             object o = _db.ExecuteScalar(sql, pList);
-            if (o == null) return -1;
+            if (o == null ||o is  DBNull ) return -1;
             return Convert.ToInt32(o);
         }
 
@@ -389,16 +402,9 @@ namespace FileSystem.DAL
             return sbFields.ToString();
         }
 
-        /// <summary>
-        /// 通过传入一个DataReader返回一个T的实例
-        /// 调用这个方法的前提需要保存你的实例类和数据库的字段名一一对应
-        /// 它是利用反射机制实现的
-        /// </summary>
-        /// <param name="dr"></param>
-        /// <returns></returns>
-        protected virtual T DataReaderToEntity(IDataReader dr)
+        protected virtual TEntity DataReaderToEntity<TEntity>(IDataReader dr)
         {
-            T local = Activator.CreateInstance<T>();
+            TEntity local = Activator.CreateInstance<TEntity>();
             foreach (PropertyInfo info in local.GetType().GetProperties())
             {
                 try
@@ -414,6 +420,18 @@ namespace FileSystem.DAL
         }
 
         /// <summary>
+        /// 通过传入一个DataReader返回一个T的实例
+        /// 调用这个方法的前提需要保存你的实例类和数据库的字段名一一对应
+        /// 它是利用反射机制实现的
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        protected virtual T DataReaderToEntity(IDataReader dr)
+        {
+            return DataReaderToEntity<T>(dr);
+        }
+
+        /// <summary>
         /// 通过完整的Sql语句获取List集合
         /// </summary>
         /// <param name="strSql"></param>
@@ -421,16 +439,53 @@ namespace FileSystem.DAL
         /// <returns></returns>
         private List<T> GetList(string strSql, DbParameter[] parameters)
         {
-            T item = default(T);
-            List<T> list = new List<T>();
-            IDataReader reader = _db.ExecuteReader(strSql, parameters);
-            while (reader.Read())
+            return GetList<T>(strSql, parameters);
+        }
+
+        private List<TEntity> GetList<TEntity>(string strSql,DbParameter[] parameters)
+            where TEntity:BaseEntity,new()
+        {
+            TEntity item = new TEntity();
+            DataTable dt = _db.ExecuteDataTable(strSql, parameters);
+            //IDataReader reader = _db.ExecuteReader(strSql, parameters);
+            //while (reader.Read())
+            //{
+
+                //item = this.DataReaderToEntity<TEntity>(reader);
+                //list.Add(item);
+            //}
+            //reader.Close();
+            return DataTable2Entity<TEntity>(dt);
+        }
+
+        private List<TEntity> DataTable2Entity<TEntity>(DataTable dt)
+            where TEntity : new()
+        {
+            // 定义集合    
+            var ts = new List<TEntity>();
+            // 获得此模型的类型   
+            var type = typeof(TEntity);
+            var tempName = "";
+            foreach (DataRow dr in dt.Rows)
             {
-                item = this.DataReaderToEntity(reader);
-                list.Add(item);
+                var t = new TEntity();
+                // 获得此模型的公共属性      
+                var propertys = t.GetType().GetProperties();
+                foreach (var pi in propertys)
+                {
+                    tempName = pi.Name;  // 检查DataTable是否包含此列    
+                    if (dt.Columns.Contains(tempName))
+                    {
+                        // 判断此属性是否有Setter      
+                        if (!pi.CanWrite) continue;
+                        var value = dr[tempName];
+                        if (value != DBNull.Value)
+                            pi.SetValue(t, value, null);
+                    }
+                }
+                ts.Add(t);
             }
-            reader.Close();
-            return list;
+            return ts;
         }
 
         /// <summary>
