@@ -28,139 +28,116 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnSure = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSure = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 29);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(300, 500);
+            this.pictureBox1.Size = new System.Drawing.Size(291, 269);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(356, 29);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 507);
-            this.panel1.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(20, 215);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 270);
-            this.textBox1.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(17, 163);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(259, 49);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "湘潭熊大大集团";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(15, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "版权";
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(81, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "4.0.0.0.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(17, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "版本";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(15, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "权限管理系统";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSure
             // 
             this.btnSure.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSure.Location = new System.Drawing.Point(648, 575);
+            this.btnSure.Location = new System.Drawing.Point(624, 281);
             this.btnSure.Name = "btnSure";
-            this.btnSure.Size = new System.Drawing.Size(75, 31);
+            this.btnSure.Size = new System.Drawing.Size(88, 38);
             this.btnSure.TabIndex = 2;
-            this.btnSure.Text = "确定(O)";
+            this.btnSure.Text = "确定";
             this.btnSure.UseVisualStyleBackColor = true;
             this.btnSure.Click += new System.EventHandler(this.btnSure_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
+            this.richTextBox1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.Location = new System.Drawing.Point(15, 31);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(377, 218);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "文档管理软件，是湖南城建职业技术学院智能1603班针对现代企业量身打造的一款文档管理软件。集文档加密，版本追踪，用户权限管理功能与一体，防泄密，防拷贝，防打印，实" +
+    "现企业内部文档安全共享，协同编辑，为用户提供最实用、最完善的文档管理系统解决方案。\n\n ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(383, 290);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "1.0.0.0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(317, 290);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "版本：";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(307, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(406, 263);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = " BlueSky文件管理系统";
             // 
             // FrmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(887, 635);
+            this.ClientSize = new System.Drawing.Size(723, 329);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSure);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmAbout";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "湘潭熊大大技术集团--权限管理系统";
+            this.TabText = "关于本软件-湖南职业技术学院BlueSky开发团队";
+            this.Text = "关于本软件-湖南职业技术学院BlueSky开发团队";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSure;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

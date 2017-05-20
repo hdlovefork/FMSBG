@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace FMSBackground
 {
-    public partial class FrmAbout : Form
+    public partial class FrmAbout : BaseForm
     {
         public FrmAbout()
         {
