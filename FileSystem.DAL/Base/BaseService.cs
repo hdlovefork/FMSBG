@@ -446,46 +446,14 @@ namespace FileSystem.DAL
             where TEntity:BaseEntity,new()
         {
             TEntity item = new TEntity();
-            DataTable dt = _db.ExecuteDataTable(strSql, parameters);
-            //IDataReader reader = _db.ExecuteReader(strSql, parameters);
-            //while (reader.Read())
-            //{
-
-                //item = this.DataReaderToEntity<TEntity>(reader);
-                //list.Add(item);
-            //}
-            //reader.Close();
-            return DataTable2Entity<TEntity>(dt);
-        }
-
-        private List<TEntity> DataTable2Entity<TEntity>(DataTable dt)
-            where TEntity : new()
-        {
-            // 定义集合    
-            var ts = new List<TEntity>();
-            // 获得此模型的类型   
-            var type = typeof(TEntity);
-            var tempName = "";
-            foreach (DataRow dr in dt.Rows)
+            List<TEntity> list = new List<TEntity>();
+            IDataReader reader = _db.ExecuteReader(strSql, parameters);
+            while (reader.Read())
             {
-                var t = new TEntity();
-                // 获得此模型的公共属性      
-                var propertys = t.GetType().GetProperties();
-                foreach (var pi in propertys)
-                {
-                    tempName = pi.Name;  // 检查DataTable是否包含此列    
-                    if (dt.Columns.Contains(tempName))
-                    {
-                        // 判断此属性是否有Setter      
-                        if (!pi.CanWrite) continue;
-                        var value = dr[tempName];
-                        if (value != DBNull.Value)
-                            pi.SetValue(t, value, null);
-                    }
-                }
-                ts.Add(t);
+                item = this.DataReaderToEntity<TEntity>(reader);
+                list.Add(item);
             }
-            return ts;
+            return list;
         }
 
         /// <summary>

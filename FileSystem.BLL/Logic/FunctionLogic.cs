@@ -53,5 +53,9 @@ namespace FileSystem.BLL
         {
             return Service.UpdateFunction(f);
         }
+        public List <Function>GetRoleFunction(int rid)
+        {
+            return Service.GetRoleFunction(rid);
+        }
     }
 }

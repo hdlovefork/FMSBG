@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileSystem.DAL</RootNamespace>
-    <AssemblyName>FileSystem.DAL</AssemblyName>
+    <AssemblyName>FileSystem.BG.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -49,13 +49,17 @@
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\DbProviderType.cs" />
     <Compile Include="Base\DbUtility.cs" />
-    <Compile Include="Base\Relationship.cs" />
     <Compile Include="Base\RoleService.cs" />
     <Compile Include="Implement\FunctionService.cs" />
     <Compile Include="Implement\DepartmentService.cs" />
+    <Compile Include="Base\Relationship.cs" />
+    <Compile Include="Implement\RoleFunctionService.cs" />
+    <Compile Include="Implement\TemplateService.cs" />
     <Compile Include="Implement\UserDepartmentPositionService.cs" />
     <Compile Include="Implement\UserFunctionService.cs" />
     <Compile Include="Implement\UserService.cs" />
+    <Compile Include="Interface\IRoleFunction.cs" />
+    <Compile Include="Interface\ITemplateService.cs" />
     <Compile Include="Interface\IUserDepartmentPosition.cs" />
     <Compile Include="Interface\IUserFunctionService.cs" />
     <Compile Include="Interface\IDeapartService.cs" />

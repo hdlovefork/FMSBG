@@ -42,5 +42,7 @@ namespace FileSystem.DAL
         bool InsertFunction(Function f);
 
         bool UpdateFunction(Function f);
+        Function GetFunctionRole(string  func);
+        List<Function> GetRoleFunction(int rid);
     }
 }

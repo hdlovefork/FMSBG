@@ -3,12 +3,12 @@ INSERT INTO [User] (UserName,UserRealName,UserPassword,UserSex,UserAddress) VALU
 INSERT INTO [User] (UserName,UserRealName,UserPassword,UserSex,UserAddress) VALUES ('xh','小红','123',0,'湖南湘潭')
 
 
-INSERT INTO [ACL_Role] (RoleName) VALUES ('后台超级管理员')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('人事组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('销售组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('行政组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('财务组')
-INSERT INTO [ACL_Role] (RoleName) VALUES ('后台人事管理员')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('后台超级管理员','拥有后台操作所有权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('人事组','拥有人事部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('销售组','拥有销售部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('行政组','拥有行政部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('财务组','拥有财务部文件的访问权限')
+INSERT INTO [ACL_Role] (RoleName,RoleDescription) VALUES ('后台人事管理员','拥有后台用户的管理权限')
 
 
 INSERT INTO [File] (FileName,FileSize,FilePID) VALUES ('我的图片',0,-1)
@@ -48,6 +48,7 @@ INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (
 INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (3,4,3)
 INSERT INTO [User_Department_Position] (UserID,DepartmentID,PositionID) VALUES (3,2,3)
 
+
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (1,1)
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (1,2)
 INSERT INTO [ACL_User_Role] (UserID,RoleID) VALUES (2,3)
@@ -63,11 +64,17 @@ INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (9,5)
 INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (10,2)
 INSERT INTO [ACL_File_Role] (FileID,RoleID) VALUES (11,2)
 
+
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (1,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (2,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (3,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (4,1)
+INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (5,1)
+
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (12,1)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (13,2)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (14,1)
 INSERT INTO [ACL_File_User] (FileID,UserID) VALUES (15,1)
-
 
 INSERT INTO [File_Department] (FileID,DepartmentID) VALUES (6,1)
 INSERT INTO [File_Department] (FileID,DepartmentID) VALUES (7,2)
@@ -93,20 +100,24 @@ INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (6,
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (6,'删除部门','Department/Delete')
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (6,'编辑部门','Department/Edit')
 
--- INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (1,'角色管理','Role')
--- INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'添加角色','Role/Add')
--- INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'删除角色','Role/Delete')
--- INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'编辑角色','Role/Edit')
+INSERT INTO [ACL_FUNCTION] (FUNCTIONPID,FUNCTIONNAME,FUNCTIONCONTROL) VALUES (1,'角色管理','ROLE')
+INSERT INTO [ACL_FUNCTION] (FUNCTIONPID,FUNCTIONNAME,FUNCTIONCONTROL) VALUES (10,'添加角色','ROLE/ADD')
+INSERT INTO [ACL_FUNCTION] (FUNCTIONPID,FUNCTIONNAME,FUNCTIONCONTROL) VALUES (10,'删除角色','ROLE/DELETE')
+INSERT INTO [ACL_FUNCTION] (FUNCTIONPID,FUNCTIONNAME,FUNCTIONCONTROL) VALUES (10,'编辑角色','ROLE/EDIT')
 
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (1,'岗位管理','Position')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'添加岗位','Position/Add')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'删除岗位','Position/Delete')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (10,'编辑岗位','Position/Edit')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'添加岗位','Position/Add')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'删除岗位','Position/Delete')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'编辑岗位','Position/Edit')
 
 INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (1,'功能管理','Function')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'添加功能','Function/Add')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'删除功能','Function/Delete')
-INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (14,'编辑功能','Function/Edit')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18,'添加功能','Function/Add')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18,'删除功能','Function/Delete')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (18,'编辑功能','Function/Edit')
+
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (1,'模板管理','Template')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (22,'添加模板','Template/Add')
+INSERT INTO [ACL_Function] (FunctionPID,FunctionName,FunctionControl) VALUES (22,'删除模板','Template/Delete')
 
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,1)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,2)
@@ -125,9 +136,25 @@ INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,14)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,15)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,16)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,17)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,18)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,19)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,20)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,21)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,22)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,23)
+INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (1,24)
 
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,1)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,2)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,3)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,4)
 INSERT INTO [ACL_Role_Function] (RoleID,FunctionID) VALUES (6,5)
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('销售模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('人事模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('行政模板',1,'docx')
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购模板',1,'docx')
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购表格',2,'xls')
+
+INSERT INTO [DOC_Template] (TemplateName,TemplateType,TemplateExt) VALUES ('采购PPT',3,'ppt')

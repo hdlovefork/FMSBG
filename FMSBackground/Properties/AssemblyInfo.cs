@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("FMSBackground")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("BlueSky文档管理系统")]
+[assembly: AssemblyDescription("BlueSky项目开发团队")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FMSBackground")]
+[assembly: AssemblyCompany("BlueSky项目开发团队")]
+[assembly: AssemblyProduct("BlueSky项目开发团队")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

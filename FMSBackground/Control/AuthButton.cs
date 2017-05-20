@@ -21,26 +21,39 @@ using System.Windows.Forms;
 
 namespace FMSBackground.Control
 {
+    /// <summary>
+    /// 认证按钮Click事件委托
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public delegate void AuthEventHandler(object sender, AuthEventArgs e);
 
     public class AuthButton : Button
     {
         protected override void OnClick(EventArgs e)
         {
+            if (this.Tag == null) throw new Exception("请设置按钮的Tag属性，该属性为FunctionControl，表示一个用户操作");
             //Debug.WriteLine("OnClick ------{0}",this.Tag);
+            //验证当前登录用户是否拥有指定的权限
             bool ok = Factory.Create<AuthLogic>().Auth(this.Tag.ToString());
-            if (ok)
+            if (!ok)
             {
-                Click(this, new AuthEventArgs { OK = true });
+                MessageBox.Show("您没有该操作的权限！","系统提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                Click(this, new AuthEventArgs { OK = false });
-            }
+            Click(this, new AuthEventArgs { OK = true });
         }
+        /// <summary>
+        /// 重写Click点击按钮事件
+        /// </summary>
         public new event AuthEventHandler Click;
-    }
 
+
+
+}
+    /// <summary>
+    /// 是否通过认证的事件参数
+    /// </summary>
     public class AuthEventArgs : EventArgs
     {
         /// <summary>

@@ -26,7 +26,7 @@ namespace FileSystem.BLL
         private static Dictionary<string, object> _dict = new Dictionary<string, object>();
 
         /// <summary>
-        /// 为你实例化一个具体的象
+        /// 为你实例化一个具体的对象
         /// </summary>
         /// <typeparam name="T">要返回的具体对象</typeparam>
         /// <returns></returns>

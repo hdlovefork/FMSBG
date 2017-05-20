@@ -25,22 +25,29 @@ namespace FileSystem.Entity
 		/// <summary>
 		/// 
 		/// </summary>
-		public int UserID { get; set; }		
-		/// <summary>
-		/// 
-		/// </summary>
-		public bool? UserSex { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public string UserAddress { get; set; }
+		public int UserID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? UserSex { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserAddress { get; set; }
 
-        public string UserTel { get; set; }
+
 		/// <summary>
-		/// 
+		/// 注册时间
 		/// </summary>
 		public DateTime? UserCreateTime { get; set; }
+        /// <summary>
+        /// 账号是否启用
+        /// </summary>
+
         public bool UserEnable { get; set; }
+        /// <summary>
+        /// 手机号码
+        /// </summary>
         public string UserMobile { get; set; }
 
        

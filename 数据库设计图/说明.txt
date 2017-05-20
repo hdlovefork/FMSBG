@@ -1,3 +1,0 @@
-使用PowerDesigner打开Workspace.pdm文件对数据库建模
-
-

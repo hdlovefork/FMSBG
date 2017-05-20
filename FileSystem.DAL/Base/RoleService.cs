@@ -27,7 +27,7 @@ namespace FileSystem.DAL
 
         public List<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            return Find();
         }
 
         public List<Role> GetRolesByUID(int uid)

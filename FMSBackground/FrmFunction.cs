@@ -77,10 +77,7 @@ namespace FMSBackground
 
         private void btnDelete_Click(object sender, AuthEventArgs e)
         {
-            if (!e.OK)
-            {
-
-            }
+            //有删除权限的情况，调用逻辑层真正删除
             if (_selectedNode == null) return;
             Function f = _selectedNode.Tag as Function;
             if (f == null) return;
@@ -88,7 +85,10 @@ namespace FMSBackground
             bool ok = _funLogic.DeleteFuncitonByID(f.FunctionID);
             if (ok)
             {
-                tvFunction.Nodes.Remove(_selectedNode);
+                txtFunctionName.Text = string.Empty;
+                txtFunctionControl.Text = string.Empty;
+                tvFunction.Nodes.Clear();//清除所有节点重新加载
+                InitFunctionTree();
             }
         }
 
@@ -104,19 +104,23 @@ namespace FMSBackground
             else
             {
                 //执行更新操作
-                UpdateFunction();
+                if (!UpdateFunction()) return;
             }
             gbDetail.Enabled = false;//保存完了加锁界面/禁用界面
             pnlAction.Enabled = true;//动作面板要启用
+            lblError1.Visible = false;
+            lblError2.Visible = false;
+            tvFunction.Enabled = true;
         }
 
-        private void UpdateFunction()
+        private bool UpdateFunction()
         {
+            if (!CheckInput()) return false;
             //判断有没有选中上级Function，如果没有选中直接返回
-            if (_selectedNode == null) return;
+            if (_selectedNode == null) return false;
             //得到上级Function
             Function f = _selectedNode.Tag as Function;
-            if (f == null) return;
+            if (f == null) return false;
             //从下拉列表中的选中项中拿到上级FunctionID
             int? pid = (cboFunction.SelectedItem as Function).FunctionID;
             //修改左侧树中选中的Function属性
@@ -127,26 +131,12 @@ namespace FMSBackground
             {
                 ReloadTree();
             }
+            return true;
         }
         //返回是否添加成功，没有添加成功不作任何操作
         private bool AddFunction()
         {
-            #region 提高用户体验的代码
-            string name = txtFunctionName.Text;
-            if (string.IsNullOrWhiteSpace(name))//没有输入功能名称
-            {
-                lblError.Text = "请输入功能名称";
-                txtFunctionName.Focus();//让控件获得焦点
-                return false;
-            }
-            string control = txtFunctionControl.Text;
-            if (string.IsNullOrWhiteSpace(control))
-            {
-                lblError.Text = "请输入控件ID";
-                txtFunctionControl.Focus();//让控件获得焦点
-                return false;
-            }
-            #endregion
+            if (!CheckInput()) return false;
             int? pid = (cboFunction.SelectedItem as Function).FunctionID;
             Function f = new Function
             {
@@ -161,6 +151,36 @@ namespace FMSBackground
             }
             return true;
         }
+
+        private bool CheckInput()
+        {
+            // 提高用户体验的代码
+            string name = txtFunctionName.Text;
+            if (string.IsNullOrWhiteSpace(name))//没有输入功能名称
+            {
+                lblError1.Visible = true;
+                txtFunctionName.Focus();//让控件获得焦点
+                return false;
+            }
+            lblError1.Visible = false;
+            string control = txtFunctionControl.Text;
+            if (string.IsNullOrWhiteSpace(control))
+            {
+                lblError2.Visible = true;
+                txtFunctionControl.Focus();//让控件获得焦点
+                return false;
+            }
+            lblError2.Visible = false;
+            return true;
+        }
+
+        private void ReloadTree()
+        {
+            tvFunction.Nodes.Clear();//清空所有节点
+            InitFunctionTree();//初始化所有节点
+            tvFunction.ExpandAll();//展开所有 节点
+        }
+
         private void btnAdd_Click(object sender, AuthEventArgs e)
         {
             if (!e.OK) return;
@@ -171,29 +191,28 @@ namespace FMSBackground
             txtFunctionName.Text = string.Empty;
             gbDetail.Enabled = true;//添加时解锁界面/启用界面
             pnlAction.Enabled = false;//禁用动作面板
+            tvFunction.Enabled = false;
         }
 
-        private void ReloadTree()
+        private void InitFunctiontList()
         {
-            tvFunction.Nodes.Clear();//清空所有节点
-            InitFunctionTree();//初始化所有节点
-            tvFunction.ExpandAll();//展开所有 节点
-        }
 
-       
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            gbDetail.Enabled = true;//编辑时解锁界面/启用界面
-            pnlAction.Enabled = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            gbDetail.Enabled = false;//取消时详情面板要禁用
-            pnlAction.Enabled = true;//启用动作面板
+            gbDetail.Enabled = false;
+            pnlAction.Enabled = true;
+            lblError1.Visible = false;
+            lblError2.Visible = false;
+            tvFunction.Enabled = true;
         }
 
-
+        private void btnEdit_Click(object sender, AuthEventArgs e)
+        {
+            gbDetail.Enabled = true;//编辑时解锁界面/启用界面
+            pnlAction.Enabled = false;
+            tvFunction.Enabled = false;
+        }
     }
 }

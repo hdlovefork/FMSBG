@@ -23,9 +23,10 @@ namespace FileSystem.BLL
 {
     public class RoleLogic:BaseLogic<RoleService>
     {
-        List<Role> GetRoles()
+      public  List<Role> GetRoles()
         {
            return Service.GetRoles();
         }
+       
     }
 }
