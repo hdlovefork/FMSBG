@@ -12,6 +12,7 @@
  * Copyright @ Dean 2017 All rights reserved 
 *****************************************************************/
 using System;
+using System.Collections.Generic;
 
 namespace FileSystem.Entity
 {
@@ -49,9 +50,24 @@ namespace FileSystem.Entity
         /// </summary>
         public string UserMobile { get; set; }
 
+       
         public override string ToString()
         {
             return string.Format("{0}({1})", UserName, UserRealName);
         }
+    }
+
+    public class UserComparer : IEqualityComparer<User>
+    {
+        public bool Equals(User x, User y)
+        {
+            return x.UserID == y.UserID;
+        }
+
+        public int GetHashCode(User obj)
+        {
+            return obj.UserID;
+        }
+
     }
 }

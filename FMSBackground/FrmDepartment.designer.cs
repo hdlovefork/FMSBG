@@ -231,6 +231,7 @@
             this.btnRemoveUser.TabIndex = 1;
             this.btnRemoveUser.Text = "移除";
             this.btnRemoveUser.UseVisualStyleBackColor = true;
+            this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
             // 
             // btnEditUser
             // 

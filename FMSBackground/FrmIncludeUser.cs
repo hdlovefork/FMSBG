@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FileSystem.BLL;
+using HD.Entity;
 
 namespace FMSBackground
 {
@@ -17,9 +18,11 @@ namespace FMSBackground
         UserLogic _userLogin = new UserLogic();
         int _depID;
         int _posID;
-        List<int> _lis = new List<int>();
+        List<User> _lis = new List<User>();
+        List<int> _deleUser = new List<int>();
+        UserDepartmentPositionLogic _userdepartmentposition = new UserDepartmentPositionLogic();
 
-        public FrmIncludeUser(int departmentID, int positionID,List <int> lis)
+        public FrmIncludeUser(int departmentID, int positionID,List <User> lis)
         {
             InitializeComponent();
             _posID = positionID;
@@ -42,16 +45,21 @@ namespace FMSBackground
         private void AddChildNode(TreeNode pNode)
         {
             List<User> list = _userLogin.GetUsers();
+            list  = list.Distinct().Except(_lis,new UserComparer()).ToList();
+            //List<User> list = _userLogin.GetUsers();
             foreach (var u in list)
             {
                 TreeNode node = pNode.Nodes.Add(u.UserRealName);
-                foreach (int r in _lis)
-                {
-                    if(r==u.UserID)
-                    {
-                        node.Checked = true;
-                    }
-                }
+                node.Tag = u;
+                //pNode .Tag  =
+                //foreach (int r in _lis)
+                //{
+                //    if (r == u.UserID)
+                //    {
+                //        node.Remove();
+
+                //    }
+                //}
 
             }
             tvindUser.ExpandAll();
@@ -73,8 +81,14 @@ namespace FMSBackground
         
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            foreach(var t in _deleUser)
+            {
+                UserDepartmentPosition rf = new UserDepartmentPosition(t,_depID ,_posID );
+                _userdepartmentposition.AddUserDepartmentPosition(rf);
+            }
+            this.Close();
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -85,6 +99,12 @@ namespace FMSBackground
         private void tvindUser_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             SelectTheParentNodeSelect(e.Node,e.Node.Checked);
+            User f = e.Node.Tag as User;
+            if (e.Node.Checked)
+            {
+                _deleUser.Add(f.UserID);
+
+            }
         }
 
         private void SelectTheParentNodeSelect(TreeNode currNode,bool state)
@@ -99,6 +119,7 @@ namespace FMSBackground
                 }
             }
         }
+
     }
 }
     

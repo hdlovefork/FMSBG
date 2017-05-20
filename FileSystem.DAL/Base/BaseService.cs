@@ -36,7 +36,7 @@ namespace FileSystem.DAL
         /// </summary>
 
         //private static string _conn = ConfigurationManager.ConnectionStrings["SQLConnString"].ConnectionString;
-        private static string _conn = @"Data Source=DESKTOP-3L6FC49\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string _conn = @"Data Source=LAPTOP-O6DIDP8P\SQLEXPRESS;Initial Catalog=FMSDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         /// <summary>
         /// 数据库操作帮助类的实例对象
@@ -190,7 +190,7 @@ namespace FileSystem.DAL
             sql += ";SELECT @@IDENTITY";
             if (pList.Count == 0) return -1;
             object o = _db.ExecuteScalar(sql, pList);
-            if (o == null) return -1;
+            if (o == null ||o is  DBNull ) return -1;
             return Convert.ToInt32(o);
         }
 
@@ -453,7 +453,6 @@ namespace FileSystem.DAL
                 item = this.DataReaderToEntity<TEntity>(reader);
                 list.Add(item);
             }
-            reader.Close();
             return list;
         }
 

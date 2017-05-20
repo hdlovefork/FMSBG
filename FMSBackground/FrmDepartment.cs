@@ -1,6 +1,7 @@
 ﻿using FileSystem.BLL;
 using FileSystem.Entity;
 using FMSBackground.Control;
+using HD.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,10 +21,12 @@ namespace FMSBackground
         TreeNode _selectedNode = null;//保存最后一次点击的节点
         DepartmentLogic _depLogic = new DepartmentLogic();
         UserLogic _userLogic = new UserLogic();
-        List<int> lis = new List<int>();
+        List<User> lis = new List<User>();
         bool _bAdd = false;
-
-
+        int _did = 0;
+        int _pid = 0;
+        
+        UserDepartmentPositionLogic _userDepartmentPs = new UserDepartmentPositionLogic();
         public FrmDepartment()
         {
             InitializeComponent();
@@ -76,11 +79,12 @@ namespace FMSBackground
                 if (e.Node.Parent == null) return;
                 d = e.Node.Parent.Tag as Department;
                 if (d == null) return;
+                
                 Position p = e.Node.Tag as Position;
                 lvwUser.Items.Clear();
                 ShowPositionUsers(d, p);
-                
-                //MessageBox .Show (d.DepartmentName + "-----" + p.PositionName);
+                _pid = p.PositionID;
+                _did = d.DepartmentID;
             }
             else
             {
@@ -98,13 +102,13 @@ namespace FMSBackground
             foreach (var u in list)
             {
                 lvwUser.Items.Add(u);
-                lis.Add(u.UserID);
+                lis.Add(u);
             }
         }
 
         private void ShowPositionUsers(Department d, Position p)
         {
-            List<User> lis = _userLogic.GetUsersByDepIDAndPosID(d.DepartmentID, p.PositionID);
+            lis = _userLogic.GetUsersByDepIDAndPosID(d.DepartmentID, p.PositionID);
             foreach (var t in lis)
             {
                 lvwUser.Items.Add(t);
@@ -207,7 +211,7 @@ namespace FMSBackground
 
         private void btnEdit_Click(object sender, AuthEventArgs e)
         {
-            if (_selectedNode != null) return;
+            if (_selectedNode == null) return;
             Department d = _selectedNode.Tag as Department;
             if (d == null) return;
             gbDetail.Enabled = true;//编辑时解锁界面/启用界面
@@ -226,5 +230,16 @@ namespace FMSBackground
             FrmIncludeUser include = new FrmIncludeUser(dep.DepartmentID, pos.PositionID,lis);
             include.ShowDialog();
         }
+
+        private void btnRemoveUser_Click(object sender, EventArgs e)
+        {
+            User u = lvwUser.SelectedItem as User;
+            if (u == null) return;
+            UserDepartmentPosition udp = new UserDepartmentPosition(u.UserID, _did, _pid);
+            _userDepartmentPs.DeleteUserDepPs(udp);
+            
+
+        }
+        
     }
 }
