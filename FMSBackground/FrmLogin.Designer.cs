@@ -158,7 +158,6 @@
             this.TabText = " 管理员登录";
             this.Text = " 管理员登录";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

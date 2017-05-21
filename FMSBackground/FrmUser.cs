@@ -40,7 +40,8 @@ namespace FMSBackground
         public FrmUser()
         {
             InitializeComponent();
-        }
+        }     
+
 
         private void FrmUser_Load(object sender, EventArgs e)
         {

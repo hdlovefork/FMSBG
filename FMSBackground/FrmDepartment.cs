@@ -35,6 +35,7 @@ namespace FMSBackground
 
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
+            Debug.Print("FrmDepartment_Load");
             InitDepartmentTree();//初始化部门树
         }
 
@@ -160,7 +161,7 @@ namespace FMSBackground
             }
             foreach (Department d in _allDeps)
             {
-                if(d.DepartmentName == name)
+                if (d.DepartmentName == name)
                 {
                     lblError.Text = "该部门已经存在";
                     lblError.Visible = true;
@@ -265,7 +266,8 @@ namespace FMSBackground
             User u = lstUsers.SelectedItem as User;
             if (u == null) return;
             UserDepartmentPosition udp = new UserDepartmentPosition(u.UserID, _did);
-            if(_userDepartmentPs.DeleteUserDepPs(udp)){
+            if (_userDepartmentPs.DeleteUserDepPs(udp))
+            {
                 //Department d = _selectedNode.Tag as Department;
                 //if (d == null)
                 //{
@@ -275,7 +277,7 @@ namespace FMSBackground
                 lstUsers.Items.Remove(u);
             }
 
-           
+
         }
     }
 }

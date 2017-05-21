@@ -28,12 +28,16 @@ namespace FileSystem.Service
         /// <param name="fileID">文件ID</param>
         /// <param name="access">访问动作</param>
         /// <returns></returns>
-        public static bool Auth(int uid,int fileID,FilePermission access)
+        public static bool Auth(int uid, int fileID, FilePermission access)
         {
-           FileAccessService fileService =  new FileAccessService();
+            FileAccessService fileService = new FileAccessService();
             File file = fileService.GetFileByFID(fileID);
             //1.判断文件是否属于自己
-            if (file.UserID == uid) return CheckFilePermission(file.FileOwner, access);
+            if (file.UserID == uid)
+            {
+                if (CheckFilePermission(file.FileOwner, access))
+                    return true;
+            }
             //2.判断自己的组是否处于文件同意的组中
             IList<Role> userRoles = fileService.GetRolesByUID(uid);
             IList<Role> fileRoles = fileService.GetRolesByFID(fileID);
@@ -41,10 +45,16 @@ namespace FileSystem.Service
             {
                 //用戶处于文件所属组中
                 //判断用户是否可以执行指定操作
-                return CheckFilePermission(file.FileRole, access);
+                if (CheckFilePermission(file.FileRole, access))
+                    return true;
             }
             //3.判断其它组是否能执行指定的操作
-            return CheckFilePermission(file.FileOther, access);
+            if (CheckFilePermission(file.FileOther, access))
+                return true;
+            //4.判断文件是否借阅给当前用户ID
+            if (access == FilePermission.Read && fileService.IsShareFile(uid, fileID))
+                return true;
+            return false;
         }
 
         /// <summary>
@@ -53,7 +63,7 @@ namespace FileSystem.Service
         /// <param name="userRoles">用户所处角色组</param>
         /// <param name="fileRoles">文件所属角色组</param>
         /// <returns></returns>
-        private static bool CheckFileRoles(IList<Role> userRoles,IList<Role> fileRoles)
+        private static bool CheckFileRoles(IList<Role> userRoles, IList<Role> fileRoles)
         {
             foreach (var fr in fileRoles)
             {
@@ -71,9 +81,9 @@ namespace FileSystem.Service
         /// <param name="holdPermission">当前持有权限</param>
         /// <param name="access">目标操作</param>
         /// <returns></returns>
-        private static bool CheckFilePermission(int holdPermission ,FilePermission access)
-        {           
-            return ((int)access & holdPermission) != 0;
+        private static bool CheckFilePermission(int holdPermission, FilePermission access)
+        {
+            return ((int)access & holdPermission) != (int)access;
         }
     }
 }

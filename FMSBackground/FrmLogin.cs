@@ -17,7 +17,7 @@ namespace FMSBackground
 
         UserLogic _userLogic = new UserLogic();
 
-        public FrmLogin()
+        public FrmLogin() 
         {
             InitializeComponent();
         }
@@ -53,13 +53,5 @@ namespace FMSBackground
             //在Main方法中会收到DialogResult的返回值不是Yes则不会启动主窗体
             //DialogResult = DialogResult.No;
         }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-            txtUserName.Text = "xm";
-            txtUserPassword.Text = "123";
-        }
-
-        
     }
 }

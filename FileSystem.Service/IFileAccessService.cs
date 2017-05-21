@@ -20,7 +20,7 @@ using System.Text;
 
 namespace FileSystem.Service
 {
-    public interface IFileAccessService:IService
+    internal interface IFileAccessService:IService
     {
         /// <summary>
         /// 获得指定ID的文件信息

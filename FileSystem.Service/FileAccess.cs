@@ -26,19 +26,19 @@ namespace FileSystem.Service
         /// <summary>
         /// 可读 0000 0001
         /// </summary>
-        Read=0x1,
+        Read = 0x1,
         /// <summary>
         /// 可写 0000 0010
         /// </summary>
-        Write=0x2,
+        Write = 0x2,
         /// <summary>
         /// 可读写 0000 0100
         /// </summary>
-        ReadAndWrite=0x3,
+        ReadAndWrite = 0x3,
         /// <summary>
         /// 可上传 0000 1000
         /// </summary>
-        Upload=0x4,
+        Upload = 0x4,
         /// <summary>
         /// 可下载 0001 0000
         /// </summary>
