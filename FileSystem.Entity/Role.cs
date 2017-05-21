@@ -33,5 +33,7 @@ namespace FileSystem.Entity
         {
             return RoleName;
         }
+
+        public string RoleDescription { get; set; }
     }
 }

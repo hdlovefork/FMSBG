@@ -190,7 +190,7 @@ namespace FileSystem.DAL
             sql += ";SELECT @@IDENTITY";
             if (pList.Count == 0) return -1;
             object o = _db.ExecuteScalar(sql, pList);
-            if (o == null) return -1;
+            if (o == null || o is DBNull ) return -1;
             return Convert.ToInt32(o);
         }
 

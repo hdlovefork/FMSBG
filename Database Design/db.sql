@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2017-05-19 9:06:56                           */
+/* Created on:     2017-05-21 9:57:43                           */
 /*==============================================================*/
 
 
@@ -223,9 +223,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('DOC_Template')
+           where  id = object_id('DOC_Templete')
             and   type = 'U')
-   drop table DOC_Template
+   drop table DOC_Templete
 go
 
 if exists (select 1
@@ -450,15 +450,15 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: DOC_Template                                          */
+/* Table: DOC_Templete                                          */
 /*==============================================================*/
-create table DOC_Template (
-   TemplateID           int                  identity,
-   TemplateName         varchar(50)          null,
-   TemplateType         int                  null,
-   TemplateExt          varchar(50)          null,
-   TemplateData         image                null,
-   constraint PK_DOC_TEMPLATE primary key (TemplateID)
+create table DOC_Templete (
+   TempleteID           int                  identity,
+   TempleteName         varchar(50)          null,
+   TempleteType         int                  null,
+   TempleteExt          varchar(50)          null,
+   TempleteData         image                null,
+   constraint PK_DOC_TEMPLETE primary key (TempleteID)
 )
 go
 

@@ -36,14 +36,14 @@
             this.tool_Function = new System.Windows.Forms.ToolStripButton();
             this.tool_Template = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tool_pwd = new System.Windows.Forms.ToolStripButton();
+            this.tool_about = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSeparator();
             this.tool_Quit = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblCurrentUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssLink = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.tool_pwd = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tool_about = new System.Windows.Forms.ToolStripButton();
             this.toolMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,7 @@
             // 
             // tool_User
             // 
+            this.tool_User.Enabled = false;
             this.tool_User.Image = ((System.Drawing.Image)(resources.GetObject("tool_User.Image")));
             this.tool_User.ImageTransparentColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tool_User.Name = "tool_User";
@@ -79,6 +80,7 @@
             // 
             // tool_Dep
             // 
+            this.tool_Dep.Enabled = false;
             this.tool_Dep.Image = ((System.Drawing.Image)(resources.GetObject("tool_Dep.Image")));
             this.tool_Dep.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Dep.Name = "tool_Dep";
@@ -88,6 +90,7 @@
             // 
             // tool_Role
             // 
+            this.tool_Role.Enabled = false;
             this.tool_Role.Image = ((System.Drawing.Image)(resources.GetObject("tool_Role.Image")));
             this.tool_Role.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Role.Name = "tool_Role";
@@ -97,6 +100,7 @@
             // 
             // tool_Function
             // 
+            this.tool_Function.Enabled = false;
             this.tool_Function.Image = ((System.Drawing.Image)(resources.GetObject("tool_Function.Image")));
             this.tool_Function.ImageTransparentColor = System.Drawing.Color.Black;
             this.tool_Function.Name = "tool_Function";
@@ -106,6 +110,7 @@
             // 
             // tool_Template
             // 
+            this.tool_Template.Enabled = false;
             this.tool_Template.Image = ((System.Drawing.Image)(resources.GetObject("tool_Template.Image")));
             this.tool_Template.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_Template.Name = "tool_Template";
@@ -117,6 +122,29 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // tool_pwd
+            // 
+            this.tool_pwd.Image = ((System.Drawing.Image)(resources.GetObject("tool_pwd.Image")));
+            this.tool_pwd.ImageTransparentColor = System.Drawing.Color.Black;
+            this.tool_pwd.Name = "tool_pwd";
+            this.tool_pwd.Size = new System.Drawing.Size(109, 36);
+            this.tool_pwd.Text = " 修改密码";
+            this.tool_pwd.Click += new System.EventHandler(this.tool_pwd_Click);
+            // 
+            // tool_about
+            // 
+            this.tool_about.Image = ((System.Drawing.Image)(resources.GetObject("tool_about.Image")));
+            this.tool_about.ImageTransparentColor = System.Drawing.Color.Black;
+            this.tool_about.Name = "tool_about";
+            this.tool_about.Size = new System.Drawing.Size(109, 36);
+            this.tool_about.Text = " 关于我们";
+            this.tool_about.Click += new System.EventHandler(this.tool_about_Click);
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(6, 39);
             // 
             // tool_Quit
             // 
@@ -174,29 +202,6 @@
             this.dockPanel.Size = new System.Drawing.Size(1615, 844);
             this.dockPanel.TabIndex = 18;
             // 
-            // tool_pwd
-            // 
-            this.tool_pwd.Image = ((System.Drawing.Image)(resources.GetObject("tool_pwd.Image")));
-            this.tool_pwd.ImageTransparentColor = System.Drawing.Color.Black;
-            this.tool_pwd.Name = "tool_pwd";
-            this.tool_pwd.Size = new System.Drawing.Size(109, 36);
-            this.tool_pwd.Text = " 修改密码";
-            this.tool_pwd.Click += new System.EventHandler(this.tool_pwd_Click);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // tool_about
-            // 
-            this.tool_about.Image = ((System.Drawing.Image)(resources.GetObject("tool_about.Image")));
-            this.tool_about.ImageTransparentColor = System.Drawing.Color.Black;
-            this.tool_about.Name = "tool_about";
-            this.tool_about.Size = new System.Drawing.Size(109, 36);
-            this.tool_about.Text = " 关于我们";
-            this.tool_about.Click += new System.EventHandler(this.tool_about_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -205,14 +210,13 @@
             this.Controls.Add(this.dockPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "BlueSky文件管理系统";
             this.Text = "BlueSky文件管理系统";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.toolMain.ResumeLayout(false);
             this.toolMain.PerformLayout();

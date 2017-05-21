@@ -22,7 +22,7 @@ namespace FileSystem.DAL
 {
     public class RoleService : BaseService<Role>,IRoleService
     {
-        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role",null);
+        public override IQueryInfo QueryInfo => new BaseQueryInfo("ACL_Role","RoleID",null);
 
 
         public List<Role> GetRoles()
@@ -30,9 +30,24 @@ namespace FileSystem.DAL
             return Find();
         }
 
+        public bool InsertRole(Role rl)
+        {
+            int i = Insert(rl);
+            return i > 0;
+        }
+
         public List<Role> GetRolesByUID(int uid)
         {
             throw new NotImplementedException();
+        }
+        public bool DeleteRoleByID(int id)
+        {
+
+            return DeleteByKey(id.ToString());
+        }
+        public bool UpdateRole(Role rl)
+        {
+            return Update(rl);
         }
     }
 }

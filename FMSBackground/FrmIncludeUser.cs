@@ -12,19 +12,21 @@ using FileSystem.BLL;
 
 namespace FMSBackground
 {
-    public partial class FrmIncludeUser : Form
+    public partial class FrmIncludeUser : BaseForm
     {
         UserLogic _userLogin = new UserLogic();
         int _depID;
         int _posID;
-        List<int> _lis = new List<int>();
+        List<User> _usersInDep = new List<User>();
+        List<User> _addUsers = new List<User>();
+        UserDepartmentPositionLogic _userdepartmentposition = new UserDepartmentPositionLogic();
 
-        public FrmIncludeUser(int departmentID, int positionID,List <int> lis)
+        public FrmIncludeUser(int departmentID, int positionID,List <User> lis)
         {
             InitializeComponent();
             _posID = positionID;
             _depID = departmentID;
-            _lis = lis;
+            _usersInDep = lis;
             Debug.WriteLine("{0} - {1}", departmentID, positionID);
         }
 
@@ -35,56 +37,71 @@ namespace FMSBackground
         }
         private void InitUserTree()
         {
-            TreeNode root = tvindUser.Nodes.Add("所有用户");
-            AddChildNode(root);
-        }
-
-        private void AddChildNode(TreeNode pNode)
-        {
             List<User> list = _userLogin.GetUsers();
+            list = list.Distinct().Except(_usersInDep, new UserComparer()).ToList();
+            //List<User> list = _userLogin.GetUsers();
             foreach (var u in list)
             {
-                TreeNode node = pNode.Nodes.Add(u.UserRealName);
-                foreach (int r in _lis)
-                {
-                    if(r==u.UserID)
-                    {
-                        node.Checked = true;
-                    }
-                }
+                TreeNode node = tvUsers.Nodes.Add(u.ToString());
+                node.Tag = u;
+                //pNode .Tag  =
+                //foreach (int r in _lis)
+                //{
+                //    if (r == u.UserID)
+                //    {
+                //        node.Remove();
+
+                //    }
+                //}
 
             }
-            tvindUser.ExpandAll();
+            tvUsers.ExpandAll();
         }
 
         private void chksele_CheckedChanged(object sender, EventArgs e)
         {
-            setChildNodeChkState(tvindUser.Nodes[0], chksele.Checked);
-           
-        }
-        public void setChildNodeChkState(TreeNode currNode, bool state)
-        {
-            currNode.Checked = state;
-            foreach (TreeNode n in currNode.Nodes)
+            foreach (TreeNode n in tvUsers.Nodes)
             {
-                setChildNodeChkState(n, state);
+                n.Checked = chkSelect.Checked;
             }
         }
+      
         
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            GetSelectedUsers();
+            foreach(var u in _addUsers)
+            {
+                UserDepartmentPosition rf = new UserDepartmentPosition(u.UserID,_depID ,_posID );
+                _userdepartmentposition.AddUserDepartmentPosition(rf);
+            }
+            DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// 获取选中的用户
+        /// </summary>
+        private void GetSelectedUsers()
+        {
+            foreach (TreeNode node in tvUsers.Nodes)
+            {
+                if (!node.Checked) continue;
+                User u = node.Tag as User;
+                if (u == null) continue;
+                _addUsers.Add(u);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            
         }
 
         //单击父节点，勾选父节点下的所有子节点
         private void tvindUser_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            SelectTheParentNodeSelect(e.Node,e.Node.Checked);
+            SelectTheParentNodeSelect(e.Node,e.Node.Checked);            
         }
 
         private void SelectTheParentNodeSelect(TreeNode currNode,bool state)
@@ -99,6 +116,7 @@ namespace FMSBackground
                 }
             }
         }
+
     }
 }
     

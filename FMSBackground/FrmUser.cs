@@ -30,6 +30,7 @@ namespace FMSBackground
     {
 
         UserLogic _userLogic = new UserLogic();
+        List<User> _userList = null;
 
 
         DepartmentLogic _depLogic = new DepartmentLogic();
@@ -61,19 +62,19 @@ namespace FMSBackground
         /// </summary>
         private void InitUserTree()
         {
-            List<User> list = _userLogic.GetUsers();
-            foreach (var u in list)
+            _userList  = _userLogic.GetUsers();
+            foreach (var u in _userList)
             {
-                TreeNode node = new TreeNode(u.UserRealName);
+                TreeNode node = new TreeNode(u.ToString());
                 node.Name = u.UserID.ToString();
                 node.Tag = u;
                 tvUser.Nodes.Add(node);
             }
-
             tvUser.ExpandAll();
             if (tvUser.Nodes.Count > 0)
             {
                 _selectedNode = tvUser.Nodes[0];
+                tvUser.SelectedNode = _selectedNode;
                 ShowSelectedUserDepartment(_selectedNode);
             }
         }
@@ -111,7 +112,6 @@ namespace FMSBackground
         /// </summary>
         private void ResetUserDetail()
         {
-
             txtUserName.Text = string.Empty;
             txtPwd.Text = string.Empty;
             txtRealName.Text = string.Empty;
@@ -132,12 +132,12 @@ namespace FMSBackground
             }
             else
             {
-
-                UpdateUser();
+                if (!UpdateUser()) return;
             }
             gbDeatil.Enabled = false;//保存后加锁界面
             pnlAction.Enabled = true;//动作面板要启用
             txtUserName.Enabled = false;
+            tvUser.Enabled = true;
         }
 
         /// <summary>
@@ -172,54 +172,63 @@ namespace FMSBackground
         /// <returns></returns>
         private bool CheckInputInfo()
         {
-            if (string.IsNullOrWhiteSpace(txtUserName.Text))
+            if (string.IsNullOrWhiteSpace(txtUserName.Text.Trim()))
             {
-                lblError1.Text = "用户名不能为空";
+                lblError1.Text = "账号不能为空";
                 txtUserName.Focus();
-                lblError1.Visible = true;
                 return false;
+            }
+            //判断账号是否已经存在
+            foreach (User u in _userList)
+            {
+                if (u.UserName == txtUserName.Text.Trim())
+                {
+                    lblError1.Text = "账号已经存在";
+                    return false;
+                }
             }
             lblError1.Visible = false;
             if (string.IsNullOrWhiteSpace(txtPwd.Text))
             {
                 lblError2.Text = "密码不能为空";
                 txtPwd.Focus();
-                lblError2.Visible = true;
                 return false;
             }
             lblError2.Visible = false;
-            if (string.IsNullOrWhiteSpace(txtRealName.Text))
+            if (string.IsNullOrWhiteSpace(txtRealName.Text.Trim()))
             {
                 lblError3.Text = "请输入真实姓名";
-                lblError3.Focus();
-                lblError3.Visible = true;
+                txtRealName.Focus();
                 return false;
             }
             lblError3.Visible = false;
-            if (string.IsNullOrWhiteSpace(txtMobile.Text))
+            if (string.IsNullOrWhiteSpace(txtMobile.Text.Trim()))
             {
                 lblError4.Text = "请输入联系电话";
-                lblError4.Focus();
-                lblError4.Visible = true;
+                txtMobile.Focus();
                 return false;
             }
-            lblError4.Visible = false;
             return true;
         }
         /// <summary>
         /// 编辑用户
         /// </summary>
-        public void UpdateUser()
+        public bool UpdateUser()
         {
-            if (_selectedNode == null) return;
+            if (_selectedNode == null) return false;
             User u = _selectedNode.Tag as User;
-            if (u == null) return;
-
-            u.UserName = txtUserName.Text;
-            u.UserRealName = txtRealName.Text;
+            if (u == null) return false;
+            if (txtPwd.Text.Trim() == string.Empty)
+            {
+                lblError2.Text = "请输入新密码";
+                txtPwd.Focus();
+                return false;
+            }
+            u.UserName = txtUserName.Text.Trim();
+            u.UserRealName = txtRealName.Text.Trim();
             u.UserPassword = txtPwd.Text;
-            u.UserAddress = txtAddress.Text;
-            u.UserMobile = txtMobile.Text;
+            u.UserAddress = txtAddress.Text.Trim();
+            u.UserMobile = txtMobile.Text.Trim();
             u.UserSex = rdoMale.Checked;
             u.UserEnable = chkUserEnable.Checked;
             bool ok = _userLogic.EditUser(u);
@@ -227,6 +236,7 @@ namespace FMSBackground
             {
                 ReloadTree();
             }
+            return ok;
         }
         private void ReloadTree()
         {
@@ -246,9 +256,10 @@ namespace FMSBackground
             _badd = true;
             ResetUserDetail();
             gbDeatil.Enabled = true;
-            tvUser.Enabled = true;
+            tvUser.Enabled = false;
             pnlAction.Enabled = false;
             txtUserName.Enabled = true;
+            txtUserName.Focus();
         }
         /// <summary>
         /// 删除
@@ -259,12 +270,11 @@ namespace FMSBackground
         {
             if (_selectedNode == null) return;
             User u = _selectedNode.Tag as User;
-            if (u == null) return;
-
             bool ok = _userLogic.DeleteUser(u.UserID);
             if (ok)
             {
                 tvUser.Nodes.Remove(_selectedNode);
+                ResetUserDetail();
             }
         }
         /// <summary>
@@ -276,7 +286,7 @@ namespace FMSBackground
         {
             gbDeatil.Enabled = true;
             pnlAction.Enabled = false;
-
+            tvUser.Enabled = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -284,6 +294,11 @@ namespace FMSBackground
             gbDeatil.Enabled = false;
             pnlAction.Enabled = true;
             txtUserName.Enabled = false;
+            tvUser.Enabled = true;
+            lblError1.Text = string.Empty;
+            lblError2.Text = string.Empty;
+            lblError3.Text = string.Empty;
+            lblError4.Text = string.Empty;
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)

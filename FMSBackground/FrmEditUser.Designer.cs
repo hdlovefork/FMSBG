@@ -29,31 +29,32 @@
         private void InitializeComponent()
         {
             this.grpRser = new System.Windows.Forms.GroupBox();
-            this.tvindUser = new System.Windows.Forms.TreeView();
+            this.tvUsers = new System.Windows.Forms.TreeView();
             this.btNo = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btYes = new System.Windows.Forms.Button();
             this.chkSele = new System.Windows.Forms.CheckBox();
             this.grpRser.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpRser
             // 
-            this.grpRser.Controls.Add(this.tvindUser);
+            this.grpRser.Controls.Add(this.tvUsers);
             this.grpRser.Location = new System.Drawing.Point(13, 13);
             this.grpRser.Name = "grpRser";
             this.grpRser.Size = new System.Drawing.Size(338, 457);
             this.grpRser.TabIndex = 0;
             this.grpRser.TabStop = false;
-            this.grpRser.Text = "可编辑用户";
+            this.grpRser.Text = "可添加用户";
             // 
-            // tvindUser
+            // tvUsers
             // 
-            this.tvindUser.CheckBoxes = true;
-            this.tvindUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvindUser.Location = new System.Drawing.Point(3, 21);
-            this.tvindUser.Name = "tvindUser";
-            this.tvindUser.Size = new System.Drawing.Size(332, 433);
-            this.tvindUser.TabIndex = 0;
+            this.tvUsers.CheckBoxes = true;
+            this.tvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvUsers.Location = new System.Drawing.Point(3, 21);
+            this.tvUsers.Name = "tvUsers";
+            this.tvUsers.Size = new System.Drawing.Size(332, 433);
+            this.tvUsers.TabIndex = 0;
+            this.tvUsers.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvindUser_NodeMouseClick);
             // 
             // btNo
             // 
@@ -65,14 +66,15 @@
             this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
             // 
-            // button1
+            // btYes
             // 
-            this.button1.Location = new System.Drawing.Point(167, 476);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 36);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "确定";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btYes.Location = new System.Drawing.Point(167, 476);
+            this.btYes.Name = "btYes";
+            this.btYes.Size = new System.Drawing.Size(89, 36);
+            this.btYes.TabIndex = 1;
+            this.btYes.Text = "确定";
+            this.btYes.UseVisualStyleBackColor = true;
+            this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // chkSele
             // 
@@ -91,12 +93,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(368, 524);
             this.Controls.Add(this.chkSele);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btYes);
             this.Controls.Add(this.btNo);
             this.Controls.Add(this.grpRser);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmEditUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "编辑相关用户";
+            this.TabText = "添加相关用户";
+            this.Text = "添加相关用户";
             this.Load += new System.EventHandler(this.FrmEditUser_Load);
             this.grpRser.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -107,9 +113,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox grpRser;
-        private System.Windows.Forms.TreeView tvindUser;
+        private System.Windows.Forms.TreeView tvUsers;
         private System.Windows.Forms.Button btNo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btYes;
         private System.Windows.Forms.CheckBox chkSele;
     }
 }

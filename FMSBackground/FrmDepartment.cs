@@ -19,10 +19,13 @@ namespace FMSBackground
     {
         TreeNode _selectedNode = null;//保存最后一次点击的节点
         DepartmentLogic _depLogic = new DepartmentLogic();
+        UserDepartmentPositionLogic _userDepartmentPs = new UserDepartmentPositionLogic();
         UserLogic _userLogic = new UserLogic();
-        List<int> lis = new List<int>();
+        List<User> _usersInDep = new List<User>();
         bool _bAdd = false;
-
+        int _did = 0;
+        int _pid = 0;
+        List<Department> _allDeps = null;
 
         public FrmDepartment()
         {
@@ -45,8 +48,8 @@ namespace FMSBackground
 
         private void AddChildNode(TreeNode pNode)
         {
-            List<Department> list = _depLogic.GetDepartments();
-            foreach (var d in list)
+            _allDeps = _depLogic.GetDepartments();
+            foreach (var d in _allDeps)
             {
                 TreeNode node = new TreeNode(d.DepartmentName);
                 node.Tag = d;
@@ -67,38 +70,44 @@ namespace FMSBackground
 
         private void tvDep_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-           
-            _selectedNode = e.Node;
-            Department d = e.Node.Tag as Department;
+            ShowNodeInfo(e.Node);
+        }
+
+        private void ShowNodeInfo(TreeNode node)
+        {
+            _selectedNode = node;
+            Department d = node.Tag as Department;
             if (d == null)
             {
                 //gang wei
-                if (e.Node.Parent == null) return;
-                d = e.Node.Parent.Tag as Department;
+                if (node.Parent == null) return;
+                d = node.Parent.Tag as Department;
                 if (d == null) return;
-                Position p = e.Node.Tag as Position;
-                lvwUser.Items.Clear();
+                _did = d.DepartmentID;
+                Position p = node.Tag as Position;
+                if (p == null) return;
+                _pid = p.PositionID;
+                lstUsers.Items.Clear();
                 ShowPositionUsers(d, p);
-                
                 //MessageBox .Show (d.DepartmentName + "-----" + p.PositionName);
             }
             else
             {
                 //bu men               
                 txtDepName.Text = d.DepartmentName;
+                _did = d.DepartmentID;
                 ShowDepartmentUsers(d);
             }
         }
+
         private void ShowDepartmentUsers(Department d)
         {
-            lvwUser.Items.Clear();
             if (d == null) return;
-            List<User> list = _userLogic.GetUsersByDepID(d.DepartmentID);
-            lis.Clear();
-            foreach (var u in list)
+            lstUsers.Items.Clear();
+            _usersInDep = _userLogic.GetUsersByDepID(d.DepartmentID);
+            foreach (var u in _usersInDep)
             {
-                lvwUser.Items.Add(u);
-                lis.Add(u.UserID);
+                lstUsers.Items.Add(u);
             }
         }
 
@@ -107,7 +116,7 @@ namespace FMSBackground
             List<User> lis = _userLogic.GetUsersByDepIDAndPosID(d.DepartmentID, p.PositionID);
             foreach (var t in lis)
             {
-                lvwUser.Items.Add(t);
+                lstUsers.Items.Add(t);
             }
         }
 
@@ -126,17 +135,10 @@ namespace FMSBackground
         }
         private bool AddDepartment()
         {
-            string name = txtDepName.Text;
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                lblError.Text = "请输入部门名称";
-                txtDepName.Focus();
-                return false;
-            }
-            lblError.Text = string.Empty;
+            if (!CheckInput()) return false;
             Department d = new Department
             {
-                DepartmentName = txtDepName.Text,
+                DepartmentName = txtDepName.Text.Trim(),
             };
             bool ok = _depLogic.AddDepartment(d);
             if (ok)
@@ -145,6 +147,30 @@ namespace FMSBackground
             }
             return true;
         }
+
+        private bool CheckInput()
+        {
+            string name = txtDepName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                lblError.Text = "部门名称不能为空";
+                lblError.Visible = true;
+                txtDepName.Focus();
+                return false;
+            }
+            foreach (Department d in _allDeps)
+            {
+                if(d.DepartmentName == name)
+                {
+                    lblError.Text = "该部门已经存在";
+                    lblError.Visible = true;
+                    txtDepName.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
         /// <summary>
         /// 保存按钮
         /// </summary>
@@ -159,24 +185,26 @@ namespace FMSBackground
             }
             else
             {
-                UpdateDepartment();
+                if (!UpdateDepartment()) return;
             }
             gbDetail.Enabled = false;//保存完了加锁界面/禁用界面
             pnlAction.Enabled = true;//动作面板要启用
             txtDepName.Clear();
+            lblError.Visible = false;
         }
 
-        private void UpdateDepartment()
+        private bool UpdateDepartment()
         {
-            if (_selectedNode == null) return;
+            if (!CheckInput()) return false;
+            if (_selectedNode == null) return false;
             Department d = _selectedNode.Tag as Department;
-            if (d == null) return;
-            d.DepartmentName = txtDepName.Text;
+            if (d == null) return false;
+            d.DepartmentName = txtDepName.Text.Trim();
             if (_depLogic.EditDepartment(d))
             {
                 ReloadTree();
             }
-
+            return true;
         }
 
         private void btnDelete_Click(object sender, AuthEventArgs e)
@@ -202,7 +230,7 @@ namespace FMSBackground
         {
             gbDetail.Enabled = false;//取消时详情面板要禁用
             pnlAction.Enabled = true;//启用动作面板
-            lblError.Text = string.Empty; 
+            lblError.Visible = false;
         }
 
         private void btnEdit_Click(object sender, AuthEventArgs e)
@@ -223,8 +251,31 @@ namespace FMSBackground
             if (pos == null) return;
             Department dep = _selectedNode.Parent.Tag as Department;
             if (dep == null) return;
-            FrmIncludeUser include = new FrmIncludeUser(dep.DepartmentID, pos.PositionID,lis);
-            include.ShowDialog();
+            //获取当前部门下的用户
+            _usersInDep = _userLogic.GetUsersByDepID(dep.DepartmentID);
+            FrmIncludeUser frm = new FrmIncludeUser(dep.DepartmentID, pos.PositionID, _usersInDep);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                ShowNodeInfo(_selectedNode);
+            }
+        }
+
+        private void btnRemoveUser_Click(object sender, EventArgs e)
+        {
+            User u = lstUsers.SelectedItem as User;
+            if (u == null) return;
+            UserDepartmentPosition udp = new UserDepartmentPosition(u.UserID, _did);
+            if(_userDepartmentPs.DeleteUserDepPs(udp)){
+                //Department d = _selectedNode.Tag as Department;
+                //if (d == null)
+                //{
+                //    d = _selectedNode.Parent.Tag as Department;
+                //}
+                //ShowDepartmentUsers(d);
+                lstUsers.Items.Remove(u);
+            }
+
+           
         }
     }
 }

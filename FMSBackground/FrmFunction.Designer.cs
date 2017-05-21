@@ -55,7 +55,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(221, 5);
+            this.btnDelete.Location = new System.Drawing.Point(226, 8);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(99, 36);
@@ -70,7 +70,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.tvFunction);
-            this.groupBox1.Location = new System.Drawing.Point(13, 48);
+            this.groupBox1.Location = new System.Drawing.Point(16, 51);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -127,12 +127,12 @@
             // lblError2
             // 
             this.lblError2.AutoSize = true;
-            this.lblError2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError2.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblError2.ForeColor = System.Drawing.Color.Red;
             this.lblError2.Location = new System.Drawing.Point(145, 154);
             this.lblError2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError2.Name = "lblError2";
-            this.lblError2.Size = new System.Drawing.Size(139, 20);
+            this.lblError2.Size = new System.Drawing.Size(106, 14);
             this.lblError2.TabIndex = 9;
             this.lblError2.Text = " 请输入控件ID";
             this.lblError2.Visible = false;
@@ -140,12 +140,12 @@
             // lblError1
             // 
             this.lblError1.AutoSize = true;
-            this.lblError1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblError1.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblError1.ForeColor = System.Drawing.Color.Red;
             this.lblError1.Location = new System.Drawing.Point(145, 52);
             this.lblError1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError1.Name = "lblError1";
-            this.lblError1.Size = new System.Drawing.Size(159, 20);
+            this.lblError1.Size = new System.Drawing.Size(120, 14);
             this.lblError1.TabIndex = 8;
             this.lblError1.Text = " 请输入功能名称";
             this.lblError1.Visible = false;
@@ -153,10 +153,10 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(571, 189);
+            this.btnCancel.Location = new System.Drawing.Point(544, 191);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
+            this.btnCancel.Size = new System.Drawing.Size(100, 36);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = " 放弃";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -165,10 +165,10 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(491, 189);
+            this.btnSave.Location = new System.Drawing.Point(412, 191);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 32);
+            this.btnSave.Size = new System.Drawing.Size(100, 36);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(9, 5);
+            this.btnAdd.Location = new System.Drawing.Point(12, 8);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(99, 36);
@@ -253,13 +253,13 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(115, 5);
+            this.btnEdit.Location = new System.Drawing.Point(118, 8);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(99, 36);
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Tag = "User/Edit";
-            this.btnEdit.Text = " 编辑";
+            this.btnEdit.Text = "编辑";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new FMSBackground.Control.AuthEventHandler(this.btnEdit_Click);
             // 
@@ -268,7 +268,7 @@
             this.pnlAction.Controls.Add(this.btnAdd);
             this.pnlAction.Controls.Add(this.btnDelete);
             this.pnlAction.Controls.Add(this.btnEdit);
-            this.pnlAction.Location = new System.Drawing.Point(8, 0);
+            this.pnlAction.Location = new System.Drawing.Point(7, 0);
             this.pnlAction.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(324, 45);
@@ -286,6 +286,7 @@
             this.Name = "FrmFunction";
             this.TabText = "功能管理";
             this.Text = "功能管理";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmFunction_Load);
             this.groupBox1.ResumeLayout(false);
             this.gbDetail.ResumeLayout(false);

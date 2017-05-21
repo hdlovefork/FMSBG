@@ -48,58 +48,56 @@
             this.groupBox1.Controls.Add(this.texNewPwd);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(14, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(19, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(292, 131);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(389, 164);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "修改密码";
             // 
             // texRealPwd
             // 
-            this.texRealPwd.Location = new System.Drawing.Point(112, 98);
-            this.texRealPwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.texRealPwd.Location = new System.Drawing.Point(149, 122);
+            this.texRealPwd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.texRealPwd.Name = "texRealPwd";
-            this.texRealPwd.Size = new System.Drawing.Size(164, 21);
+            this.texRealPwd.Size = new System.Drawing.Size(217, 25);
             this.texRealPwd.TabIndex = 2;
             // 
             // texOldPwd
             // 
-            this.texOldPwd.Location = new System.Drawing.Point(112, 33);
-            this.texOldPwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.texOldPwd.Location = new System.Drawing.Point(149, 41);
+            this.texOldPwd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.texOldPwd.Name = "texOldPwd";
-            this.texOldPwd.Size = new System.Drawing.Size(164, 21);
+            this.texOldPwd.Size = new System.Drawing.Size(217, 25);
             this.texOldPwd.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(14, 33);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(19, 41);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 17);
+            this.label3.Size = new System.Drawing.Size(114, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "请输入原密码：";
             // 
             // texNewPwd
             // 
-            this.texNewPwd.Location = new System.Drawing.Point(112, 65);
-            this.texNewPwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.texNewPwd.Location = new System.Drawing.Point(149, 81);
+            this.texNewPwd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.texNewPwd.Name = "texNewPwd";
-            this.texNewPwd.Size = new System.Drawing.Size(164, 21);
+            this.texNewPwd.Size = new System.Drawing.Size(217, 25);
             this.texNewPwd.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(14, 65);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(19, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 17);
+            this.label2.Size = new System.Drawing.Size(114, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "请输入新密码：";
             // 
@@ -107,19 +105,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(14, 98);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(19, 122);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 17);
+            this.label1.Size = new System.Drawing.Size(114, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "请确认新密码：";
             // 
             // btNo
             // 
-            this.btNo.Location = new System.Drawing.Point(241, 150);
-            this.btNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btNo.Location = new System.Drawing.Point(325, 188);
+            this.btNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(62, 29);
+            this.btNo.Size = new System.Drawing.Size(83, 36);
             this.btNo.TabIndex = 2;
             this.btNo.Text = "取消";
             this.btNo.UseVisualStyleBackColor = true;
@@ -127,10 +124,10 @@
             // 
             // btYes
             // 
-            this.btYes.Location = new System.Drawing.Point(170, 150);
-            this.btYes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btYes.Location = new System.Drawing.Point(228, 188);
+            this.btYes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btYes.Name = "btYes";
-            this.btYes.Size = new System.Drawing.Size(62, 29);
+            this.btYes.Size = new System.Drawing.Size(83, 36);
             this.btYes.TabIndex = 1;
             this.btYes.Text = "确定";
             this.btYes.UseVisualStyleBackColor = true;
@@ -138,15 +135,18 @@
             // 
             // FrmUpUserPwd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AcceptButton = this.btYes;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(317, 192);
+            this.CancelButton = this.btNo;
+            this.ClientSize = new System.Drawing.Size(423, 240);
             this.Controls.Add(this.btYes);
             this.Controls.Add(this.btNo);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmUpUserPwd";

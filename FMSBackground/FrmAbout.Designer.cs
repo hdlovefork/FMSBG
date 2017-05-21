@@ -52,9 +52,9 @@
             // btnSure
             // 
             this.btnSure.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSure.Location = new System.Drawing.Point(624, 281);
+            this.btnSure.Location = new System.Drawing.Point(613, 281);
             this.btnSure.Name = "btnSure";
-            this.btnSure.Size = new System.Drawing.Size(88, 38);
+            this.btnSure.Size = new System.Drawing.Size(100, 36);
             this.btnSure.TabIndex = 2;
             this.btnSure.Text = "确定";
             this.btnSure.UseVisualStyleBackColor = true;

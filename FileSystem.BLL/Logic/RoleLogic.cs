@@ -21,12 +21,27 @@ using System.Threading.Tasks;
 
 namespace FileSystem.BLL
 {
-    public class RoleLogic:BaseLogic<RoleService>
+    public class RoleLogic : BaseLogic<RoleService>
     {
-      public  List<Role> GetRoles()
+        public List<Role> GetRoles()
         {
-           return Service.GetRoles();
+            return Service.GetRoles();
         }
-       
+        public bool AddRole(Role rl)
+        {
+            return Service.InsertRole(rl);
+        }
+
+        public bool DeleteRoleByID(int id)
+        {
+            if (id <= 0) return true;
+            return Service.DeleteRoleByID(id);
+        }
+
+        public bool EditRole(Role rl)
+        {
+            return Service.UpdateRole(rl);
+        }
+
     }
 }

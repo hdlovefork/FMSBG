@@ -55,6 +55,7 @@ namespace FMSBackground
                 _frmUser = new FrmUser();
                 _frmUser.Show(dockPanel);
                 firstTab = _frmUser;
+                tool_User.Enabled = true;
                 _frmDict.Add(tool_User.Text, _frmUser);
             }
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_DEPARTMENT))
@@ -63,6 +64,7 @@ namespace FMSBackground
                 _frmDep.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmDep;
+                tool_Dep.Enabled = true;
                 _frmDict.Add(tool_Dep.Text, _frmDep);
 
             }
@@ -72,6 +74,7 @@ namespace FMSBackground
                 _frmRole.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmRole;
+                tool_Role.Enabled = true;
                 _frmDict.Add(tool_Role.Text, _frmRole);
             }
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_FUNCTION))
@@ -80,6 +83,7 @@ namespace FMSBackground
                 _frmFun.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmFun;
+                tool_Function.Enabled = true;
                 _frmDict.Add(tool_Function.Text, _frmFun);
             }
             if (Factory.Create<AuthLogic>().Auth(GObj.SYSTEM_FUNCTION_TEMPLATE))
@@ -88,6 +92,7 @@ namespace FMSBackground
                 _frmTemp.Show(dockPanel);
                 if (firstTab == null)
                     firstTab = _frmTemp;
+                tool_Template.Enabled = true;
                 _frmDict.Add(tool_Template.Text, _frmTemp);
             }
 

@@ -152,23 +152,23 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(118, 12);
+            this.btnDelete.Location = new System.Drawing.Point(124, 8);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 34);
+            this.btnDelete.Size = new System.Drawing.Size(99, 36);
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Tag = "Templete/Delete";
-            this.btnDelete.Text = " 删除";
+            this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new FMSBackground.Control.AuthEventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 12);
+            this.btnAdd.Location = new System.Drawing.Point(18, 8);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 34);
+            this.btnAdd.Size = new System.Drawing.Size(99, 36);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Tag = "Templete/Add";
-            this.btnAdd.Text = " 添加";
+            this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new FMSBackground.Control.AuthEventHandler(this.btnAdd_Click);
             // 
@@ -196,6 +196,7 @@
             this.Name = "FrmTemplate";
             this.TabText = "模板管理";
             this.Text = "模板管理";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmTemplate_Load);
             this.tbTemplete.ResumeLayout(false);
             this.tpWord.ResumeLayout(false);

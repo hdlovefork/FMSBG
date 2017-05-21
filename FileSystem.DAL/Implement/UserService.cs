@@ -17,6 +17,7 @@ using System.Text;
 using System.Data;
 using FileSystem.Entity;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace FileSystem.DAL
 {
@@ -89,7 +90,51 @@ namespace FileSystem.DAL
 
         public bool InsertUser(User user)
         {
-            return Insert(user) > 0 ;
+            try
+            {
+                ///1.添加用户
+                int uid = Insert(user);
+                //2.添加文件（1.我的文档，2.我的图片）PID=-1
+                File file = new File();
+                file.FilePID = -1;
+                file.FileSize = 0;
+                file.FileName = "我的文档";
+                int fid1 = InsertFile(file);
+                file.FileName = "我的图片";
+                int fid2 = InsertFile(file);
+                //3.zhong'jian'表添加该用户的2条记录
+                InsertFile_User(uid, fid1);
+                InsertFile_User(uid, fid2);
+                return uid > 0 ;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public int InsertFile(File file)
+        {
+            string sql = string.Format("INSERT INTO [{0}] (FilePID,FileSize,FileName) VALUES(@FilePID,@FileSize,@FileName);SELECT @@IDENTITY", "File");
+            List<DbParameter> pList = new List<DbParameter>();
+            pList.Add(new SqlParameter("@FilePID", file.FilePID));
+            pList.Add(new SqlParameter("@FileSize", file.FileSize));
+            pList.Add(new SqlParameter("@FileName", file.FileName));
+
+            object o = _db.ExecuteScalar(sql, pList);
+            if (o is DBNull) return -1;
+            if (o == null) return -1;
+            return Convert.ToInt32(o);
+        }
+
+
+        public bool InsertFile_User(int uid, int fid)
+        {
+            string sql = string.Format("INSERT INTO {0} (FileID,UserID) VALUES(@FileID,@UserID)", "ACL_File_User");
+            List<DbParameter> pList = new List<DbParameter>();
+            pList.Add(new SqlParameter("@FileID", fid));
+            pList.Add(new SqlParameter("@UserID", uid));
+            return _db.ExecuteNonQuery(sql, pList) > 0;
         }
 
         public List<User> GetUsersByDepIDAndPosID(int depID, int posID)

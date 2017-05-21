@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditTree));
             this.grbFunction = new System.Windows.Forms.GroupBox();
             this.tvFunctionTree = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btYes = new System.Windows.Forms.Button();
             this.btNo = new System.Windows.Forms.Button();
             this.chksele = new System.Windows.Forms.CheckBox();
@@ -49,26 +52,36 @@
             // tvFunctionTree
             // 
             this.tvFunctionTree.CheckBoxes = true;
+            this.tvFunctionTree.ImageIndex = 0;
+            this.tvFunctionTree.ImageList = this.imageList1;
             this.tvFunctionTree.Location = new System.Drawing.Point(7, 24);
             this.tvFunctionTree.Name = "tvFunctionTree";
+            this.tvFunctionTree.SelectedImageIndex = 0;
             this.tvFunctionTree.Size = new System.Drawing.Size(444, 576);
             this.tvFunctionTree.TabIndex = 0;
             this.tvFunctionTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFunctionTree_NodeMouseClick);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Black;
+            this.imageList1.Images.SetKeyName(0, "small_function.bmp");
+            // 
             // btYes
             // 
-            this.btYes.Location = new System.Drawing.Point(237, 641);
+            this.btYes.Location = new System.Drawing.Point(250, 634);
             this.btYes.Name = "btYes";
-            this.btYes.Size = new System.Drawing.Size(104, 32);
+            this.btYes.Size = new System.Drawing.Size(100, 36);
             this.btYes.TabIndex = 1;
             this.btYes.Text = "确定";
             this.btYes.UseVisualStyleBackColor = true;
+            this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btNo
             // 
-            this.btNo.Location = new System.Drawing.Point(347, 641);
+            this.btNo.Location = new System.Drawing.Point(363, 633);
             this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(104, 32);
+            this.btNo.Size = new System.Drawing.Size(100, 36);
             this.btNo.TabIndex = 1;
             this.btNo.Text = "取消";
             this.btNo.UseVisualStyleBackColor = true;
@@ -89,13 +102,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 696);
+            this.ClientSize = new System.Drawing.Size(481, 676);
             this.Controls.Add(this.chksele);
             this.Controls.Add(this.btNo);
             this.Controls.Add(this.btYes);
             this.Controls.Add(this.grbFunction);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmEditTree";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TabText = "FrmEditTree";
             this.Text = "FrmEditTree";
             this.Load += new System.EventHandler(this.FrmEditTree_Load);
             this.grbFunction.ResumeLayout(false);
@@ -111,5 +128,6 @@
         private System.Windows.Forms.Button btYes;
         private System.Windows.Forms.Button btNo;
         private System.Windows.Forms.CheckBox chksele;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

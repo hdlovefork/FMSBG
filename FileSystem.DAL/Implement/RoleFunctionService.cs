@@ -1,6 +1,7 @@
 ﻿using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -13,6 +14,14 @@ namespace FileSystem.DAL
         {
             int i = Insert(rf);
             return i > 0;
+        }
+        public bool DeleteRoleFunction(int rid, int pid)
+        {
+            return Delete("RoleID=@RID AND FunctionID=@PID",
+                new SqlParameter("@RID", rid),
+                new SqlParameter("PID", pid)
+
+                );
         }
     }
 }

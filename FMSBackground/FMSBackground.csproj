@@ -148,6 +148,12 @@
     <EmbeddedResource Include="FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditTree.resx">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditUser.resx">
+      <DependentUpon>FrmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmFunction.resx">
       <DependentUpon>FrmFunction.cs</DependentUpon>
     </EmbeddedResource>
