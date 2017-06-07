@@ -34,6 +34,11 @@ namespace FileSystem.DAL
         {
             TableName = tableName;
         }
+
+        public Relationship(string tableName,string fieldName) : this(tableName)
+        {
+            FieldName = fieldName;
+        }
         /// <summary>
         /// 关系表的名称
         /// </summary>

@@ -81,12 +81,11 @@ namespace FileSystem.BLL
             return true;
         }
         public bool AddUser(User user)
-        {
+        {           
             return Service.InsertUser(user);
         }
         public bool EditUser(User user)
         {
-
             return Service.UpdateUser(user);
         }
 

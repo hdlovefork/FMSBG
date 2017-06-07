@@ -46,18 +46,7 @@ namespace FileSystem.Entity
 		/// 
 		/// </summary>
 		public int? FilePID { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public int FileOwner { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public int FileRole { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public int FileOther { get; set; }
+	
 
         public int UserID { get; set; }
         public string UserName { get; set; }

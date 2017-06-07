@@ -106,7 +106,9 @@ namespace FMSBackground
         {
             string name = (sender as ToolStripButton).Text;
             if (_frmDict.ContainsKey(name))
+            {
                 _frmDict[name].Show(dockPanel);
+            }
         }
 
         private void tool_pwd_Click(object sender, EventArgs e)

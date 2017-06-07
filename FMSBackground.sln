@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMSBackground", "FMSBackground\FMSBackground.csproj", "{5D1299E3-86FC-4BFE-8701-37EC21E3CF07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.BLL", "FileSystem.BLL\FileSystem.BLL.csproj", "{48420E3C-D53E-4891-AFFC-1A48DEC7C069}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.DAL", "FileSystem.DAL\FileSystem.DAL.csproj", "{3F348567-A268-44C0-BCE1-E3C59AB6091C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Service", "FileSystem.Service\FileSystem.Service.csproj", "{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Entity", "FileSystem.Entity\FileSystem.Entity.csproj", "{3D25F27C-1995-4444-AE57-6131F2370CB2}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{3F348567-A268-44C0-BCE1-E3C59AB6091C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F348567-A268-44C0-BCE1-E3C59AB6091C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F348567-A268-44C0-BCE1-E3C59AB6091C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D25F27C-1995-4444-AE57-6131F2370CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D25F27C-1995-4444-AE57-6131F2370CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D25F27C-1995-4444-AE57-6131F2370CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU

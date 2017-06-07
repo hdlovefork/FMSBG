@@ -162,8 +162,8 @@ namespace FMSBackground
             if (ok)
             {
                 tvUser.Nodes.Clear();
-                InitUserTree();           
-            }
+                InitUserTree();
+            }           
             return true;
         }
 
@@ -209,6 +209,7 @@ namespace FMSBackground
                 txtMobile.Focus();
                 return false;
             }
+            lblError4.Visible = false;
             return true;
         }
         /// <summary>
@@ -317,15 +318,6 @@ namespace FMSBackground
                     tvUser.SelectedNode = tn;
                 }
             }
-        }
-
-        /// <summary>
-        /// 取消操作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-
-
+        }      
     }
 }

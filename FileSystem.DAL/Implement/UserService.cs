@@ -46,10 +46,17 @@ namespace FileSystem.DAL
                         new Relationship("ACL_File_User"),
                         new Relationship("ACL_User_Role"),
                         new Relationship("User_Department_Position"),
-                        new Relationship("User_Comment"),
+                        new Relationship("File_User_Notice","ToUserID"),
+                        new Relationship("File_User_Notice","FromUserID"),
+                        new Relationship("Comment"),
                     }
                 );
             }
+        }
+
+        public User GetUserByUserName(string name)
+        {
+            return FindSingle("UserName=@UserName", new SqlParameter("@UserName", name));
         }
 
         public bool DeleteUser(int userID)
@@ -94,17 +101,18 @@ namespace FileSystem.DAL
             {
                 ///1.添加用户
                 int uid = Insert(user);
-                //2.添加文件（1.我的文档，2.我的图片）PID=-1
-                File file = new File();
-                file.FilePID = -1;
-                file.FileSize = 0;
-                file.FileName = "我的文档";
-                int fid1 = InsertFile(file);
-                file.FileName = "我的图片";
-                int fid2 = InsertFile(file);
-                //3.zhong'jian'表添加该用户的2条记录
-                InsertFile_User(uid, fid1);
-                InsertFile_User(uid, fid2);
+                if (uid > 0)
+                {
+                    //2.添加文件（1.我的文档，2.我的图片）PID=-1
+                    File file = new File();
+                    file.FilePID = -1;
+                    file.FileSize = 0;
+                    file.UserID = uid;
+                    file.FileName = "我的文档";
+                    int fid1 = InsertFile(file);
+                    file.FileName = "我的图片";
+                    int fid2 = InsertFile(file);
+                }
                 return uid > 0 ;
             }
             catch (Exception e)
@@ -115,11 +123,12 @@ namespace FileSystem.DAL
 
         public int InsertFile(File file)
         {
-            string sql = string.Format("INSERT INTO [{0}] (FilePID,FileSize,FileName) VALUES(@FilePID,@FileSize,@FileName);SELECT @@IDENTITY", "File");
+            string sql = string.Format("INSERT INTO [{0}] (FilePID,FileSize,FileName,UserID) VALUES(@FilePID,@FileSize,@FileName,@UserID);SELECT @@IDENTITY", "File");
             List<DbParameter> pList = new List<DbParameter>();
             pList.Add(new SqlParameter("@FilePID", file.FilePID));
             pList.Add(new SqlParameter("@FileSize", file.FileSize));
             pList.Add(new SqlParameter("@FileName", file.FileName));
+            pList.Add(new SqlParameter("@UserID", file.UserID));
 
             object o = _db.ExecuteScalar(sql, pList);
             if (o is DBNull) return -1;
